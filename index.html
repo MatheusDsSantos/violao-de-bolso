@@ -23,7 +23,7 @@
   --glow:rgba(242,194,94,.14);
   --fret:#cfc6b4; --string:#e6d9bf;
   --board1:#3a2316; --board2:#28170e;   /* escala de jacarandá */
-  --top1:#e6c896; --top2:#c99f62;       /* tampo de abeto (Giannini N natural) */
+  --top1:#e6c896; --top2:#c99f62;       /* tampo natural (Giannini S14 EQ N) */
   --f1:#5da6f2; --f2:#4cc387; --f3:#ff8d5e; --f4:#e575bd;
   --ok:#4cc387; --warn:#f2c25e; --bad:#ef6b6b;
   --display:"Bricolage Grotesque","Nunito Sans",system-ui,sans-serif;
@@ -225,6 +225,32 @@ select{font:inherit;font-weight:700;padding:8px 10px;border-radius:10px;border:1
 .demo .dh{font-weight:800;font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:.1em}
 .notebtn{font-weight:800;padding:9px 13px;border-radius:10px;cursor:pointer;border:1.5px solid var(--line);background:var(--raise)}
 .notebtn:hover{border-color:var(--accent)}
+/* módulo 0: peças do violão + afinador de mentirinha */
+.parts{display:grid;grid-template-columns:minmax(140px,190px) 1fr;gap:16px;align-items:start}
+.parts svg{width:100%;height:auto;display:block}
+.parts [data-part]{cursor:pointer;transition:filter .2s}
+.parts [data-part].hot{filter:drop-shadow(0 0 4px var(--accent)) drop-shadow(0 0 2px var(--accent))}
+.pchips{display:flex;flex-wrap:wrap;gap:6px}
+.pchip{font-size:13.5px;font-weight:800;padding:6px 11px;border-radius:999px;border:1.5px solid var(--line);background:var(--raise);cursor:pointer}
+.pchip:hover{border-color:var(--accent)}
+.pchip[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:var(--glow)}
+.pinfo{margin-top:10px;background:var(--raise);border:1px solid var(--line);border-radius:12px;padding:10px 13px;min-height:5.5em}
+.pinfo b.pt{font-family:var(--display);font-size:16px;display:block;margin-bottom:2px}
+@media (max-width:560px){.parts{grid-template-columns:1fr}.parts svg{max-width:170px;margin:0 auto}}
+.tsel .notebtn{min-width:64px}
+.tsel .notebtn[aria-pressed="true"]{border-color:var(--accent);background:var(--glow)}
+.tsel .notebtn.done{border-color:var(--ok)}
+.tscreen{background:#0b0d12;border:1px solid var(--line);border-radius:12px;padding:14px 14px 12px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.tnote{font-family:var(--mono);font-size:46px;font-weight:700;line-height:1}
+.tsub{font-size:13px;color:var(--muted);font-weight:700}
+.tscreen.ok .tnote{color:var(--ok)}
+.tmeter{position:relative;width:100%;max-width:360px;height:20px;border-radius:10px;background:linear-gradient(90deg,rgba(239,107,107,.3),rgba(242,194,94,.18) 38%,rgba(76,195,135,.4) 47%,rgba(76,195,135,.4) 53%,rgba(242,194,94,.18) 62%,rgba(239,107,107,.3))}
+.tcenter{position:absolute;left:50%;top:-4px;bottom:-4px;width:2px;background:var(--ok);transform:translateX(-1px)}
+.tneedle{position:absolute;top:-7px;bottom:-7px;width:5px;border-radius:3px;background:var(--accent);transform:translateX(-2.5px);transition:left .25s ease}
+.tscreen.ok .tneedle{background:var(--ok)}
+.tlab{display:flex;justify-content:space-between;width:100%;max-width:360px;font-size:12px;color:var(--muted);font-weight:700}
+.tmsg{font-size:14.5px;min-height:2.6em}
+@media (prefers-reduced-motion:reduce){.tneedle{transition:none}}
 .cifra{font-size:15px;line-height:2.1}
 .cifra .ch{display:inline-block;font-weight:800;color:var(--accent);cursor:pointer;border:1.5px solid var(--line);border-radius:8px;padding:1px 8px;background:var(--raise);margin-right:4px}
 .cifra .lyr{display:block;margin-bottom:10px}
@@ -1391,6 +1417,21 @@ function renderLesson(){
 function getProg(){ try{ return JSON.parse(localStorage.getItem("vb_prog")||"{}"); }catch(e){ return {}; } }
 function setProg(id){ try{ const p=getProg(); p[id]=true; localStorage.setItem("vb_prog",JSON.stringify(p)); }catch(e){} renderModGrid(); }
 const MODULES=[
+{id:"m0",emoji:"🎛️",title:"0 · Conhecendo teu S14 EQ",desc:"As peças do violão, as tarraxas, a caixinha do EQ e como afinar com a telinha. Faz esse antes de tudo!",
+ cards:[
+  {h:"As peças do teu violão",html:`<p>Antes de tocar, bora dar nome aos bois. Clica em cada peça aqui embaixo pra ver onde fica e pra que serve.</p>`,demo:"parts"},
+  {h:"Tarraxas: 6 parafusos de esticar",html:`<p>Cada tarraxa da cabeça controla <b>uma corda só</b>. Girou pra esticar, a corda fica mais tensa e o som fica <b>mais agudo</b>. Girou pra afrouxar, fica <b>mais grave</b>. Afinar é só deixar cada corda na tensão certa.</p><p><b>Qual tarraxa é de qual corda?</b> Segue a corda com o olho, do corpo até a cabeça: onde ela enrola, essa é a tarraxa dela. Igual rastrear cabo em painel. 😄</p><p><b>Pra que lado girar?</b> Não decora: gira um tiquinho, toca a corda e olha a telinha. A agulha foi pro lado certo? Continua. Foi pro errado? Inverte.</p>`},
+  {h:"A caixinha do lado: o EQ",html:`<p>Aquele painelzinho na lateral, com a telinha e os botões de girar, é um <b>pré-amplificador</b>. Embaixo do rastilho (a peça branca do cavalete) tem um sensor que transforma a vibração das cordas em sinal elétrico, e o EQ trata esse sinal antes de ele sair pelo cabo.</p><ul><li>🎚️ <b>Volume</b> e os controles de <b>grave, médio e agudo</b> (alguns modelos têm mais um, tipo <i>presence</i>): é um equalizador, igual de aparelho de som. <b>Só fazem diferença com o violão plugado</b> numa caixa. Desplugado, pode girar à vontade que o som não muda nada.</li><li>🎯 <b>Botão do afinador</b> (geralmente escrito <i>Tuner</i>): esse você vai usar <b>todo dia</b>.</li><li>🔋 Tem uma <b>bateria de 9V</b> alimentando tudo. Telinha não acendeu? É ela pedindo troca.</li><li>🔌 A <b>saída do cabo</b> (P10) fica na ponta de baixo do corpo, junto do pino da alça.</li></ul><div class="tip">💡 O dia que for plugar: tudo no meio (meio-dia no relógio), volume baixinho, e vai ajustando no ouvido.</div>`},
+  {h:"Afinando com a telinha, passo a passo",html:`<ol><li>Aperta o botão do afinador. A telinha acende e fica "escutando".</li><li>Toca <b>uma corda solta</b> (sem apertar nada no braço) e deixa ela soar.</li><li>Olha a <b>letra</b>: tem que ser a da corda. Da grossa pra fina: <b>E · A · D · G · B · E</b>.</li><li>Olha a <b>agulha</b>: antes do centro = grave demais, <b>estica</b>. Depois do centro = aguda demais, <b>afrouxa</b>. Centralizou (geralmente fica verde) = afinou! ✅</li><li>Repete nas 6 e depois <b>confere todas de novo</b>: mexer numa corda mexe um tiquinho na tensão das outras.</li></ol><div class="tip">⚠️ <b>Corda de aço arrebenta se esticar demais.</b> Se a letra que aparece for diferente da esperada, NÃO sai girando com força: gira devagar, meio giro por vez, tocando a corda a cada ajuste. E sempre termina a afinação <b>subindo</b>: se passou do ponto, afrouxa um pouco abaixo e sobe de novo, assim a corda trava melhor.</div><p>Bora treinar num afinador de mentirinha antes de ir pro de verdade:</p>`,demo:"tuner"},
+  {h:"Manhas de quem toca no aço",html:`<ul><li>👆 Aperta com a <b>ponta do dedo</b>, bem <b>pertinho do traste</b> (o ferrinho), não no meio da casa. Precisa de bem menos força e para de zumbir.</li><li>🩹 Os dedos vão doer nas primeiras <b>3–4 semanas</b>, até formar calo. Normal! Toca <b>15–20 min por dia</b> em vez de 2 horas num dia só.</li><li>🆕 Corda nova estica nos primeiros dias: afina <b>toda vez</b> que pegar o violão.</li><li>🧽 Passa uma flanela nas cordas depois de tocar: o suor oxida o aço e mata o som.</li><li>🔧 Doendo muito além do normal ou zumbindo em todo acorde? As cordas podem estar altas: uma regulagem de luthier resolve.</li></ul>`},
+ ],
+ quiz:[
+  {q:"Os botões de volume, grave, médio e agudo do EQ servem pra…",opts:["Afinar as cordas","Mudar o som do violão tocando desplugado","Ajustar o som quando o violão está plugado numa caixa","Deixar as cordas mais macias"],c:2,why:"É um equalizador do sinal elétrico: só age com o cabo plugado."},
+  {q:"A agulha do afinador está ANTES do centro. A corda está…",opts:["Grave demais: tem que esticar","Aguda demais: tem que afrouxar","Afinada","Arrebentando"],c:0,why:"Antes do centro = abaixo da nota = estica um pouquinho."},
+  {q:"Como descobrir qual tarraxa é de qual corda?",opts:["Decorando a ordem","Seguindo a corda com o olho até onde ela enrola","Girando todas ao mesmo tempo","Pelo botão do EQ"],c:1,why:"Segue o fio, igual cabo em painel."},
+  {q:"As cordas soltas, da grossa pra fina, em letra:",opts:["C D E F G A","E A D G B E","E B G D A E","A B C D E F"],c:1,why:"Minha Linda Rê Só Sabe Miar 🐱 = E A D G B E."},
+  {q:"Onde apertar a corda pra sair limpo e doer menos?",opts:["No meio da casa","Em cima do traste","Pertinho do traste, com a ponta do dedo","Com o dedo deitado"],c:2,why:"Pertinho do traste precisa de bem menos força."},
+ ]},
 {id:"m1",emoji:"🔊",title:"1 · O que é uma nota?",desc:"Som, vibração, os 7 apelidos e por que as letras importam mais que o dó-ré-mi.",
  cards:[
   {h:"Nota é só uma vibração com velocidade certa",html:`<p>Tudo que faz som vibra. Quando você toca a corda <b>Lá</b> solta, ela balança <b>110 vezes por segundo</b>: 110 Hz, a mesma unidade que você usa com motor e inversor no trabalho. 😄</p><p>Uma <b>nota</b> é só um apelido pra uma velocidade de vibração. Vibrou mais rápido, fica mais agudo; mais devagar, mais grave.</p>`,demo:"scale"},
@@ -1452,8 +1493,8 @@ const MODULES=[
  ]},
 {id:"m6",emoji:"🗓️",title:"6 · Seu plano das primeiras semanas",desc:"A rotina de 15–20 min que junta tudo, e as ciladas pra evitar.",
  cards:[
-  {h:"A rotina diária (15–20 min)",html:`<ul><li>🎚️ <b>2 min</b>: afinar (afinador do EQ)</li><li>🤟 <b>5 min</b>: um acorde novo + revisar (aba Acordes)</li><li>⏱️ <b>3 min</b>: treino de troca (aba Treino)</li><li>🎵 <b>10 min</b>: Coração Partido na aba Músicas: primeiro <b>👀 Me ver tocar</b>, depois <b>🐢 No meu tempo</b>, depois <b>🎸 Minha vez</b> bem devagar</li></ul><p><b>Todo dia um pouco vence fim de semana heroico.</b> Igual academia. 💪</p>`},
-  {h:"O que esperar",html:`<ul><li><b>Semana 1–2:</b> ponta dos dedos doendo e acordes abafados. Normal: o calo se forma em ~2 semanas.</li><li><b>Semana 3–4:</b> Am, Dm e C saem limpos, trocas começam a fluir.</li><li><b>Mês 2–3:</b> Coração Partido inteira. 🎉</li></ul>`},
+  {h:"A rotina diária (15–20 min)",html:`<ul><li>🎚️ <b>2 min</b>: afinar com a telinha do EQ (módulo 0 ensina)</li><li>🤟 <b>5 min</b>: um acorde novo + revisar (aba Acordes)</li><li>⏱️ <b>3 min</b>: treino de troca (aba Treino)</li><li>🎵 <b>10 min</b>: Coração Partido na aba Músicas: primeiro <b>👀 Me ver tocar</b>, depois <b>🐢 No meu tempo</b>, depois <b>🎸 Minha vez</b> bem devagar</li></ul><p><b>Todo dia um pouco vence fim de semana heroico.</b> Igual academia. 💪</p>`},
+  {h:"O que esperar",html:`<ul><li><b>Semana 1–3:</b> ponta dos dedos doendo e acordes abafados. Normal: no aço o calo leva umas 3–4 semanas pra formar.</li><li><b>Semana 4–5:</b> Am, Dm e C saem limpos, trocas começam a fluir.</li><li><b>Mês 2–3:</b> Coração Partido inteira. 🎉</li></ul>`},
   {h:"Ciladas de iniciante",html:`<ul><li>❌ Forçar o F com pestana cedo: usa o F fácil</li><li>❌ Colecionar vídeo sem tocar</li><li>❌ Treinar desafinado</li><li>❌ Só treinar acorde parado: a <b>troca</b> é o que destrava música</li></ul>`},
  ],quiz:null},
 ];
@@ -1467,6 +1508,75 @@ function renderModGrid(){
   });
 }
 const DEMOS={
+  parts(box){
+    const P=[
+      ["cabeca","🔩 Cabeça e tarraxas","A ponta do braço. Os 6 botões de girar dos lados são as <b>tarraxas</b>: cada uma estica ou afrouxa uma corda. É aqui que você afina."],
+      ["pestana","⬜ Pestana","A pecinha branca entre a cabeça e o braço. Ela guia as cordas e marca o começo da <b>casa 1</b>. Corda solta = vibra da pestana até o cavalete."],
+      ["braco","🎼 Braço e casas","A parte escura comprida. Os ferrinhos atravessados são os <b>trastes</b>, e o espaço entre dois trastes é uma <b>casa</b>. Apertar numa casa encurta a corda e deixa o som mais agudo."],
+      ["cordas","〰️ Cordas","6 cordas de aço. Segurando o violão pra tocar, a <b>mais grossa fica em cima</b> (Mi grave) e a mais fina embaixo (Mi agudo)."],
+      ["boca","⭕ Boca","O buraco redondo: é por onde o som sai da caixa. A etiqueta Giannini lá dentro fica aqui. A mão direita toca entre a boca e o fim do braço."],
+      ["cavalete","🪵 Cavalete e rastilho","Onde as cordas se prendem no corpo, com os <b>pininhos</b> segurando cada uma. A tirinha branca em cima é o <b>rastilho</b>, e embaixo dele mora o captador do EQ."],
+      ["eq","🎛️ EQ (a caixinha do lado)","O painel na lateral com a <b>telinha do afinador</b>, o volume e os controles de grave/médio/agudo. Os de som só funcionam plugado; o afinador funciona sempre."],
+      ["saida","🔌 Saída do cabo + pino da alça","Na ponta de baixo do corpo: é onde entra o cabo P10 pra plugar numa caixa, e serve também de pino pra prender a alça."],
+    ];
+    const frets=[]; let y=106; for(let i=1;i<=13;i++){ y+=18-i*.55; frets.push(y); }
+    const sx=(i,yy)=>{ const t=(yy-104)/(472-104); const a=107+i*5.2, b=104+i*6.4; return a+(b-a)*t; };
+    const strings=[0,1,2,3,4,5].map(i=>`<line x1="${sx(i,104).toFixed(1)}" y1="104" x2="${sx(i,472).toFixed(1)}" y2="472" stroke="var(--string)" stroke-width="${(1.9-i*.22).toFixed(2)}"/>`).join("");
+    box.innerHTML=`<div class="dh">🎸 Mapa do teu violão (clica nas peças)</div><div class="parts">
+<svg viewBox="0 0 240 570" role="img" aria-label="Desenho do violão em pé, com as peças clicáveis">
+ <g data-part="corpo" style="cursor:default"><path d="M120,302 C62,302 44,338 50,378 C54,404 70,414 62,436 C28,474 22,552 120,555 C218,552 212,474 178,436 C170,414 186,404 190,378 C196,338 178,302 120,302 Z" fill="var(--top2)" stroke="#7a1f16" stroke-width="5"/></g>
+ <g data-part="eq"><rect x="44" y="336" width="14" height="50" rx="3" fill="#1b1d24" stroke="#555" stroke-width="1.2"/><rect x="47" y="342" width="8" height="10" rx="1.5" fill="#3a6b52"/><circle cx="51" cy="361" r="2.6" fill="#999"/><circle cx="51" cy="370" r="2.6" fill="#999"/><circle cx="51" cy="379" r="2.6" fill="#999"/></g>
+ <g data-part="boca"><circle cx="120" cy="388" r="30" fill="none" stroke="#2b2b2b" stroke-width="6" stroke-dasharray="2 2"/><circle cx="120" cy="388" r="24" fill="#2a1a10"/></g>
+ <g data-part="braco"><rect x="103" y="104" width="34" height="262" rx="3" fill="var(--board1)"/>${frets.map(f=>`<line x1="103" y1="${f.toFixed(1)}" x2="137" y2="${f.toFixed(1)}" stroke="var(--fret)" stroke-width="1.6"/>`).join("")}<circle cx="120" cy="${((frets[3]+frets[4])/2).toFixed(1)}" r="2.2" fill="#ddd"/><circle cx="120" cy="${((frets[5]+frets[6])/2).toFixed(1)}" r="2.2" fill="#ddd"/></g>
+ <g data-part="cabeca"><rect x="96" y="10" width="48" height="88" rx="7" fill="#8e2a1f"/><rect x="106" y="24" width="9" height="62" rx="4" fill="#3d120c"/><rect x="125" y="24" width="9" height="62" rx="4" fill="#3d120c"/>${[32,55,78].map(c=>`<circle cx="86" cy="${c}" r="7" fill="#d8d8d8" stroke="#888"/><circle cx="154" cy="${c}" r="7" fill="#d8d8d8" stroke="#888"/>`).join("")}</g>
+ <g data-part="pestana"><rect x="101" y="98" width="38" height="6" rx="1.5" fill="#f3efe6"/></g>
+ <g data-part="cavalete"><rect x="84" y="466" width="72" height="26" rx="4" fill="var(--board2)"/><rect x="92" y="469" width="56" height="4" rx="2" fill="#f3efe6"/>${[0,1,2,3,4,5].map(i=>`<circle cx="${(98+i*8.8).toFixed(1)}" cy="483" r="2.4" fill="#e8e2d6"/>`).join("")}</g>
+ <g data-part="cordas">${strings}</g>
+ <g data-part="saida"><circle cx="120" cy="553" r="6.5" fill="#cfcfcf" stroke="#666" stroke-width="1.5"/><circle cx="120" cy="553" r="2.4" fill="#333"/></g>
+</svg>
+<div><div class="pchips" id="pchips"></div><div class="pinfo" id="pinfo"><span class="muted">👆 Escolhe uma peça (aqui nos botões ou no desenho).</span></div></div></div>`;
+    const chips=$("#pchips",box), info=$("#pinfo",box);
+    const pick=id=>{ const it=P.find(p=>p[0]===id); if(!it) return;
+      $$("[data-part]",box).forEach(g=>g.classList.toggle("hot",g.dataset.part===id));
+      $$(".pchip",chips).forEach(c=>c.setAttribute("aria-pressed",c.dataset.p===id?"true":"false"));
+      info.innerHTML=`<b class="pt">${it[1]}</b>${it[2]}`; };
+    P.forEach(([id,t])=>{ const b=document.createElement("button"); b.className="pchip"; b.dataset.p=id; b.setAttribute("aria-pressed","false"); b.textContent=t; b.onclick=()=>pick(id); chips.appendChild(b); });
+    $$("svg [data-part]",box).forEach(g=>g.addEventListener("click",()=>pick(g.dataset.part)));
+  },
+  tuner(box){
+    const LBL=["E grossa","A","D","G","B","e fina"], TGT=["E","A","D","G","B","E"];
+    const rnd=()=>{ const v=20+Math.random()*150; return Math.random()<.5?-v:v; };
+    let st=STRINGS.map(()=>({off:rnd(),done:false})), cur=0, lastDir=0;
+    box.innerHTML=`<div class="dh">🎯 Afinador de mentirinha</div>
+<p class="muted" style="margin:0;font-size:13.5px">Escolhe a corda, toca e gira as "tarraxas" até a agulha ficar no centro. Igualzinho à telinha do teu EQ.</p>
+<div class="row tsel" id="tsel"></div>
+<div class="tscreen" id="tscr" aria-live="polite"><div class="tnote" id="tnote">E</div><div class="tsub" id="tsub"></div><div class="tmeter"><i class="tcenter"></i><i class="tneedle" id="tneedle"></i></div><div class="tlab"><span>◀ grave: estica</span><span>aguda: afrouxa ▶</span></div></div>
+<div class="row"><button class="btn ghost" data-d="-25">⟲⟲ Afrouxa bastante</button><button class="btn ghost" data-d="-5">⟲ Afrouxa um tiquinho</button><button class="btn ghost" data-d="5">Estica um tiquinho ⟳</button><button class="btn ghost" data-d="25">Estica bastante ⟳⟳</button></div>
+<div class="row"><button class="btn" id="tplay">🔊 Tocar a corda</button><button class="btn ghost" id="tmix">🔀 Desafinar tudo de novo</button></div>
+<div class="tmsg" id="tmsg"></div>`;
+    const sel=$("#tsel",box), scr=$("#tscr",box), msg=$("#tmsg",box);
+    const freq=s=>STRINGS[s].freq*Math.pow(2,st[s].off/1200);
+    const read=f=>{ const m=69+12*Math.log2(f/440), n=Math.round(m); return {letter:NOTE_NAMES[((n%12)+12)%12].match(/\((.+)\)/)[1], cents:(m-n)*100}; };
+    const drawSel=()=>{ sel.innerHTML=""; LBL.forEach((l,i)=>{ const b=document.createElement("button"); b.className="notebtn"+(st[i].done?" done":""); b.setAttribute("aria-pressed",i===cur?"true":"false"); b.textContent=(st[i].done?"✅ ":"")+l; b.onclick=()=>{ cur=i; lastDir=0; drawSel(); draw(true); }; sel.appendChild(b); }); };
+    const draw=(sound)=>{
+      const s=st[cur], r=read(freq(cur)), ok=Math.abs(s.off)<=5;
+      $("#tnote",box).textContent=r.letter;
+      $("#tsub",box).textContent=`corda ${LBL[cur]} · alvo: ${TGT[cur]}`;
+      $("#tneedle",box).style.left=(ok?50:50+Math.max(-48,Math.min(48,r.cents)))+"%";
+      scr.classList.toggle("ok",ok);
+      if(ok && !s.done){ s.done=true; drawSel(); }
+      if(sound) playNote(freq(cur),0,.55);
+      const all=st.every(x=>x.done);
+      if(all) msg.innerHTML=`🎉 <b>As 6 afinadas!</b> Agora faz igualzinho no teu S14. E confere todas de novo no final, porque uma corda puxa a outra.`;
+      else if(ok) msg.innerHTML=`✅ <b>Afinada!</b>${lastDir<0?" Dica de ouro: na vida real tenta chegar no centro <b>esticando</b>, a corda segura melhor a afinação.":""} Escolhe a próxima corda aí em cima.`;
+      else if(r.letter!==TGT[cur]) msg.innerHTML=`⚠️ A telinha mostra <b>${r.letter}</b>, mas essa corda é <b>${TGT[cur]}</b>. Tá longe ainda: ${s.off<0?"precisa <b>esticar</b>":"precisa <b>afrouxar</b>"}.${s.off>60?" <b>No aço de verdade, cuidado:</b> esticada demais, a corda pode arrebentar.":""}`;
+      else msg.innerHTML=`Letra certa! Agora é só a agulha: tá ${r.cents<0?"<b>antes</b> do centro (grave) → estica":"<b>depois</b> do centro (aguda) → afrouxa"} um tiquinho.`;
+    };
+    $$("[data-d]",box).forEach(b=>b.onclick=()=>{ const d=+b.dataset.d, s=st[cur]; const step=Math.abs(d)<10?d*(.6+Math.random()*.6):d*(.8+Math.random()*.4); s.off+=step; lastDir=Math.sign(d); if(Math.abs(s.off)>5) s.done=false; drawSel(); draw(true); });
+    $("#tplay",box).onclick=()=>draw(true);
+    $("#tmix",box).onclick=()=>{ st=STRINGS.map(()=>({off:rnd(),done:false})); cur=0; lastDir=0; drawSel(); draw(false); };
+    drawSel(); draw(false);
+  },
   scale(box){
     const fr=[["Dó (C)",261.63],["Ré (D)",293.66],["Mi (E)",329.63],["Fá (F)",349.23],["Sol (G)",392],["Lá (A)",440],["Si (B)",493.88],["Dó (C)",523.25]];
     box.innerHTML=`<div class="dh">🎹 A escadinha das notas</div><div class="row" id="scr"></div><div class="muted" style="font-size:13.5px">O último Dó vibra o DOBRO do primeiro, por isso soam "iguais".</div>`;
