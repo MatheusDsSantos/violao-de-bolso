@@ -666,6 +666,7 @@ function tipFor(a,b){ return TIPS[a+">"+b]||GENERIC_TIP; }
 const LOOP_CP=["Am","Dm","G","C","F","Dm","E7"];
 const REF_CP=["Dm","G","C","F","Dm","E7","Am"];
 const LOOP_DN=["Am","C","F","E7"];
+const LOOP_SL=["Em","C","G","Em","G","D","Em","C","G","Am","G","C"];
 const SONGS={
   domingo:{title:"Domingo à Noite",artist:"VMZ",key:"Bbm",capo:1,level:"bem fácil",bpm:76,
     chords:["Am","C","F","E7"],
@@ -699,6 +700,19 @@ const SONGS={
     full:["intro","verso","refrao","verso","refrao"],
     mapNotes:{intro:"só dois acordes",verso:"ciclo de 4",refrao:"o desafio"},
     source:`Acordes de uma <a href="https://www.ukulele-tabs.com/uke-songs/vmz/bom-marujo-uke-tab-68011.html" target="_blank" rel="noopener">cifra comunitária</a> (tom G). Confere com a <a href="https://www.cifraclub.com.br/vmz/bom-marujo/" target="_blank" rel="noopener">cifra do Cifra Club</a> e com a gravação.`},
+  loucos:{title:"Só os Loucos Sabem",artist:"Charlie Brown Jr.",key:"Em",capo:0,level:"fácil",bpm:84,
+    chords:["Em","C","G","D","Am"],
+    yt:"Charlie Brown Jr Só os Loucos Sabem",videos:[{id:"JRJj4z-prvM",label:"Clipe"},{id:"NFADwNLNSd4",label:"Acústico ao vivo"}],
+    sections:[
+      {id:"intro",name:"Intro",seq:["Em","C","Em","C"]},
+      {id:"verso",name:"Verso",seq:[...LOOP_SL]},
+      {id:"refrao",name:"Refrão",seq:[...LOOP_SL]},
+      {id:"riff",name:"Riff",seq:["G","Em","G","Em","G","Em"]},
+      {id:"final",name:"Final",seq:[...LOOP_SL,"Em"],endLast:true},
+    ],
+    full:["intro","verso","refrao","verso","refrao","riff","refrao","final"],
+    mapNotes:{intro:"Em e C, bem calmo",verso:"o ciclo de 12",refrao:"o mesmo ciclo do verso",riff:"G e Em alternando",final:"ciclo + Em pra fechar"},
+    source:`As cifras (<a href="https://www.cifras.com.br/cifra/charlie-brown-jr/so-os-loucos-sabem" target="_blank" rel="noopener">Cifras.com.br</a>, <a href="https://www.e-chords.com/chords/charlie-brown-jr/so-os-loucos-sabem" target="_blank" rel="noopener">E-Chords</a>) escrevem a música com desenhos de C#m/A9/E/B4 e <b>capotraste na casa 3</b> — mas isso soa exatamente em <b>Em</b>, então dá pra tocar <b>sem capotraste</b> com os acordes que você já conhece: Em, C, G, D e Am. O G/B da passagem virou um G simples pra facilitar. A música inteira é praticamente o mesmo ciclo; quantas voltas cada parte dá, confere ouvindo a gravação. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/charlie-brown-jr/so-os-loucos-sabem/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
 };
 
 /* ======================= ÁUDIO ======================= */
