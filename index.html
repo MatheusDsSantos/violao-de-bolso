@@ -617,6 +617,9 @@ const CHORDS={
   D7:{full:"Ré com sétima",dots:[[4,1,1],[3,2,2],[5,2,3]],mute:[0,1],
     intro:"O D com tempero de sétima: um triângulo de cabeça pra baixo nas 3 cordas finas. Toca só 4 cordas.",
     tip:"Indicador na Si casa 1, médio na Sol casa 2, anelar na Mi fininha casa 2. Começa a batida pela corda Ré."},
+  Bm7:{full:"Si menor com sétima, sem pestana",dots:[[1,2,1],[3,2,2],[5,2,3]],mute:[0],
+    intro:"O jeitinho de tocar um Si menor SEM pestana: três dedos na casa 2, pulando uma corda entre cada um. A Mi grossa fica de fora.",
+    tip:"Indicador na Lá, médio na Sol, anelar na Mi fininha, todos na casa 2. Ré e Si soltas soando no meio. Dedos bem de pé!"},
   F7M:{full:"F fácil, sem pestana",dots:[[4,1,1],[3,2,2],[2,3,3]],mute:[0,1],
     intro:"O 'F de iniciante': soa quase igual ao F, sem pestana. Toca só as 4 cordas finas, com a Mi fininha solta.",
     tip:"Escadinha: indicador Si casa 1, médio Sol casa 2, anelar Ré casa 3. É o C com médio e anelar descendo uma corda."},
@@ -626,11 +629,11 @@ const CHORDS={
 };
 const CHORD_GROUPS=[
   {name:"Kit básico",ids:["Em","E","Am","D","G","C"]},
-  {name:"Mais usados",ids:["A","Dm","E7","A7","D7","F7M"]},
+  {name:"Mais usados",ids:["A","Dm","E7","A7","D7","Bm7","F7M"]},
   {name:"Chefão",ids:["F"]},
 ];
 const CHORD_ORDER=CHORD_GROUPS.flatMap(g=>g.ids);
-const HUE={Am:"#4fb8ad",Dm:"#a08ff2",G:"#f2c25e",C:"#5da6f2",F:"#f27d95",F7M:"#f27d95",E7:"#9ed36a",E:"#9ed36a",Em:"#5fc9dc",D:"#c98ff2",A:"#f29c5a",A7:"#f29c5a",D7:"#c98ff2"};
+const HUE={Am:"#4fb8ad",Dm:"#a08ff2",G:"#f2c25e",C:"#5da6f2",F:"#f27d95",F7M:"#f27d95",E7:"#9ed36a",E:"#9ed36a",Em:"#5fc9dc",D:"#c98ff2",A:"#f29c5a",A7:"#f29c5a",D7:"#c98ff2",Bm7:"#e88fc1"};
 
 /* dicas de troca (chave "A>B") */
 const TIPS={
@@ -662,6 +665,9 @@ Object.assign(TIPS,{
   "F7M>E7":"Indicador desce da Si pra <b>Sol, casa 1</b>. Médio vai pra <b>Lá, casa 2</b>. O anelar sai. Agora pode tocar as 6 cordas.",
   "G>D7":"Médio vai pra <b>Sol, casa 2</b>, indicador pra <b>Si, casa 1</b> e anelar fica na Mi fininha, só que na <b>casa 2</b>. Toca só 4 cordas.",
   "D7>C":"O <b>indicador não se mexe</b> (Si, casa 1)! Médio desce pra <b>Ré, casa 2</b> e anelar vai pra <b>Lá, casa 3</b>.",
+  "G>Bm7":"Médio sai da Mi grossa e vai pra <b>Sol, casa 2</b>; indicador fica na <b>Lá, casa 2</b>; anelar desce pra <b>Mi fininha, casa 2</b>. Tudo na casa 2!",
+  "Bm7>Em":"Continua tudo na <b>casa 2</b>: levanta os dedos e pousa o Em com médio na <b>Lá</b> e anelar na <b>Ré</b>. Agora pode tocar as 6 cordas.",
+  "Am>D":"O indicador sai da Si e vai pra <b>Sol, casa 2</b>. Médio pra <b>Mi fininha, casa 2</b>, anelar pra <b>Si, casa 3</b>. Toca só 4 cordas.",
   "F>E7":"Solta a pestana: o indicador fica na casa 1, só que <b>só na corda Sol</b>. Médio vai pra <b>Lá, casa 2</b>.",
 });
 const GENERIC_TIP="Levanta todos os dedos <b>juntos</b> e pousa todos juntos, como um carimbo. Não coloca um por um.";
@@ -732,6 +738,22 @@ const SONGS={
     full:["verso","pre","refrao","verso","pre","refrao2","ponte","refrao","final"],
     mapNotes:{verso:"5 acordes, 2 voltas",pre:"Dm e G balançando",refrao:"F → G → Am, e fecha no D7",refrao2:"igual, mas termina no Dm",ponte:"Dm e G pra crescer",final:"C, E7 e pronto"},
     source:`Acordes da <a href="https://www.cifraclub.com/bruno-mars/talking-to-the-moon/iniciante/imprimir.html" target="_blank" rel="noopener">versão iniciante do Cifra Club</a>: a original é em <b>E</b> (com G#7, C#m, F#m…), mas com <b>capotraste na casa 4</b> você usa desenhos fáceis — C, E7, Am, G, F, Dm e D7 — e soa igualzinho à gravação. Sem capotraste ainda? Dá pra tocar assim mesmo, só fica mais grave. <b>Batida:</b> as cifras não trazem uma oficial (a original é piano); a <b>universal ↓ · ↓↑ · ↑↓↑ bem devagar</b> encaixa certinho nesse clima de balada — no verso, toca de leve e deixa o refrão mais forte. Quantas voltas cada parte dá, confere ouvindo a gravação. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/bruno-mars/talking-to-the-moon/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
+  smile:{title:"Die With a Smile",artist:"Lady Gaga & Bruno Mars",key:"A",capo:2,level:"médio",bpm:66,
+    rhythm:{name:"Valsa 6/8 (da música)",steps:["↓","↓","↑","↓","↓","↑"],count:["1","2","3","4","5","6"]},
+    chords:["G","C","Bm7","E","Am","D","Em"],
+    yt:"Lady Gaga Bruno Mars Die With A Smile",videos:[{id:"kPa7bsKwL-c",label:"Clipe oficial"}],
+    sections:[
+      {id:"intro",name:"Intro",seq:["G","C","G","C"]},
+      {id:"verso",name:"Verso",seq:["G","C","G","C","G","C","G","C"]},
+      {id:"pre",name:"Pré-refrão",seq:["G","Bm7","E"]},
+      {id:"refrao",name:"Refrão",seq:["Am","D","Bm7","Em","Am","D","Bm7","Em","Am","D","G","Em","Am","D","G","C"]},
+      {id:"refrao2",name:"Refrão 2",seq:["Am","D","Bm7","Em","Am","D","Bm7","Em","Am","D","G","Em","Am","D","Am","D","Bm7","Em","Am","D","Bm7","Em"]},
+      {id:"inter",name:"Interlúdio",seq:["Am","D","Bm7","Em","Am","D","Bm7","Em"]},
+      {id:"final",name:"Final",seq:["Am","D","Bm7","Em","Am","D","Bm7","Em","Am","D","G","Em","Am","D","G","C","G"],endLast:true},
+    ],
+    full:["intro","verso","pre","refrao","verso","pre","refrao2","inter","final"],
+    mapNotes:{intro:"G e C, bem suave",verso:"o mesmo balanço G ↔ C",pre:"G, Bm7 e E: prepara o refrão",refrao:"Am D Bm7 Em, o coração da música",refrao2:"estica o final repetindo o ciclo",inter:"o ciclo do refrão, sem voz",final:"refrão + G pra fechar"},
+    source:`Acordes da <a href="https://www.cifraclub.com.br/lady-gaga/die-with-a-smile-feat-bruno-mars/simplificada.html" target="_blank" rel="noopener">cifra simplificada do Cifra Club</a>, que está em <b>A</b> (com Bm, C#m e F#m, tudo pestana 😬). Com <b>capotraste na casa 2</b> eles viram G, C, Am, D, Em e um <b>Bm7 sem pestana</b>, e soa igual à gravação. Pra facilitar, a passagem rapidinha G → F#m → Em virou só G → Em, e o fim do último refrão ficou no ciclo normal. <b>Batida:</b> a música é em <b>6/8</b>, um balanço de valsa (conta 1-2-3-4-5-6 com força no 1 e no 4); a batida <b>↓ ↓ ↑ ↓ ↓ ↑</b> já vem selecionada e você pode trocar em ⚙️ Ajustes. O original é ~158 colcheias por minuto (79 aqui no BPM); comecei em 66 pra dar tempo de trocar. Quantas voltas cada parte dá, confere no clipe. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/lady-gaga/die-with-a-smile-feat-bruno-mars/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
 };
 
 /* ======================= ÁUDIO ======================= */
@@ -1033,7 +1055,10 @@ function loadSong(){
   renderVideo();
   try{ localStorage.setItem("vb_song",songId); }catch(e){}
   $("#fSwitch").hidden=!sg.chords.includes("F");
-  bpmEl.value=sg.bpm; bpmVal.textContent=sg.bpm; patEl.value=String(sg.pat??2);
+  bpmEl.value=sg.bpm; bpmVal.textContent=sg.bpm;
+  let so=patEl.querySelector('option[value="s"]'); if(so) so.remove();
+  if(sg.rhythm){ so=document.createElement("option"); so.value="s"; so.textContent=sg.rhythm.steps.join(" ")+" · "+sg.rhythm.name; patEl.prepend(so); patEl.value="s"; }
+  else patEl.value=String(sg.pat??2);
   renderSecs(); renderMinis(); renderMap(); rebuild();
 }
 
@@ -1149,6 +1174,7 @@ togLoop.addEventListener("click",()=>{ setTog(togLoop,!isOn(togLoop)); stopAll()
 
 /* ---------- motor do play-along ---------- */
 const bpmEl=$("#bpm"), bpmVal=$("#bpmVal"), barsEl=$("#bars"), patEl=$("#pat");
+function curPat(){ return patEl.value==="s"&&SONGS[songId].rhythm?SONGS[songId].rhythm.steps:RPATS[+patEl.value].steps; }
 const track=$("#track"), lane=$("#lane"), countinEl=$("#countin");
 const SLOTW=24;
 const P={playing:false,startT:0,slotDur:.4,nextSlot:0,total:0,events:[],chords:[],loop:false,lastCur:-99,raf:0,timer:0,pausedPos:null,slotEls:[],finished:false};
@@ -1156,13 +1182,13 @@ const P={playing:false,startT:0,slotDur:.4,nextSlot:0,total:0,events:[],chords:[
 function rebuild(){
   if(mode==="step"){ stepReset(); return; }
   const list=sectionList();
-  const bars=+barsEl.value, pat=RPATS[+patEl.value].steps;
+  const bars=+barsEl.value, pat=curPat(), L=pat.length;
   P.chords=list; P.events=[]; P.loop=isOn(togLoop);
   list.forEach((it,ci)=>{
-    const n=it.end?8:bars*8;
+    const n=it.end?L:bars*L;
     for(let k=0;k<n;k++){
-      const dir=it.end?(k===0?"↓":"·"):pat[k%8];
-      P.events.push({ci,k,n,bar:k%8,dir,chord:it.chord});
+      const dir=it.end?(k===0?"↓":"·"):pat[k%L];
+      P.events.push({ci,k,n,bar:k%L,L,dir,chord:it.chord});
     }
   });
   P.total=P.events.length;
@@ -1181,7 +1207,7 @@ function renderTrack(){
     const off=c*P.total;
     let slot=0;
     P.chords.forEach((it,ci)=>{
-      const n=it.end?8:(+barsEl.value)*8;
+      const L=curPat().length, n=it.end?L:(+barsEl.value)*L;
       const left=(off+slot)*SLOTW, hue=HUE[it.chord]||"#888";
       const evs=P.events.slice(slot,slot+n);
       html+=`<div class="blk" style="left:${left}px;width:${n*SLOTW-4}px;border-color:${hue}88;background:linear-gradient(180deg,${hue}2e,${hue}10)">`+
@@ -1243,7 +1269,7 @@ function schedule(){
       const ev=P.events[P.nextSlot%P.total], ch=CHORDS[ev.chord];
       const gv=mode==="mine"?.17:.34;
       if(isOn(togGtr)){ if(ev.dir==="↓") strumAt(ch,t,"down",gv); else if(ev.dir==="↑") strumAt(ch,t,"up",gv); }
-      if(isOn(togClk) && ev.bar%2===0) clickAt(t,ev.bar===0);
+      if(isOn(togClk) && ev.bar%(ev.L===6?3:2)===0) clickAt(t,ev.bar===0);
     }
     P.nextSlot++;
   }
