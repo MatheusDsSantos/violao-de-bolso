@@ -669,6 +669,12 @@ Object.assign(TIPS,{
   "Bm7>Em":"Continua tudo na <b>casa 2</b>: levanta os dedos e pousa o Em com médio na <b>Lá</b> e anelar na <b>Ré</b>. Agora pode tocar as 6 cordas.",
   "Am>D":"O indicador sai da Si e vai pra <b>Sol, casa 2</b>. Médio pra <b>Mi fininha, casa 2</b>, anelar pra <b>Si, casa 3</b>. Toca só 4 cordas.",
   "F>E7":"Solta a pestana: o indicador fica na casa 1, só que <b>só na corda Sol</b>. Médio vai pra <b>Lá, casa 2</b>.",
+  "G>D":"Indicador vai pra <b>Sol, casa 2</b>, médio pra <b>Mi fininha, casa 2</b> e anelar pra <b>Si, casa 3</b>. Toca só 4 cordas.",
+  "Bm7>G":"🎁 O <b>indicador não sai</b> da Lá, casa 2! Médio sobe pra <b>Mi grossa, casa 3</b> e anelar pra <b>Mi fininha, casa 3</b>.",
+  "A>D":"O anelar continua na <b>Si</b>, só escorrega pra <b>casa 3</b>. Indicador vai pra <b>Sol, casa 2</b>, médio pra <b>Mi fininha, casa 2</b>.",
+  "A>G":"Desfaz a fila da casa 2 e monta o G: médio na <b>Mi grossa, casa 3</b>, indicador na <b>Lá, casa 2</b>, anelar na <b>Mi fininha, casa 3</b>.",
+  "D>Bm7":"Tudo pra <b>casa 2</b>: indicador na <b>Lá</b>, médio na <b>Sol</b>, anelar na <b>Mi fininha</b>. Não toca a Mi grossa.",
+  "Em>G":"Médio sai da Lá e vai pra <b>Mi grossa, casa 3</b>; indicador entra na <b>Lá, casa 2</b>; anelar vai pra <b>Mi fininha, casa 3</b>.",
 });
 const GENERIC_TIP="Levanta todos os dedos <b>juntos</b> e pousa todos juntos, como um carimbo. Não coloca um por um.";
 function tipFor(a,b){ return TIPS[a+">"+b]||GENERIC_TIP; }
@@ -724,6 +730,18 @@ const SONGS={
     full:["intro","verso","refrao","verso","refrao","riff","refrao","final"],
     mapNotes:{intro:"Em e C, bem calmo",verso:"o ciclo de 12",refrao:"o mesmo ciclo do verso",riff:"G e Em alternando",final:"ciclo + Em pra fechar"},
     source:`As cifras (<a href="https://www.cifras.com.br/cifra/charlie-brown-jr/so-os-loucos-sabem" target="_blank" rel="noopener">Cifras.com.br</a>, <a href="https://www.e-chords.com/chords/charlie-brown-jr/so-os-loucos-sabem" target="_blank" rel="noopener">E-Chords</a>) escrevem a música com desenhos de C#m/A9/E/B4 e <b>capotraste na casa 3</b> — mas isso soa exatamente em <b>Em</b>, então dá pra tocar <b>sem capotraste</b> com os acordes que você já conhece: Em, C, G, D e Am. O G/B da passagem virou um G simples pra facilitar. A música inteira é praticamente o mesmo ciclo; quantas voltas cada parte dá, confere ouvindo a gravação. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/charlie-brown-jr/so-os-loucos-sabem/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
+  volta:{title:"Se Eu Pedir Cê Volta",artist:"Jorge & Mateus",key:"D",capo:0,level:"médio",bpm:72,
+    chords:["G","Bm7","Em","A","D"],
+    yt:"Jorge e Mateus Se Eu Pedir Cê Volta",videos:[{id:"p0ZBHpvw9bI",label:"Clipe oficial"},{id:"O2X2ZZNksr4",label:"10 Anos ao vivo"},{id:"l8PuQdfsx0A",label:"Aula de acordes"}],
+    sections:[
+      {id:"intro",name:"Intro",seq:["G","Bm7","Em","G","A"]},
+      {id:"verso",name:"Verso",seq:["G","D","G","D","Em","G","Em","A","D","Bm7","G","Em","A"]},
+      {id:"refrao",name:"Refrão",seq:["G","Bm7","G","Em","A","G","Bm7","Em","A","D"]},
+      {id:"final",name:"Final",seq:["G","Bm7","Em","A","D"],endLast:true},
+    ],
+    full:["intro","verso","refrao","verso","refrao","refrao","final"],
+    mapNotes:{intro:"G, Bm7, Em e A",verso:"começa no vai-e-vem G–D",refrao:"o mesmo ar da intro, fecha no D",final:"intro + D pra fechar"},
+    source:`Acordes da <a href="https://www.vagalume.com.br/jorge-e-mateus/se-eu-pedir-ce-volta-cifrada.html" target="_blank" rel="noopener">cifra no Vagalume</a> (tom D, sem capotraste). O <b>Bm</b> da cifra virou <b>Bm7 sem pestana</b> pra você não travar — soa quase igual. O solo do final é tablatura, então aqui ele virou só os acordes pra fechar. Quantas voltas cada parte dá, confere ouvindo a gravação. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/jorge-mateus/se-eu-pedir-ce-volta/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
   moon:{title:"Talking to the Moon",artist:"Bruno Mars",key:"E",capo:4,level:"médio",bpm:72,pat:2,
     chords:["C","E7","Am","G","F","Dm","D7"],
     yt:"Bruno Mars Talking to the Moon",videos:[{id:"fXw0jcYbqdo",label:"Lyric video oficial"},{id:"RUMFN8TYmM8",label:"Só áudio"}],
