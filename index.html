@@ -427,7 +427,7 @@ details.adj[open]>summary{color:var(--ink);margin-bottom:8px}
           <button class="playbtn" id="playBtn" aria-label="Tocar">▶</button>
           <button class="iconbtn" id="restartBtn" aria-label="Voltar pro começo" title="Voltar pro começo">↺</button>
           <div class="secs" id="secs" role="group" aria-label="Parte da música"></div>
-          <label class="bpmbox" for="bpm"><span class="tnum" id="bpmVal">72</span> BPM <input type="range" id="bpm" min="50" max="120" step="2" value="72"></label>
+          <label class="bpmbox" for="bpm"><span class="tnum" id="bpmVal">72</span> BPM <input type="range" id="bpm" min="50" max="120" step="1" value="72"></label>
         </div>
         <details class="adj">
           <summary>⚙️ Ajustes</summary>
@@ -612,6 +612,9 @@ const CHORDS={
   E7:{full:"Mi com sétima",dots:[[3,1,1],[1,2,2]],mute:[],
     intro:"O '7' é um tempero: o acorde fica com cara de 'calma que vem mais coisa'. É o E tirando um dedo.",
     tip:"Faz o E e levanta o anelar. Pronto. Pode tocar as 6 cordas."},
+  Am7:{full:"Lá menor com sétima",dots:[[4,1,1],[2,2,2]],mute:[0],
+    intro:"O Am tirando o anelar: só indicador e médio. Fica com aquele som macio de lofi.",
+    tip:"Faz o Am e levanta o anelar da corda Sol. A Mi grossa continua de fora."},
   Em7:{full:"Mi menor com sétima",dots:[[1,2,2]],mute:[],
     intro:"O Em tirando um dedo: só o médio na corda Lá, casa 2, e as 6 cordas soando. Clima lofi na veia.",
     tip:"Faz o Em e levanta o anelar. A corda Ré solta é o 'tempero 7'. Deixa o médio bem de pé pra não abafar a Ré."},
@@ -633,11 +636,11 @@ const CHORDS={
 };
 const CHORD_GROUPS=[
   {name:"Kit básico",ids:["Em","E","Am","D","G","C"]},
-  {name:"Mais usados",ids:["A","Dm","E7","Em7","A7","D7","Bm7","F7M"]},
+  {name:"Mais usados",ids:["A","Dm","E7","Am7","Em7","A7","D7","Bm7","F7M"]},
   {name:"Chefão",ids:["F"]},
 ];
 const CHORD_ORDER=CHORD_GROUPS.flatMap(g=>g.ids);
-const HUE={Am:"#4fb8ad",Dm:"#a08ff2",G:"#f2c25e",C:"#5da6f2",F:"#f27d95",F7M:"#f27d95",E7:"#9ed36a",E:"#9ed36a",Em:"#5fc9dc",Em7:"#5fc9dc",D:"#c98ff2",A:"#f29c5a",A7:"#f29c5a",D7:"#c98ff2",Bm7:"#e88fc1"};
+const HUE={Am:"#4fb8ad",Dm:"#a08ff2",G:"#f2c25e",C:"#5da6f2",F:"#f27d95",F7M:"#f27d95",E7:"#9ed36a",E:"#9ed36a",Em:"#5fc9dc",Em7:"#5fc9dc",Am7:"#4fb8ad",D:"#c98ff2",A:"#f29c5a",A7:"#f29c5a",D7:"#c98ff2",Bm7:"#e88fc1"};
 
 /* dicas de troca (chave "A>B") */
 const TIPS={
@@ -678,6 +681,11 @@ Object.assign(TIPS,{
   "A>D":"O anelar continua na <b>Si</b>, só escorrega pra <b>casa 3</b>. Indicador vai pra <b>Sol, casa 2</b>, médio pra <b>Mi fininha, casa 2</b>.",
   "A>G":"Desfaz a fila da casa 2 e monta o G: médio na <b>Mi grossa, casa 3</b>, indicador na <b>Lá, casa 2</b>, anelar na <b>Mi fininha, casa 3</b>.",
   "D>Bm7":"Tudo pra <b>casa 2</b>: indicador na <b>Lá</b>, médio na <b>Sol</b>, anelar na <b>Mi fininha</b>. Não toca a Mi grossa.",
+  "Am7>F7M":"🎁 O <b>indicador não sai</b> da Si, casa 1! Médio vai da Ré pra <b>Sol, casa 2</b> e o anelar entra na <b>Ré, casa 3</b>. Toca só as 4 finas.",
+  "F7M>C":"🎁 O <b>indicador não sai</b> da Si, casa 1! Médio sobe pra <b>Ré, casa 2</b> e anelar pra <b>Lá, casa 3</b>.",
+  "C>Am7":"🎁 Indicador e médio <b>ficam onde estão</b>! É só tirar o anelar da Lá. A troca mais fácil do site.",
+  "C>Dm":"Indicador desce pra <b>Mi fininha, casa 1</b>, médio vai pra <b>Sol, casa 2</b>, anelar pra <b>Si, casa 3</b>. Toca só as 4 finas.",
+  "Dm>F7M":"O <b>médio fica parado</b> na Sol, casa 2. Indicador sobe pra <b>Si, casa 1</b> e anelar pra <b>Ré, casa 3</b>.",
   "Em7>C":"O médio desce uma corda: da Lá pra <b>Ré, casa 2</b>. Aí entram o anelar na <b>Lá, casa 3</b> e o indicador na <b>Si, casa 1</b>. A Mi grossa fica de fora.",
   "G>Em7":"Solta tudo e deixa só o <b>médio na Lá, casa 2</b>. Pode tocar as 6 cordas — é a troca mais folgada da música.",
   "C>Em7":"Levanta indicador e anelar e escorrega o médio da Ré pra <b>Lá, casa 2</b>. Pronto, 6 cordas.",
@@ -759,19 +767,21 @@ const SONGS={
     source:`Acordes e solo da intro da <a href="https://www.vagalume.com.br/jorge-e-mateus/se-eu-pedir-ce-volta-cifrada.html" target="_blank" rel="noopener">cifra no Vagalume</a> (tom D, sem capotraste). <b>A intro é solada</b>, não batida: é uma melodia tocada nota por nota nas 3 cordas mais finas. No play-along cada número é a <b>casa</b> e a letrinha embaixo é a <b>corda</b> (e = Mi fininha, B = Si, G = Sol). A tablatura:<div class="tabbox">e|---0-2----------------------0-2-----------------------0-2----------3-2--------------
 B|-------5-3-3-----------2-3-------5-3-3-----------2-3-----5-3-3s5------5-3-----------
 G|--------------4-4-2-4------------------4-4-2-4-----------------------------2h4-2-----4p0-2--</div><b>Ritmo das notas:</b> tablatura não mostra a duração, então a divisão do solo aqui é uma aproximação minha — compara com o clipe e ajusta no ouvido. Se ainda tiver difícil, troca o solo pela batida nos acordes G, Bm7, Em, G e A que também funciona.<br><b>Batida:</b> a do sertanejo, <b>↓ · ↓↑ · ↑↓↑</b> (conta "1, 2-e, e-3-e, 4-e"), já vem selecionada; a primeira pra baixo é a mais forte. A gravação é bem mais rápida (~145 BPM); comecei em 80 pra dar tempo de trocar — vai subindo aos poucos em ⚙️ Ajustes. O <b>Bm</b> da cifra virou <b>Bm7 sem pestana</b> pra você não travar — soa quase igual. O solo do final virou só os acordes pra fechar. Quantas voltas cada parte dá, confere ouvindo a gravação. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/jorge-mateus/se-eu-pedir-ce-volta/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
-  arcoiris:{title:"Cabelos Arco-Íris",artist:"kamaitachi",key:"G",capo:0,level:"fácil",bpm:80,
-    rhythm:{name:"Pop leve (sugestão)",steps:["↓","·","↓","↑","·","↑","↓","↑"]},
-    chords:["Em7","C","G","D"],
+  arcoiris:{title:"Cabelos Arco-Íris",artist:"kamaitachi",key:"F",capo:5,level:"fácil",bpm:115,
+    rhythm:{name:"Batida da música",steps:["↓","·","↓","↑","·","↑","↓","↑"]},
+    chords:["Am7","F","C","Dm"],
     yt:"kamaitachi Cabelos Arco-Íris",videos:[{id:"_WfBQBbaDZ4",label:"Oficial"},{id:"zWasuAFiyCw",label:"Acústico"},{id:"UBpR02cVNZU",label:"Aula simplificada"}],
     sections:[
-      {id:"intro",name:"Intro",seq:["Em7","C","G","Em7","C","G"]},
-      {id:"verso",name:"Verso",seq:["Em7","C","G","Em7","C","G","Em7","C","G","Em7","C","G","Em7","C","G","Em7","C","G","Em7","C","G","Em7","C","G","D","C"]},
-      {id:"refrao",name:"Refrão",seq:["Em7","C","G","Em7","C","G","Em7","C","G","Em7","C","G","D","C","D","C"]},
-      {id:"final",name:"Final",seq:["Em7","C","G","Em7","C","G","Em7"],endLast:true},
+      {id:"intro",name:"Intro",seq:["Am7","F","C*2","Am7","F","C*2"]},
+      {id:"verso",name:"Verso 1",seq:["Am7","F","C*2","Am7","F","C*2","Am7","F","C*2","Am7","F","C*2"]},
+      {id:"verso2",name:"Verso 2",seq:["Am7","F","C*2","Am7*2","F","C","Am7","F","C*2","Am7","F","C","Dm","F*2"]},
+      {id:"refrao",name:"Refrão",seq:["Am7","F","C*2","Am7","F","C*2","Am7","F","C*2","Am7","F","C","Dm"]},
+      {id:"ponte",name:"Ponte",seq:["F*2","Dm*2","F*2"]},
+      {id:"final",name:"Final",seq:["Am7","F","C*2","Am7","F","C*2","Am7"],endLast:true},
     ],
-    full:["intro","verso","refrao","verso","refrao","final"],
-    mapNotes:{intro:"o ciclo Em7 → C → G",verso:"o mesmo ciclo, várias voltas, e D C no fim",refrao:"o ciclo + D e C balançando",final:"o ciclo + Em7 pra fechar"},
-    source:`Acordes da <a href="https://www.cifras.com.br/cifra/k-a-m-a-i-t-a-c-h-i/cabelos-arco-iris" target="_blank" rel="noopener">cifra no Cifras.com.br</a> (desenhos de Em7, C, G e D). A gravação original é em <b>F</b> (com Dm7, Bb e F, como na <a href="https://tabs.ultimate-guitar.com/tab/2425881" target="_blank" rel="noopener">cifra do Ultimate Guitar</a>), mas Bb e F pedem pestana. Com os desenhos Em7, C e G, <b>sem capotraste</b>, a música fica igualzinha, só que <b>um tom acima</b> do original — ótimo pra treinar; se for cantar e ficar agudo, quando a pestana sair dá pra trocar pra versão original. O <b>Em7</b> aqui é a versão de 1 dedo (o Em sem o anelar). Quase a música toda é o ciclo <b>Em7 → C → G</b>; o D só aparece pra fechar as partes.<br><b>Batida:</b> as cifras não trazem uma oficial. Escolhi a <b>↓ · ↓↑ · ↑↓↑</b> (conta "1, 2-e, e-3-e, 4-e") porque encaixa nesse pop/lofi tranquilo — toca leve no verso e um pouco mais forte no refrão. Se quiser mais calma ainda, troca pra "só pra baixo" em ⚙️ Ajustes. <b>Andamento:</b> a gravação está em <b>115 BPM</b>. Comecei em 80 pra dar tempo de trocar os acordes; vai subindo aos poucos até 115 em ⚙️ Ajustes. Quantas voltas cada parte dá, confere com o vídeo oficial. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/kamaitachi/cabelos-arco-iris/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
+    full:["intro","verso","verso2","refrao","ponte","final"],
+    mapNotes:{intro:"o ciclo Am7 → F → C",verso:"o mesmo ciclo, 4 voltas",verso2:"o ciclo com uma pausa no Am7 e Dm no fim",refrao:"o ciclo, fechando no Dm",ponte:"F e Dm balançando",final:"o ciclo + Am7 pra fechar"},
+    source:`A música original é em <b>F</b>, com <b>Dm7 → Bb → F</b> o tempo todo (e um Gm de vez em quando) — confere na <a href="https://ukutabs.com/k/kamaitachi/cabelos-arco-iris/" target="_blank" rel="noopener">cifra do UkuTabs</a> e na do <a href="https://tabs.ultimate-guitar.com/tab/2425881" target="_blank" rel="noopener">Ultimate Guitar</a>. Bb e F pedem pestana, então o truque é o <b>capotraste na casa 5</b>: aí você faz os desenhos fáceis <b>Am7, F (o fácil), C e Dm</b> e soa <b>igualzinho à gravação</b>, dá até pra tocar junto com o vídeo. E olha que presente: de C pra Am7 você só tira <b>um dedo</b>. 🎁<br><b>Batida:</b> <b>↓ · ↓↑ · ↑↓↑</b> (conta "1, 2-e, e-3-e, 4-e"), a mesma que o UkuTabs indica pra música. <b>Andamento:</b> 115 BPM, o da gravação — se estiver rápido, baixa pra uns 90 em ⚙️ Ajustes e vai subindo.<br><b>Duração dos acordes:</b> as cifras não dizem quanto tempo cada acorde dura; montei o ciclo como <b>Am7 1 compasso, F 1 compasso e C 2 compassos</b> (o número entre parênteses no mapa), que é o jeito mais comum desse tipo de música. A ordem das partes também pode variar na gravação — confere no vídeo oficial e me fala se algo não bater. Sem capotraste? Dá pra tocar com Em7, C e G, mas fica um tom acima do original. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/kamaitachi/cabelos-arco-iris/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
   moon:{title:"Talking to the Moon",artist:"Bruno Mars",key:"E",capo:4,level:"médio",bpm:72,pat:2,
     chords:["C","E7","Am","G","F","Dm","D7"],
     yt:"Bruno Mars Talking to the Moon",videos:[{id:"fXw0jcYbqdo",label:"Lyric video oficial"},{id:"RUMFN8TYmM8",label:"Só áudio"}],
@@ -1087,7 +1097,7 @@ function sectionList(){ // lista plana de acordes da seleção atual
   ids.forEach(sid=>{
     const sec=sg.sections.find(x=>x.id===sid);
     if(sec.riff) sec.riff.forEach((r,i)=>out.push({chord:res(r.c),sec:sec.name,secStart:i===0,end:false,notes:r.n}));
-    else sec.seq.forEach((c,i)=>out.push({chord:res(c),sec:sec.name,secStart:i===0,end:!!(sec.endLast&&i===sec.seq.length-1)}));
+    else sec.seq.forEach((c,i)=>{ const [id,m]=c.split("*"); out.push({chord:res(id),mult:+m||1,sec:sec.name,secStart:i===0,end:!!(sec.endLast&&i===sec.seq.length-1)}); });
   });
   return out;
 }
@@ -1141,11 +1151,11 @@ function renderMap(){
   const sg=SONGS[songId], box=$("#songMap"); box.innerHTML="";
   sg.sections.forEach(sec=>{
     // compacta repetições exatas (ex.: ciclo × 2)
-    let seq=sec.seq.map(res), times=1;
+    let seq=sec.seq.map(c=>{ const [id,m]=c.split("*"); return res(id)+(m?"*"+m:""); }), times=1;
     for(let L=2;L<=seq.length/2;L++){ if(seq.length%L) continue; const head=seq.slice(0,L).join(); let ok=true;
       for(let k=L;k<seq.length;k+=L) if(seq.slice(k,k+L).join()!==head){ ok=false; break; }
       if(ok){ times=seq.length/L; seq=seq.slice(0,L); break; } }
-    const chips=seq.map(c=>`<span style="border-color:${HUE[c]};color:${HUE[c]}">${c}</span>`).join("");
+    const chips=seq.map(c=>{ const [id,m]=c.split("*"); return `<span style="border-color:${HUE[id]};color:${HUE[id]}"${m?` title="${m} compassos"`:""}>${id}${m?` <small>(${m})</small>`:""}</span>`; }).join("");
     const line=document.createElement("div"); line.className="mapline";
     line.innerHTML=`<span class="sn">${sec.name}</span><div class="cseq">${chips}${times>1?`<em>× ${times}</em>`:""}</div>`;
     box.appendChild(line);
@@ -1240,7 +1250,7 @@ function rebuild(){
       it.notes.forEach(([s,f,d])=>{ for(let j=0;j<d;j++){ P.events.push({ci,k,n,bar:k%8,L:8,dir:j===0?"♪":"·",note:j===0?[s,f]:null,chord:it.chord}); k++; } });
       return;
     }
-    const n=it.end?L:bars*L; it.len=n;
+    const n=it.end?L:bars*L*(it.mult||1); it.len=n;
     for(let k=0;k<n;k++){
       const dir=it.end?(k===0?"↓":"·"):pat[k%L];
       P.events.push({ci,k,n,bar:k%L,L,dir,chord:it.chord});
