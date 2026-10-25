@@ -144,7 +144,8 @@ select{font:inherit;font-weight:700;padding:8px 10px;border-radius:10px;border:1
 .blk .slots{position:absolute;left:0;bottom:7px;display:flex}
 .slot{width:24px;text-align:center;font-weight:800;font-size:15px;color:rgba(239,232,220,.55);transition:transform .08s}
 .slot.dot{color:rgba(239,232,220,.18)}
-.slot.hit{color:var(--accent);transform:scale(1.45)}
+.slot.nt{color:var(--ink);line-height:1}
+.slot.nt small{display:block;font-size:9px;font-weight:700;color:var(--muted)}.slot.hit{color:var(--accent);transform:scale(1.45)}
 .sectag{position:absolute;top:4px;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 .sectag::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:5px;vertical-align:1px}
 .playhead{position:absolute;top:0;bottom:0;width:3px;margin-left:-1.5px;background:var(--accent);box-shadow:0 0 14px 2px rgba(242,194,94,.55);z-index:2}
@@ -730,18 +731,27 @@ const SONGS={
     full:["intro","verso","refrao","verso","refrao","riff","refrao","final"],
     mapNotes:{intro:"Em e C, bem calmo",verso:"o ciclo de 12",refrao:"o mesmo ciclo do verso",riff:"G e Em alternando",final:"ciclo + Em pra fechar"},
     source:`As cifras (<a href="https://www.cifras.com.br/cifra/charlie-brown-jr/so-os-loucos-sabem" target="_blank" rel="noopener">Cifras.com.br</a>, <a href="https://www.e-chords.com/chords/charlie-brown-jr/so-os-loucos-sabem" target="_blank" rel="noopener">E-Chords</a>) escrevem a música com desenhos de C#m/A9/E/B4 e <b>capotraste na casa 3</b> — mas isso soa exatamente em <b>Em</b>, então dá pra tocar <b>sem capotraste</b> com os acordes que você já conhece: Em, C, G, D e Am. O G/B da passagem virou um G simples pra facilitar. A música inteira é praticamente o mesmo ciclo; quantas voltas cada parte dá, confere ouvindo a gravação. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/charlie-brown-jr/so-os-loucos-sabem/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
-  volta:{title:"Se Eu Pedir Cê Volta",artist:"Jorge & Mateus",key:"D",capo:0,level:"médio",bpm:72,
+  volta:{title:"Se Eu Pedir Cê Volta",artist:"Jorge & Mateus",key:"D",capo:0,level:"médio",bpm:80,
+    rhythm:{name:"Sertanejo (da música)",steps:["↓","·","↓","↑","·","↑","↓","↑"]},
     chords:["G","Bm7","Em","A","D"],
     yt:"Jorge e Mateus Se Eu Pedir Cê Volta",videos:[{id:"p0ZBHpvw9bI",label:"Clipe oficial"},{id:"O2X2ZZNksr4",label:"10 Anos ao vivo"},{id:"l8PuQdfsx0A",label:"Aula de acordes"}],
     sections:[
-      {id:"intro",name:"Intro",seq:["G","Bm7","Em","G","A"]},
+      {id:"intro",name:"Intro (solo)",seq:["G","Bm7","Em","G","A"],riff:[
+        {c:"G",  n:[[5,0,1],[5,2,1],[4,5,1],[4,3,1],[4,3,4]]},
+        {c:"Bm7",n:[[3,4,1],[3,4,1],[3,2,1],[3,4,2],[4,2,1],[4,3,2]]},
+        {c:"Em", n:[[5,0,1],[5,2,1],[4,5,1],[4,3,1],[4,3,4]]},
+        {c:"G",  n:[[3,4,1],[3,4,1],[3,2,1],[3,4,2],[4,2,1],[4,3,2]]},
+        {c:"A",  n:[[5,0,1],[5,2,1],[4,5,1],[4,3,1],[4,3,1],[4,5,1],[5,3,1],[5,2,1],[4,5,1],[4,3,1],[3,2,1],[3,4,1],[3,2,2],[3,4,1],[3,0,1],[3,2,8]]},
+      ]},
       {id:"verso",name:"Verso",seq:["G","D","G","D","Em","G","Em","A","D","Bm7","G","Em","A"]},
       {id:"refrao",name:"Refrão",seq:["G","Bm7","G","Em","A","G","Bm7","Em","A","D"]},
       {id:"final",name:"Final",seq:["G","Bm7","Em","A","D"],endLast:true},
     ],
     full:["intro","verso","refrao","verso","refrao","refrao","final"],
-    mapNotes:{intro:"G, Bm7, Em e A",verso:"começa no vai-e-vem G–D",refrao:"o mesmo ar da intro, fecha no D",final:"intro + D pra fechar"},
-    source:`Acordes da <a href="https://www.vagalume.com.br/jorge-e-mateus/se-eu-pedir-ce-volta-cifrada.html" target="_blank" rel="noopener">cifra no Vagalume</a> (tom D, sem capotraste). O <b>Bm</b> da cifra virou <b>Bm7 sem pestana</b> pra você não travar — soa quase igual. O solo do final é tablatura, então aqui ele virou só os acordes pra fechar. Quantas voltas cada parte dá, confere ouvindo a gravação. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/jorge-mateus/se-eu-pedir-ce-volta/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
+    mapNotes:{intro:"solinho em notas soltas",verso:"começa no vai-e-vem G–D",refrao:"o mesmo ar da intro, fecha no D",final:"intro + D pra fechar"},
+    source:`Acordes e solo da intro da <a href="https://www.vagalume.com.br/jorge-e-mateus/se-eu-pedir-ce-volta-cifrada.html" target="_blank" rel="noopener">cifra no Vagalume</a> (tom D, sem capotraste). <b>A intro é solada</b>, não batida: é uma melodia tocada nota por nota nas 3 cordas mais finas. No play-along cada número é a <b>casa</b> e a letrinha embaixo é a <b>corda</b> (e = Mi fininha, B = Si, G = Sol). A tablatura:<div class="tabbox">e|---0-2----------------------0-2-----------------------0-2----------3-2--------------
+B|-------5-3-3-----------2-3-------5-3-3-----------2-3-----5-3-3s5------5-3-----------
+G|--------------4-4-2-4------------------4-4-2-4-----------------------------2h4-2-----4p0-2--</div><b>Ritmo das notas:</b> tablatura não mostra a duração, então a divisão do solo aqui é uma aproximação minha — compara com o clipe e ajusta no ouvido. Se ainda tiver difícil, troca o solo pela batida nos acordes G, Bm7, Em, G e A que também funciona.<br><b>Batida:</b> a do sertanejo, <b>↓ · ↓↑ · ↑↓↑</b> (conta "1, 2-e, e-3-e, 4-e"), já vem selecionada; a primeira pra baixo é a mais forte. A gravação é bem mais rápida (~145 BPM); comecei em 80 pra dar tempo de trocar — vai subindo aos poucos em ⚙️ Ajustes. O <b>Bm</b> da cifra virou <b>Bm7 sem pestana</b> pra você não travar — soa quase igual. O solo do final virou só os acordes pra fechar. Quantas voltas cada parte dá, confere ouvindo a gravação. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/jorge-mateus/se-eu-pedir-ce-volta/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
   moon:{title:"Talking to the Moon",artist:"Bruno Mars",key:"E",capo:4,level:"médio",bpm:72,pat:2,
     chords:["C","E7","Am","G","F","Dm","D7"],
     yt:"Bruno Mars Talking to the Moon",videos:[{id:"fXw0jcYbqdo",label:"Lyric video oficial"},{id:"RUMFN8TYmM8",label:"Só áudio"}],
@@ -1056,7 +1066,8 @@ function sectionList(){ // lista plana de acordes da seleção atual
   const out=[];
   ids.forEach(sid=>{
     const sec=sg.sections.find(x=>x.id===sid);
-    sec.seq.forEach((c,i)=>out.push({chord:res(c),sec:sec.name,secStart:i===0,end:!!(sec.endLast&&i===sec.seq.length-1)}));
+    if(sec.riff) sec.riff.forEach((r,i)=>out.push({chord:res(r.c),sec:sec.name,secStart:i===0,end:false,notes:r.n}));
+    else sec.seq.forEach((c,i)=>out.push({chord:res(c),sec:sec.name,secStart:i===0,end:!!(sec.endLast&&i===sec.seq.length-1)}));
   });
   return out;
 }
@@ -1195,6 +1206,7 @@ const bpmEl=$("#bpm"), bpmVal=$("#bpmVal"), barsEl=$("#bars"), patEl=$("#pat");
 function curPat(){ return patEl.value==="s"&&SONGS[songId].rhythm?SONGS[songId].rhythm.steps:RPATS[+patEl.value].steps; }
 const track=$("#track"), lane=$("#lane"), countinEl=$("#countin");
 const SLOTW=24;
+const STRNAME=["E","A","D","G","B","e"]; // letras da tablatura, da Mi grossa à Mi fininha
 const P={playing:false,startT:0,slotDur:.4,nextSlot:0,total:0,events:[],chords:[],loop:false,lastCur:-99,raf:0,timer:0,pausedPos:null,slotEls:[],finished:false};
 
 function rebuild(){
@@ -1203,7 +1215,12 @@ function rebuild(){
   const bars=+barsEl.value, pat=curPat(), L=pat.length;
   P.chords=list; P.events=[]; P.loop=isOn(togLoop);
   list.forEach((it,ci)=>{
-    const n=it.end?L:bars*L;
+    if(it.notes){ // trecho solado: notas soltas em vez de batida
+      let k=0; const n=it.notes.reduce((a,x)=>a+x[2],0); it.len=n;
+      it.notes.forEach(([s,f,d])=>{ for(let j=0;j<d;j++){ P.events.push({ci,k,n,bar:k%8,L:8,dir:j===0?"♪":"·",note:j===0?[s,f]:null,chord:it.chord}); k++; } });
+      return;
+    }
+    const n=it.end?L:bars*L; it.len=n;
     for(let k=0;k<n;k++){
       const dir=it.end?(k===0?"↓":"·"):pat[k%L];
       P.events.push({ci,k,n,bar:k%L,L,dir,chord:it.chord});
@@ -1225,12 +1242,12 @@ function renderTrack(){
     const off=c*P.total;
     let slot=0;
     P.chords.forEach((it,ci)=>{
-      const L=curPat().length, n=it.end?L:(+barsEl.value)*L;
+      const n=it.len;
       const left=(off+slot)*SLOTW, hue=HUE[it.chord]||"#888";
       const evs=P.events.slice(slot,slot+n);
       html+=`<div class="blk" style="left:${left}px;width:${n*SLOTW-4}px;border-color:${hue}88;background:linear-gradient(180deg,${hue}2e,${hue}10)">`+
         `<span class="nm" style="color:${hue}">${it.chord}</span>`+
-        `<div class="slots">${evs.map((e,j)=>`<span class="slot${e.dir==="·"?" dot":""}" data-g="${off+slot+j}">${e.dir==="·"?"•":e.dir}</span>`).join("")}</div></div>`;
+        `<div class="slots">${evs.map((e,j)=>`<span class="slot${e.dir==="·"?" dot":""}${e.note?" nt":""}" data-g="${off+slot+j}"${e.note?` title="corda ${STRNAME[e.note[0]]}, casa ${e.note[1]}"`:""}>${e.note?`${e.note[1]}<small>${STRNAME[e.note[0]]}</small>`:e.dir==="·"?"•":e.dir}</span>`).join("")}</div></div>`;
       if(it.secStart) html+=`<span class="sectag" style="left:${left+2}px">${it.sec}</span>`;
       slot+=n;
     });
@@ -1259,7 +1276,8 @@ function setHudFor(ci,prep){
 }
 function setPlayIcon(on){ const b=$("#playBtn"); b.textContent=on?"❚❚":"▶"; b.setAttribute("aria-label",on?"Pausar":"Tocar"); }
 
-function warmBuffers(){ new Set(P.chords.map(c=>c.chord)).forEach(id=>{ const fr=frettedOf(CHORDS[id]); for(let s=0;s<6;s++) ksBuffer(freqOf(s,(fr[s]??0)+CAPO)); }); }
+function warmBuffers(){ new Set(P.chords.map(c=>c.chord)).forEach(id=>{ const fr=frettedOf(CHORDS[id]); for(let s=0;s<6;s++) ksBuffer(freqOf(s,(fr[s]??0)+CAPO)); });
+  P.chords.forEach(c=>(c.notes||[]).forEach(([s,f])=>ksBuffer(freqOf(s,f+CAPO)))); }
 function startPlay(){
   const ctx=audio(); if(!ctx){ $("#hTip").textContent="Seu navegador bloqueou o áudio. Tenta clicar de novo."; return; }
   warmBuffers();
@@ -1286,7 +1304,8 @@ function schedule(){
     if(t>=now-.01){
       const ev=P.events[P.nextSlot%P.total], ch=CHORDS[ev.chord];
       const gv=mode==="mine"?.17:.34;
-      if(isOn(togGtr)){ if(ev.dir==="↓") strumAt(ch,t,"down",gv); else if(ev.dir==="↑") strumAt(ch,t,"up",gv); }
+      if(isOn(togGtr)&&ev.note) playString(ev.note[0],ev.note[1]+CAPO,t,mode==="mine"?.3:.6);
+      else if(isOn(togGtr)){ if(ev.dir==="↓") strumAt(ch,t,"down",gv); else if(ev.dir==="↑") strumAt(ch,t,"up",gv); }
       if(isOn(togClk) && ev.bar%(ev.L===6?3:2)===0) clickAt(t,ev.bar===0);
     }
     P.nextSlot++;
@@ -1316,7 +1335,8 @@ function onSlot(cur){
   if(ev.k===0){
     setHudFor(ev.ci,false);
     const ni=nextChordIdx(ev.ci);
-    if(ni>=0){ $("#hTipLab").textContent="Próxima troca"; $("#hTip").innerHTML=`<span class="pair">${ev.chord} → ${P.chords[ni].chord}</span> · ${tipFor(ev.chord,P.chords[ni].chord)}`; }
+    if(P.chords[ev.ci].notes){ $("#hTipLab").textContent="Solo"; $("#hTip").innerHTML="Nota por nota: o número grande é a <b>casa</b>, a letrinha é a <b>corda</b> (e = Mi fininha, B = Si, G = Sol). Palheta pra baixo em cada nota."; }
+    else if(ni>=0){ $("#hTipLab").textContent="Próxima troca"; $("#hTip").innerHTML=`<span class="pair">${ev.chord} → ${P.chords[ni].chord}</span> · ${tipFor(ev.chord,P.chords[ni].chord)}`; }
     else { $("#hTipLab").textContent="Último acorde"; $("#hTip").innerHTML="Deixa soar… 🎶"; }
   }
   const prepFrom=Math.max(ev.n-3,Math.floor(ev.n/2));
