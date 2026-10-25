@@ -681,6 +681,8 @@ Object.assign(TIPS,{
   "A>D":"O anelar continua na <b>Si</b>, só escorrega pra <b>casa 3</b>. Indicador vai pra <b>Sol, casa 2</b>, médio pra <b>Mi fininha, casa 2</b>.",
   "A>G":"Desfaz a fila da casa 2 e monta o G: médio na <b>Mi grossa, casa 3</b>, indicador na <b>Lá, casa 2</b>, anelar na <b>Mi fininha, casa 3</b>.",
   "D>Bm7":"Tudo pra <b>casa 2</b>: indicador na <b>Lá</b>, médio na <b>Sol</b>, anelar na <b>Mi fininha</b>. Não toca a Mi grossa.",
+  "D>F7M":"O médio vai pra <b>Sol, casa 2</b> (onde estava o indicador), o indicador sobe pra <b>Si, casa 1</b> e o anelar vai pra <b>Ré, casa 3</b>. Toca só as 4 finas.",
+  "F7M>D":"Indicador sai da Si e vai pra <b>Sol, casa 2</b>; médio desce pra <b>Mi fininha, casa 2</b>; anelar pula pra <b>Si, casa 3</b>. Toca só as 4 finas.",
   "Am7>F7M":"🎁 O <b>indicador não sai</b> da Si, casa 1! Médio vai da Ré pra <b>Sol, casa 2</b> e o anelar entra na <b>Ré, casa 3</b>. Toca só as 4 finas.",
   "F7M>C":"🎁 O <b>indicador não sai</b> da Si, casa 1! Médio sobe pra <b>Ré, casa 2</b> e anelar pra <b>Lá, casa 3</b>.",
   "C>Am7":"🎁 Indicador e médio <b>ficam onde estão</b>! É só tirar o anelar da Lá. A troca mais fácil do site.",
@@ -767,21 +769,24 @@ const SONGS={
     source:`Acordes e solo da intro da <a href="https://www.vagalume.com.br/jorge-e-mateus/se-eu-pedir-ce-volta-cifrada.html" target="_blank" rel="noopener">cifra no Vagalume</a> (tom D, sem capotraste). <b>A intro é solada</b>, não batida: é uma melodia tocada nota por nota nas 3 cordas mais finas. No play-along cada número é a <b>casa</b> e a letrinha embaixo é a <b>corda</b> (e = Mi fininha, B = Si, G = Sol). A tablatura:<div class="tabbox">e|---0-2----------------------0-2-----------------------0-2----------3-2--------------
 B|-------5-3-3-----------2-3-------5-3-3-----------2-3-----5-3-3s5------5-3-----------
 G|--------------4-4-2-4------------------4-4-2-4-----------------------------2h4-2-----4p0-2--</div><b>Ritmo das notas:</b> tablatura não mostra a duração, então a divisão do solo aqui é uma aproximação minha — compara com o clipe e ajusta no ouvido. Se ainda tiver difícil, troca o solo pela batida nos acordes G, Bm7, Em, G e A que também funciona.<br><b>Batida:</b> a do sertanejo, <b>↓ · ↓↑ · ↑↓↑</b> (conta "1, 2-e, e-3-e, 4-e"), já vem selecionada; a primeira pra baixo é a mais forte. A gravação é bem mais rápida (~145 BPM); comecei em 80 pra dar tempo de trocar — vai subindo aos poucos em ⚙️ Ajustes. O <b>Bm</b> da cifra virou <b>Bm7 sem pestana</b> pra você não travar — soa quase igual. O solo do final virou só os acordes pra fechar. Quantas voltas cada parte dá, confere ouvindo a gravação. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/jorge-mateus/se-eu-pedir-ce-volta/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
-  arcoiris:{title:"Cabelos Arco-Íris",artist:"kamaitachi",key:"F",capo:5,level:"fácil",bpm:115,
-    rhythm:{name:"Batida da música",steps:["↓","·","↓","↑","·","↑","↓","↑"]},
-    chords:["Am7","F","C","Dm"],
+  arcoiris:{title:"Cabelos Arco-Íris",artist:"kamaitachi",key:"F",capo:5,level:"fácil",bpm:115,soft:.6,gap:.022,
+    rhythms:[
+      {name:"Batida suave (da música)",steps:["↓","·","↓","↑","·","↑","↓","↑"]},
+      {name:"Dedilhado suave",steps:["P","i","m","i","a","i","m","i"]},
+    ],
+    chords:["Am7","F","C","D"],
     yt:"kamaitachi Cabelos Arco-Íris",videos:[{id:"_WfBQBbaDZ4",label:"Oficial"},{id:"zWasuAFiyCw",label:"Acústico"},{id:"UBpR02cVNZU",label:"Aula simplificada"}],
     sections:[
-      {id:"intro",name:"Intro",seq:["Am7","F","C*2","Am7","F","C*2"]},
-      {id:"verso",name:"Verso 1",seq:["Am7","F","C*2","Am7","F","C*2","Am7","F","C*2","Am7","F","C*2"]},
-      {id:"verso2",name:"Verso 2",seq:["Am7","F","C*2","Am7*2","F","C","Am7","F","C*2","Am7","F","C","Dm","F*2"]},
-      {id:"refrao",name:"Refrão",seq:["Am7","F","C*2","Am7","F","C*2","Am7","F","C*2","Am7","F","C","Dm"]},
-      {id:"ponte",name:"Ponte",seq:["F*2","Dm*2","F*2"]},
-      {id:"final",name:"Final",seq:["Am7","F","C*2","Am7","F","C*2","Am7"],endLast:true},
+      {id:"intro",name:"Intro",seq:["Am7","F","C","Am7","F","C"]},
+      {id:"verso",name:"Verso 1",seq:["Am7","F","C","Am7","F","C","Am7","F","C","Am7","F","C"]},
+      {id:"verso2",name:"Verso 2",seq:["Am7","F","C","Am7","F","C","Am7","F","C","Am7","F","C","D","F"]},
+      {id:"refrao",name:"Refrão",seq:["Am7","F","C","Am7","F","C","Am7","F","C","Am7","F","C","D"]},
+      {id:"ponte",name:"Ponte",seq:["F","D","F"]},
+      {id:"final",name:"Final",seq:["Am7","F","C","Am7","F","C"],endLast:true},
     ],
     full:["intro","verso","verso2","refrao","ponte","final"],
-    mapNotes:{intro:"o ciclo Am7 → F → C",verso:"o mesmo ciclo, 4 voltas",verso2:"o ciclo com uma pausa no Am7 e Dm no fim",refrao:"o ciclo, fechando no Dm",ponte:"F e Dm balançando",final:"o ciclo + Am7 pra fechar"},
-    source:`A música original é em <b>F</b>, com <b>Dm7 → Bb → F</b> o tempo todo (e um Gm de vez em quando) — confere na <a href="https://ukutabs.com/k/kamaitachi/cabelos-arco-iris/" target="_blank" rel="noopener">cifra do UkuTabs</a> e na do <a href="https://tabs.ultimate-guitar.com/tab/2425881" target="_blank" rel="noopener">Ultimate Guitar</a>. Bb e F pedem pestana, então o truque é o <b>capotraste na casa 5</b>: aí você faz os desenhos fáceis <b>Am7, F (o fácil), C e Dm</b> e soa <b>igualzinho à gravação</b>, dá até pra tocar junto com o vídeo. E olha que presente: de C pra Am7 você só tira <b>um dedo</b>. 🎁<br><b>Batida:</b> <b>↓ · ↓↑ · ↑↓↑</b> (conta "1, 2-e, e-3-e, 4-e"), a mesma que o UkuTabs indica pra música. <b>Andamento:</b> 115 BPM, o da gravação — se estiver rápido, baixa pra uns 90 em ⚙️ Ajustes e vai subindo.<br><b>Duração dos acordes:</b> as cifras não dizem quanto tempo cada acorde dura; montei o ciclo como <b>Am7 1 compasso, F 1 compasso e C 2 compassos</b> (o número entre parênteses no mapa), que é o jeito mais comum desse tipo de música. A ordem das partes também pode variar na gravação — confere no vídeo oficial e me fala se algo não bater. Sem capotraste? Dá pra tocar com Em7, C e G, mas fica um tom acima do original. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/kamaitachi/cabelos-arco-iris/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
+    mapNotes:{intro:"o ciclo Am7 → F → C, 2 voltas",verso:"o mesmo ciclo, 4 voltas",verso2:"4 voltas e a virada D → F",refrao:"4 voltas e termina no D",ponte:"F, D, F: um acorde por vez",final:"o ciclo de novo pra fechar"},
+    source:`<b>De onde vem:</b> a <a href="https://www.cifras.com.br/cifra/kamaitachi/cabelos-arco-iris" target="_blank" rel="noopener">cifra no Cifras.com.br</a>, conferida com a do <a href="https://ukutabs.com/k/kamaitachi/cabelos-arco-iris/" target="_blank" rel="noopener">UkuTabs</a> e a do <a href="https://www.e-chords.com/chords/kamaitachi/cabelos-arco-iris" target="_blank" rel="noopener">E-Chords</a>: as três batem. A original é em <b>F</b>, com <b>Dm7 → Bb → F</b> girando a música toda e um <b>G</b> nas viradas.<br><b>Capotraste na casa 5:</b> aí os desenhos fáceis <b>Am7, F (o fácil), C e D</b> soam exatamente como Dm7, Bb, F e G — igual à gravação, dá pra tocar junto com o vídeo. De C pra Am7 é só tirar um dedo. 🎁<br><b>Tempo de cada acorde:</b> <b>1 compasso</b> (4 tempos, uns 2 segundos). A conta fecha: a faixa tem <b>1:45</b> e, somando todas as partes, dá 54 acordes — a 115 BPM, um compasso cada, isso dá quase exatamente o tamanho da música.<br><b>O clima:</b> segundo a <a href="https://tunebat.com/Info/Cabelos-Arco-ris-kamaitachi/1wFqkTWlyl79UfFQOSRU9b" target="_blank" rel="noopener">Tunebat</a>, a gravação é <b>98% acústica</b>, bem baixinha e com energia lá embaixo (6 de 100): é voz e violão bem de leve. Então aqui o violão toca mais suave. A batida <b>↓ · ↓↑ · ↑↓↑</b> é a que o UkuTabs indica; toca com a mão relaxada, quase acariciando as cordas.<br><b>Dedilhado:</b> nenhuma cifra diz se o original é batido ou dedilhado, então deixei também a opção <b>P i m i a i m i</b> em ⚙️ Ajustes → Batida: <b>P</b> = polegar na corda mais grossa do acorde, <b>i</b> = indicador na Sol, <b>m</b> = médio na Si, <b>a</b> = anelar na Mi fininha. Escuta o clipe e fica com a que soar mais parecida.<br><b>Andamento:</b> 115 BPM, o da gravação. Se ficar corrido, baixa pra uns 90 e vai subindo. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/kamaitachi/cabelos-arco-iris/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
   moon:{title:"Talking to the Moon",artist:"Bruno Mars",key:"E",capo:4,level:"médio",bpm:72,pat:2,
     chords:["C","E7","Am","G","F","Dm","D7"],
     yt:"Bruno Mars Talking to the Moon",videos:[{id:"fXw0jcYbqdo",label:"Lyric video oficial"},{id:"RUMFN8TYmM8",label:"Só áudio"}],
@@ -1115,9 +1120,10 @@ function loadSong(){
   try{ localStorage.setItem("vb_song",songId); }catch(e){}
   $("#fSwitch").hidden=!sg.chords.includes("F");
   bpmEl.value=sg.bpm; bpmVal.textContent=sg.bpm;
-  let so=patEl.querySelector('option[value="s"]'); if(so) so.remove();
-  if(sg.rhythm){ so=document.createElement("option"); so.value="s"; so.textContent=sg.rhythm.steps.join(" ")+" · "+sg.rhythm.name; patEl.prepend(so); patEl.value="s"; }
-  else patEl.value=String(sg.pat??2);
+  patEl.querySelectorAll('option[value^="s"]').forEach(o=>o.remove());
+  const rhs=songRhythms(sg);
+  rhs.slice().reverse().forEach((r,i)=>{ const so=document.createElement("option"); so.value="s"+(rhs.length-1-i); so.textContent=r.steps.join(" ")+" · "+r.name; patEl.prepend(so); });
+  if(rhs.length) patEl.value="s0"; else patEl.value=String(sg.pat??2);
   renderSecs(); renderMinis(); renderMap(); rebuild();
 }
 
@@ -1233,7 +1239,12 @@ togLoop.addEventListener("click",()=>{ setTog(togLoop,!isOn(togLoop)); stopAll()
 
 /* ---------- motor do play-along ---------- */
 const bpmEl=$("#bpm"), bpmVal=$("#bpmVal"), barsEl=$("#bars"), patEl=$("#pat");
-function curPat(){ return patEl.value==="s"&&SONGS[songId].rhythm?SONGS[songId].rhythm.steps:RPATS[+patEl.value].steps; }
+function songRhythms(sg){ return sg.rhythms||(sg.rhythm?[sg.rhythm]:[]); }
+function curPat(){ const v=patEl.value, rh=songRhythms(SONGS[songId]); return v[0]==="s"&&rh[+v.slice(1)]?rh[+v.slice(1)].steps:RPATS[+v].steps; }
+/* dedilhado P-i-m-a: P = polegar no baixo do acorde, i = corda Sol, m = Si, a = Mi fininha */
+const PIMA={i:3,m:4,a:5};
+function bassStr(ch){ for(let s=0;s<6;s++) if(!ch.mute.includes(s)) return s; return 0; }
+function pickAt(ch,sym,t,vol){ const fr=frettedOf(ch), s=sym==="P"?bassStr(ch):PIMA[sym]; if(s==null||ch.mute.includes(s)) return; playString(s,(fr[s]??0)+CAPO,t,sym==="P"?vol*1.15:vol); }
 const track=$("#track"), lane=$("#lane"), countinEl=$("#countin");
 const SLOTW=24;
 const STRNAME=["E","A","D","G","B","e"]; // letras da tablatura, da Mi grossa à Mi fininha
@@ -1333,9 +1344,11 @@ function schedule(){
     if(t>horizon) break;
     if(t>=now-.01){
       const ev=P.events[P.nextSlot%P.total], ch=CHORDS[ev.chord];
-      const gv=mode==="mine"?.17:.34;
+      const soft=SONGS[songId].soft||1, gv=(mode==="mine"?.17:.34)*soft;
       if(isOn(togGtr)&&ev.note) playString(ev.note[0],ev.note[1]+CAPO,t,mode==="mine"?.3:.6);
-      else if(isOn(togGtr)){ if(ev.dir==="↓") strumAt(ch,t,"down",gv); else if(ev.dir==="↑") strumAt(ch,t,"up",gv); }
+      else if(isOn(togGtr)){ const gap=SONGS[songId].gap||.012;
+        if(ev.dir==="↓") strumAt(ch,t,"down",gv,gap); else if(ev.dir==="↑") strumAt(ch,t,"up",gv,gap);
+        else if(ev.dir==="P"||PIMA[ev.dir]!=null) pickAt(ch,ev.dir,t,(mode==="mine"?.22:.42)*soft); }
       if(isOn(togClk) && ev.bar%(ev.L===6?3:2)===0) clickAt(t,ev.bar===0);
     }
     P.nextSlot++;
