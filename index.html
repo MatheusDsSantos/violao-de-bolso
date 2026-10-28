@@ -936,6 +936,9 @@ Object.assign(TIPS,{ // trocas de Se Eu Me Humilhar (e que servem pra qualquer m
   "Dm>C":"Indicador vai pra <b>Si, casa 1</b>, médio pra <b>Ré, casa 2</b> e anelar pra <b>Lá, casa 3</b>: volta a escadinha do C. A Mi grossa continua de fora.",
   "Dm>Em":"Solta o triângulo e pousa só dois dedos: médio na <b>Lá, casa 2</b> e anelar na <b>Ré, casa 2</b>. Agora valem as 6 cordas.",
   "Em>Am":"Médio e anelar passam <b>uma corda pro lado da fina</b> (Lá→Ré e Ré→Sol) e o indicador entra na <b>Si, casa 1</b>. A Mi grossa sai.",
+  "Bm7>A":"🎁 Tudo fica na <b>casa 2</b> e o <b>médio não sai</b> da Sol! Indicador vai da Lá pra <b>Ré</b>, anelar vai da Mi fininha pra <b>Si</b>. A Mi grossa continua de fora.",
+  "A>Bm7":"🎁 O <b>médio não sai</b> da Sol, casa 2! Indicador volta pra <b>Lá, casa 2</b> e anelar pra <b>Mi fininha, casa 2</b>. Ré e Si soam soltas no meio.",
+  "A>Em":"Levanta o indicador e pousa só dois dedos: médio na <b>Lá, casa 2</b> e anelar na <b>Ré, casa 2</b>. Agora valem as 6 cordas.",
   "G>Dm":"Fecha a mão no triângulo: indicador na <b>Mi fininha, casa 1</b>, médio na <b>Sol, casa 2</b>, anelar na <b>Si, casa 3</b>. Só as 4 finas.",
 });
 const GENERIC_TIP="Levanta todos os dedos <b>juntos</b> e pousa todos juntos, como um carimbo. Não coloca um por um.";
@@ -1061,6 +1064,20 @@ G|--------------4-4-2-4------------------4-4-2-4-----------------------------2h4
     full:["intro","verso","pre","refrao","verso","pre","refrao2","inter","final"],
     mapNotes:{intro:"G e C, bem suave",verso:"o mesmo balanço G ↔ C",pre:"G, Bm7 e E: prepara o refrão",refrao:"Am D Bm7 Em, o coração da música",refrao2:"estica o final repetindo o ciclo",inter:"o ciclo do refrão, sem voz",final:"refrão + G pra fechar"},
     source:`Acordes da <a href="https://www.cifraclub.com.br/lady-gaga/die-with-a-smile-feat-bruno-mars/simplificada.html" target="_blank" rel="noopener">cifra simplificada do Cifra Club</a>, que está em <b>A</b> (com Bm, C#m e F#m, tudo pestana 😬). Com <b>capotraste na casa 2</b> eles viram G, C, Am, D, Em e um <b>Bm7 sem pestana</b>, e soa igual à gravação. Pra facilitar, a passagem rapidinha G → F#m → Em virou só G → Em, e o fim do último refrão ficou no ciclo normal. <b>Batida:</b> a música é em <b>6/8</b>, um balanço de valsa (conta 1-2-3-4-5-6 com força no 1 e no 4); a batida <b>↓ ↓ ↑ ↓ ↓ ↑</b> já vem selecionada e você pode trocar em ⚙️ Ajustes. O original é ~158 colcheias por minuto (79 aqui no BPM); comecei em 66 pra dar tempo de trocar. Quantas voltas cada parte dá, confere no clipe. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/lady-gaga/die-with-a-smile-feat-bruno-mars/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
+  morgana:{title:"Morgana",artist:"kamaitachi",key:"Ebm",capo:4,level:"fácil",bpm:96,soft:.6,gap:.022,
+    rhythms:[
+      {name:"Batida suave",steps:["↓","·","↓","↑","·","↑","↓","↑"]},
+      {name:"Dedilhado suave",steps:["P","i","m","i","a","i","m","i"]},
+    ],
+    chords:["Bm7","A","Em"],
+    yt:"kamaitachi Morgana",videos:[{id:"gPUxozBH0zk",label:"Cover"},{id:"7tevw1IRc88",label:"Outro cover"}],
+    sections:[
+      {id:"ciclo",name:"Ciclo",seq:["Bm7","A","Em","A","Bm7","A"]},
+      {id:"final",name:"Final",seq:["Bm7"],endLast:true},
+    ],
+    full:["ciclo","ciclo","ciclo","ciclo","final"],
+    mapNotes:{ciclo:"Bm7, A, Em, A, Bm7, A",final:"Bm7 pra fechar"},
+    source:`<b>De onde vem:</b> a <a href="https://tabs.ultimate-guitar.com/tab/kamaitachi-k-a-m-a-i-t-a-c-h-i/morgana-chords-4194142" target="_blank" rel="noopener">cifra do Ultimate Guitar</a>: tom de <b>Ebm</b>, tocado com <b>capotraste na casa 4</b> e os desenhos <b>Bm7, A e Em</b> — os três sem pestana, e de Bm7 pra A o médio nem sai do lugar. 🎁 Com o capo, soa exatamente como Ebm7, Db e Abm. O <a href="https://chordu.com/chords-tabs-morgana-kamaitachi-cover-id_7tevw1IRc88" target="_blank" rel="noopener">ChordU</a> confirma esses acordes e mede uns <b>112 bpm</b>; comecei em 96 pra dar tempo de trocar.<br><b>Atenção:</b> só consegui ler a primeira parte da cifra, então aqui a música é esse ciclo girando. Se o refrão tiver acorde diferente, abre a cifra e me manda que eu completo. Também não achei a tablatura com as notas da melodia, então ficou só com os acordes por enquanto.<br><b>Batida:</b> como em Cabelos Arco-Íris, é kamaitachi bem acústico e baixinho: batida suave <b>↓ · ↓↑ · ↑↓↑</b> com a mão relaxada, ou o dedilhado <b>P i m i a i m i</b> em Ajustes. Não achei vídeo oficial, então deixei covers; se preferir o original, cola o link em "Outro link".`},
   humilhar:{title:"Se Eu Me Humilhar",artist:"Discopraise part. André Valadão",key:"E",capo:4,level:"fácil",bpm:70,soft:.85,
     rhythms:[
       {name:"Balada de louvor (da música)",steps:["↓","·","↓","↑","·","↑","↓","↑"],howto:[
