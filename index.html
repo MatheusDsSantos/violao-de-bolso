@@ -1040,39 +1040,40 @@ const loop=(cyc,n)=>Array.from({length:n},()=>cyc).flat(); // ciclo repetido n v
 const SONGS={
   domingo:{title:"Domingo à Noite",artist:"VMZ part. Anny",key:"Bbm",capo:1,level:"bem fácil",bpm:70,soft:.8,gap:.02,
     rhythms:[
-      {name:"Lofi: 2 tempos por acorde (da música)",steps:["↓","·","↓","↑"],count:["1","e","2","e"],howto:[
-        "Aqui cada acorde dura só <b>2 tempos</b>: conta <b>1 e 2 e</b> e já troca. É o pulso lento e arrastado de lofi da gravação.",
-        "A mão desce no <b>1</b> (↓), passa no ar no “e”, desce no <b>2</b> (↓) e sobe no “e” (↑). Só isso, e repete no próximo acorde.",
-        "A troca cai sempre no ↓ do 1. A ↑ do final é leve, só nas cordas finas, e já é o embalo pra próxima descida.",
-        "Com <b>capotraste na casa 1</b>, os desenhos Am, C, F e E7 soam igualzinho à gravação. Sem capo, fica meio tom mais grave e tudo bem.",
-        "Tá rápido? Em ⚙️ Ajustes, põe <b>4 tempos por acorde</b> ou baixa o bpm. Quando firmar, volta pros 2 tempos, que é o da música.",
+      {name:"Lofi arrastado (da música)",steps:["↓","·","↓","↑","·","↑","↓","↑"],howto:[
+        "Aqui <b>cada acorde dura um compasso inteiro</b> (4 tempos): conta <b>1 e 2 e 3 e 4 e</b> bem devagar, no pulso arrastado de lofi, e só troca no 1 seguinte.",
+        "A mão desce em todo número e sobe em todo “e”, como um pêndulo que não para. Só encosta onde tem seta: ↓ no 1, ↓↑ no 2, só ↑ no “e” do 3, ↓↑ no 4.",
+        "No 3 a mão passa no ar, sem tocar: esse vazio é o balanço da música. O ↓ do 1 é o mais forte; as ↑ são leves, só nas cordas finas.",
+        "No verso, toca de leve (ou usa o dedilhado, em Ajustes) pra voz ficar na frente. No refrão, abre a mão e toca cheio.",
+        "Com <b>capotraste na casa 1</b>, os desenhos Am, C, F e E7 soam igualzinho à gravação. Se o play-along ainda parecer rápido ou lento perto do áudio, ajusta o bpm no controle ao lado do play.",
       ]},
-      {name:"Dedilhado suave",steps:["P","i","m","a"],count:["1","e","2","e"]},
+      {name:"Dedilhado suave",steps:["P","i","m","i","a","i","m","i"]},
     ],
     chords:["Am","C","F","E7"],
     yt:"VMZ Domingo à Noite",videos:[{id:"R4N1po64We0",label:"Clipe"},{id:"bSfQqAkZuD4",label:"Só áudio"}],
     sections:[
-      {id:"gancho",name:"Gancho",seq:loop(LOOP_DN,2)},
-      {id:"refrao",name:"Refrão",seq:loop(LOOP_DN,4)},
-      {id:"verso1",name:"Verso 1",seq:loop(LOOP_DN,10)},
-      {id:"verso2",name:"Verso 2",seq:loop(LOOP_DN,5)},
-      {id:"coro",name:"Coro final",seq:loop(LOOP_DN,5)},
-      {id:"saida",name:"Gancho (saída)",seq:[...loop(LOOP_DN,2),"Am"],endLast:true},
+      {id:"gancho",name:"Gancho",seq:loop(LOOP_DN,1)},
+      {id:"refrao",name:"Refrão",seq:loop(LOOP_DN,2)},
+      {id:"verso1",name:"Verso 1",seq:loop(LOOP_DN,5)},
+      {id:"verso2",name:"Verso 2",seq:[...loop(LOOP_DN,2),"Am","C"]},
+      {id:"coro",name:"Coro final",seq:[...loop(LOOP_DN,2),"Am","C"]},
+      {id:"saida",name:"Gancho (saída)",seq:[...LOOP_DN,"Am"],endLast:true},
     ],
     full:["gancho","refrao","verso1","verso2","refrao","coro","saida"],
-    // Letra: quantos acordes cada frase leva, parte por parte (na ordem de `full`). O texto das frases
-    // não fica no site (direitos autorais): o Matheus cola a letra uma vez e ela fica só no aparelho dele.
+    // Letra: quantos acordes cada frase leva, parte por parte (na ordem de `full`). Um acorde = um compasso.
+    // join: frases curtas que dividem um compasso só (ficam juntas na mesma linha da folha).
+    // O texto das frases não fica no site (direitos autorais): o Matheus cola a letra uma vez e ela fica só no aparelho dele.
     lyrics:[
-      [2,2,2,2],
-      [2,2,2,2,4,1,3],
-      [2,2,2,2,1,1,...Array(13).fill(2),1,1,1,1],
-      [2,2,2,2,4,2,2,2,2],
-      [2,2,2,2,4,4],
-      [2,2,1,1,2,1,1,2,2,2,1,1,{n:2,inst:"só o violão, prepara o gancho"}],
-      [2,2,2,2,{n:1,inst:"deixa o Am soar"}],
+      [1,1,1,1],
+      [1,1,1,1,2,1,1],
+      [1,1,1,1,{n:1,join:2},...Array(13).fill(1),{n:1,join:2},{n:1,join:2}],
+      [1,1,1,1,2,1,1,1,1],
+      [1,1,1,1,2,2],
+      [1,1,{n:1,join:2},1,{n:1,join:2},1,1,1,{n:1,join:2},{n:1,inst:"só o violão, prepara o gancho"}],
+      [1,1,1,1,{n:1,inst:"deixa o Am soar"}],
     ],
-    mapNotes:{gancho:"o ciclo de 4, 2 voltas",refrao:"4 voltas do mesmo ciclo",verso1:"10 voltas, só o ciclo",verso2:"5 voltas",coro:"5 voltas, frases curtas",saida:"o gancho de novo + Am"},
-    source:`<b>De onde vem:</b> os acordes e o ponto de cada troca dentro das frases vêm da <a href="https://www.guitartabsexplorer.com/vmz/domingo-a-noite-chords" target="_blank" rel="noopener">cifra no Guitar Tabs Explorer</a>, que está em <b>Bbm</b> (Bbm, Db, Gb e F7: tudo pestana 😬). Com <b>capotraste na casa 1</b> você faz os desenhos fáceis <b>Am, C, F e E7</b> e soa igual à gravação. A música inteira é esse ciclo de 4 girando sem parar; o que muda é só a frase em cima.<br><b>Tempo:</b> a gravação tem 3:50 e uns 130 acordes, o que dá <b>2 tempos por acorde</b> a uns 70 bpm. Por isso a batida aqui é curtinha (↓ · ↓ ↑) e já troca. Se a mão não acompanhar, põe 4 tempos por acorde em ⚙️ Ajustes.<br><b>Letra:</b> por direitos autorais ela não vem gravada no site. Cola no quadro <b>Letra</b>, ali embaixo, que ela fica só no teu aparelho e passa no palco frase a frase, com o acorde acendendo. Onde cada acorde cai dentro da frase eu tirei da cifra, mas é aproximado: confere no áudio e canta por cima.`},
+    mapNotes:{gancho:"o ciclo de 4, uma volta",refrao:"o ciclo, 2 voltas",verso1:"5 voltas, só o ciclo",verso2:"2 voltas e meia",coro:"2 voltas e meia, frases curtas",saida:"o gancho de novo + Am"},
+    source:`<b>De onde vem:</b> os acordes vêm da <a href="https://www.guitartabsexplorer.com/vmz/domingo-a-noite-chords" target="_blank" rel="noopener">cifra no Guitar Tabs Explorer</a>, que está em <b>Bbm</b> (Bbm, Db, Gb e F7: tudo pestana 😬). Com <b>capotraste na casa 1</b> você faz os desenhos fáceis <b>Am, C, F e E7</b> e soa igual à gravação. A música inteira é esse ciclo de 4 girando sem parar; o que muda é só a frase em cima.<br><b>Tempo:</b> um acorde por compasso, a uns 70 bpm. Com a gravação de 3:50 isso dá uns 65 compassos, quase um por frase, e foi o que bateu quando você comparou com o áudio (a primeira versão, com 2 tempos por acorde, estava rápida demais). Se ainda sentir diferença, o bpm ao lado do play ajusta fino.<br><b>Letra:</b> por direitos autorais ela não vem gravada no site. Cola na caixa dourada do palco, que ela fica só no teu aparelho e passa frase a frase, com o acorde acendendo. Frases curtinhas dividem um compasso e aparecem juntas na mesma linha da folha. Onde cada acorde cai eu deduzi da cifra e do tempo: confere no áudio e canta por cima.`},
   coracao:{title:"Coração Partido",artist:"VMZ",key:"Am",capo:0,level:"fácil",bpm:72,yt:"VMZ Coração Partido",videos:[{id:"5u5IAsbXP-8",label:"Oficial"}],
     chords:["Am","Dm","G","C","F","E7"],
     sections:[
@@ -1128,7 +1129,7 @@ const SONGS={
     source:`Acordes e solo da intro da <a href="https://www.vagalume.com.br/jorge-e-mateus/se-eu-pedir-ce-volta-cifrada.html" target="_blank" rel="noopener">cifra no Vagalume</a> (tom D, sem capotraste). <b>A intro é solada</b>, não batida: é uma melodia tocada nota por nota nas 3 cordas mais finas. No play-along cada número é a <b>casa</b> e a letrinha embaixo é a <b>corda</b> (e = Mi fininha, B = Si, G = Sol). A tablatura:<div class="tabbox">e|---0-2----------------------0-2-----------------------0-2----------3-2--------------
 B|-------5-3-3-----------2-3-------5-3-3-----------2-3-----5-3-3s5------5-3-----------
 G|--------------4-4-2-4------------------4-4-2-4-----------------------------2h4-2-----4p0-2--</div><b>Ritmo das notas:</b> tablatura não mostra a duração, então a divisão do solo aqui é uma aproximação minha — compara com o clipe e ajusta no ouvido. Se ainda tiver difícil, troca o solo pela batida nos acordes G, Bm7, Em, G e A que também funciona.<br><b>Batida:</b> a do sertanejo, <b>↓ · ↓↑ · ↑↓↑</b> (conta "1, 2-e, e-3-e, 4-e"), já vem selecionada; a primeira pra baixo é a mais forte. A gravação é bem mais rápida (~145 BPM); comecei em 80 pra dar tempo de trocar — vai subindo aos poucos em ⚙️ Ajustes. O <b>Bm</b> da cifra virou <b>Bm7 sem pestana</b> pra você não travar — soa quase igual. O solo do final virou só os acordes pra fechar. Quantas voltas cada parte dá, confere ouvindo a gravação. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/jorge-mateus/se-eu-pedir-ce-volta/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
-  arcoiris:{title:"Cabelos Arco-Íris",artist:"kamaitachi",key:"F",capo:5,level:"fácil",bpm:115,soft:.6,gap:.022,
+  arcoiris:{title:"Cabelos Arco-Íris",artist:"kamaitachi",key:"F",capo:5,level:"fácil",bpm:120,soft:.6,gap:.022,
     rhythms:[
       {name:"Batida suave (da música)",steps:["↓","·","↓","↑","·","↑","↓","↑"]},
       {name:"Dedilhado suave",steps:["P","i","m","i","a","i","m","i"]},
@@ -1144,8 +1145,17 @@ G|--------------4-4-2-4------------------4-4-2-4-----------------------------2h4
       {id:"final",name:"Final",seq:["Am7","F","C","Am7","F","C"],endLast:true},
     ],
     full:["intro","verso","verso2","refrao","ponte","final"],
+    // Letra: quantos acordes cada frase leva (um acorde = um compasso), conferido na cifra. O texto é colado pelo Matheus.
+    lyrics:[
+      [{n:3,inst:"só o violão, 1ª volta"},{n:3,inst:"só o violão, 2ª volta"}],
+      [3,3,3,3],
+      [3,1,2,3,5],
+      [3,3,3,4],
+      [3],
+      [3,3],
+    ],
     mapNotes:{intro:"o ciclo Am7 → F → C, 2 voltas",verso:"o mesmo ciclo, 4 voltas",verso2:"4 voltas e a virada D → F",refrao:"4 voltas e termina no D",ponte:"F, D, F: um acorde por vez",final:"o ciclo de novo pra fechar"},
-    source:`<b>De onde vem:</b> a <a href="https://www.cifras.com.br/cifra/kamaitachi/cabelos-arco-iris" target="_blank" rel="noopener">cifra no Cifras.com.br</a>, conferida com a do <a href="https://ukutabs.com/k/kamaitachi/cabelos-arco-iris/" target="_blank" rel="noopener">UkuTabs</a> e a do <a href="https://www.e-chords.com/chords/kamaitachi/cabelos-arco-iris" target="_blank" rel="noopener">E-Chords</a>: as três batem. A original é em <b>F</b>, com <b>Dm7 → Bb → F</b> girando a música toda e um <b>G</b> nas viradas.<br><b>Capotraste na casa 5:</b> aí os desenhos fáceis <b>Am7, F (o fácil), C e D</b> soam exatamente como Dm7, Bb, F e G — igual à gravação, dá pra tocar junto com o vídeo. De C pra Am7 é só tirar um dedo. 🎁<br><b>Tempo de cada acorde:</b> <b>1 compasso</b> (4 tempos, uns 2 segundos). A conta fecha: a faixa tem <b>1:45</b> e, somando todas as partes, dá 54 acordes — a 115 BPM, um compasso cada, isso dá quase exatamente o tamanho da música.<br><b>O clima:</b> segundo a <a href="https://tunebat.com/Info/Cabelos-Arco-ris-kamaitachi/1wFqkTWlyl79UfFQOSRU9b" target="_blank" rel="noopener">Tunebat</a>, a gravação é <b>98% acústica</b>, bem baixinha e com energia lá embaixo (6 de 100): é voz e violão bem de leve. Então aqui o violão toca mais suave. A batida <b>↓ · ↓↑ · ↑↓↑</b> é a que o UkuTabs indica; toca com a mão relaxada, quase acariciando as cordas.<br><b>Dedilhado:</b> nenhuma cifra diz se o original é batido ou dedilhado, então deixei também a opção <b>P i m i a i m i</b> em ⚙️ Ajustes → Batida: <b>P</b> = polegar na corda mais grossa do acorde, <b>i</b> = indicador na Sol, <b>m</b> = médio na Si, <b>a</b> = anelar na Mi fininha. Escuta o clipe e fica com a que soar mais parecida.<br><b>Andamento:</b> 115 BPM, o da gravação. Se ficar corrido, baixa pra uns 90 e vai subindo. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/kamaitachi/cabelos-arco-iris/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
+    source:`<b>De onde vem:</b> a <a href="https://www.cifras.com.br/cifra/kamaitachi/cabelos-arco-iris" target="_blank" rel="noopener">cifra no Cifras.com.br</a>, conferida com a do <a href="https://ukutabs.com/k/kamaitachi/cabelos-arco-iris/" target="_blank" rel="noopener">UkuTabs</a> e a do <a href="https://www.e-chords.com/chords/kamaitachi/cabelos-arco-iris" target="_blank" rel="noopener">E-Chords</a>: as três batem. A original é em <b>F</b>, com <b>Dm7 → Bb → F</b> girando a música toda e um <b>G</b> nas viradas.<br><b>Capotraste na casa 5:</b> aí os desenhos fáceis <b>Am7, F (o fácil), C e D</b> soam exatamente como Dm7, Bb, F e G — igual à gravação, dá pra tocar junto com o vídeo. De C pra Am7 é só tirar um dedo. 🎁<br><b>Tempo de cada acorde:</b> <b>1 compasso</b> (4 tempos, uns 2 segundos). A conta fecha: a faixa tem <b>1:45</b> e, somando todas as partes, dá 54 acordes — a 115 BPM, um compasso cada, isso dá quase exatamente o tamanho da música.<br><b>O clima:</b> segundo a <a href="https://tunebat.com/Info/Cabelos-Arco-ris-kamaitachi/1wFqkTWlyl79UfFQOSRU9b" target="_blank" rel="noopener">Tunebat</a>, a gravação é <b>98% acústica</b>, bem baixinha e com energia lá embaixo (6 de 100): é voz e violão bem de leve. Então aqui o violão toca mais suave. A batida <b>↓ · ↓↑ · ↑↓↑</b> é a que o UkuTabs indica; toca com a mão relaxada, quase acariciando as cordas.<br><b>Dedilhado:</b> nenhuma cifra diz se o original é batido ou dedilhado, então deixei também a opção <b>P i m i a i m i</b> em ⚙️ Ajustes → Batida: <b>P</b> = polegar na corda mais grossa do acorde, <b>i</b> = indicador na Sol, <b>m</b> = médio na Si, <b>a</b> = anelar na Mi fininha. Escuta o clipe e fica com a que soar mais parecida.<br><b>Andamento:</b> 115 BPM, o da gravação. Se ficar corrido, baixa pra uns 90 e vai subindo. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/kamaitachi/cabelos-arco-iris/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.<br><b>Tempo:</b> a gravação de estúdio tem só 1:45 e são 54 compassos de um acorde cada, o que dá uns <b>120 bpm</b> (subi dos 115 de antes pra bater com o áudio). <b>Letra:</b> por direitos autorais ela não vem no site; cola na caixa dourada do palco (16 frases, uma por linha) e ela passa frase a frase com o acorde acendendo.`},
   moon:{title:"Talking to the Moon",artist:"Bruno Mars",key:"E",capo:4,level:"médio",bpm:72,pat:2,
     chords:["C","E7","Am","G","F","Dm","D7"],
     yt:"Bruno Mars Talking to the Moon",videos:[{id:"fXw0jcYbqdo",label:"Lyric video oficial"},{id:"RUMFN8TYmM8",label:"Só áudio"}],
@@ -2046,15 +2056,16 @@ function getLyr(){ try{ return localStorage.getItem(LYR_KEY())||""; }catch(e){ r
 function setLyr(t){ try{ if(t) localStorage.setItem(LYR_KEY(),t); else localStorage.removeItem(LYR_KEY()); }catch(e){} }
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const lyrSplit=t=>t.split(/\r?\n/).map(s=>s.trim()).filter(s=>s&&!/^\[.*\]$/.test(s)); // ignora marcações tipo [Refrão]
-const lyrExpected=sg=>sg.lyrics?sg.lyrics.flat().filter(l=>typeof l==="number").length:0;
+const lyrExpected=sg=>sg.lyrics?sg.lyrics.flat().reduce((a,l)=>a+(typeof l==="number"?1:(l.inst?0:(l.join||1))),0):0;
 const LY={rows:[],lookup:{},cur:-1,editing:false};
 function lyricRows(sg){ // junta a estrutura (do código) com o texto (colado): uma linha = uns acordes
   const src=lyrSplit(getLyr()); let p=0; const rows=[];
   sg.full.forEach((sid,occ)=>{
     const sec=sg.sections.find(x=>x.id===sid), spec=(sg.lyrics&&sg.lyrics[occ])||[]; let ci=0;
     spec.forEach((l,li)=>{
-      const n=typeof l==="number"?l:l.n, inst=typeof l==="number"?null:(l.inst||"só o violão");
-      rows.push({occ,sid,name:sec.name,li,ci0:ci,n,inst,chords:sec.seq.slice(ci,ci+n).map(c=>res(c.split("*")[0])),text:inst?null:(src[p++]??null)});
+      const n=typeof l==="number"?l:l.n, inst=typeof l==="number"?null:(l.inst||null), join=typeof l==="number"?1:(l.join||1);
+      let text=null; if(!inst){ const part=src.slice(p,p+join); text=part.length?part.join("  ·  "):null; p+=join; }
+      rows.push({occ,sid,name:sec.name,li,ci0:ci,n,inst,chords:sec.seq.slice(ci,ci+n).map(c=>res(c.split("*")[0])),text});
       ci+=n;
     });
     if(spec.length&&ci!==sec.seq.length) console.warn("letra × acordes não batem em",sid,occ,ci,sec.seq.length);
