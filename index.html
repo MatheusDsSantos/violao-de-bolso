@@ -280,6 +280,14 @@ select option{background:#241a16;color:var(--ink)}
 .tog .i{width:17px;height:17px}
 .tog[aria-pressed="true"]{border-color:rgba(108,212,155,.6);color:var(--ink);background:rgba(108,212,155,.1)}
 .tog[aria-pressed="true"] .i{color:var(--ok)}
+.patedit{width:100%;display:flex;flex-direction:column;gap:10px;padding:12px 14px;border-radius:14px;background:var(--inset);border:1px solid rgba(233,176,76,.35);box-shadow:inset 0 2px 10px rgba(0,0,0,.45)}
+.patedit .pe-h{display:flex;align-items:center;gap:8px;font-weight:650;font-size:14px;color:var(--brass-hi)}
+.patedit .pads{max-width:520px}
+.patedit button.pad{font:inherit;color:inherit;cursor:pointer}
+.patedit button.pad:hover{border-color:var(--brass)}
+.patedit .row{font-weight:600;font-size:14px}
+.patedit .row label{display:flex;align-items:center;gap:8px;color:var(--ink-2)}
+.patedit .muted{font-weight:500}
 
 /* ---------- botões ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;font-weight:650;font-size:15px;padding:11px 18px;border-radius:13px;color:var(--brass-ink);
@@ -709,7 +717,8 @@ footer .i{color:var(--brass)}
           <summary><svg class="i" aria-hidden="true"><use href="#i-sliders-horizontal"/></svg>Ajustes</summary>
           <div class="settings">
             <label for="bars">Tempo por acorde <select id="bars"><option value="1">1 compasso</option><option value="2">2 compassos (mais fácil)</option></select></label>
-            <label for="pat">Batida <select id="pat"><option value="0">Só pra baixo: ↓ ↓ ↓ ↓</option><option value="1">Baixo e cima: ↓↑ ↓↑</option><option value="2" selected>Universal: ↓ · ↓↑ · ↑↓↑</option></select></label>
+            <label for="pat">Batida <select id="pat"><option value="0">Só pra baixo: ↓ ↓ ↓ ↓</option><option value="1">Baixo e cima: ↓↑ ↓↑</option><option value="2" selected>Universal: ↓ · ↓↑ · ↑↓↑</option><option value="c">Minha batida (montar de ouvido)</option></select></label>
+            <div class="patedit" id="patEdit" hidden></div>
             <button class="tog" id="togGtr" aria-pressed="true"><svg class="i" aria-hidden="true"><use href="#i-speaker-high"/></svg>Violão</button>
             <button class="tog" id="togClk" aria-pressed="false"><svg class="i" aria-hidden="true"><use href="#i-metronome"/></svg>Metrônomo</button>
             <button class="tog" id="togLoop" aria-pressed="false"><svg class="i" aria-hidden="true"><use href="#i-repeat"/></svg>Repetir</button>
@@ -1609,13 +1618,14 @@ function loadSong(){
   const rhs=songRhythms(sg);
   rhs.slice().reverse().forEach((r,i)=>{ const so=document.createElement("option"); so.value="s"+(rhs.length-1-i); so.textContent=`${r.name}: ${r.steps.join(" ")}`; patEl.prepend(so); });
   if(rhs.length) patEl.value="s0"; else patEl.value=String(sg.pat??2);
-  syncBarLabels();
+  if(getCustomPat()) patEl.value="c";
+  renderPatEdit(); syncBarLabels();
   paintNeckRose();
   renderSecs(); renderMinis(); renderMap(); renderBeatBox(); renderLyrics(); rebuild();
 }
 /* o select "tempo por acorde" fala em compassos; numa batida de 2 tempos (4 passos) faz mais sentido falar em tempos */
 const BAR_LABELS=[["1 compasso","2 compassos (mais fácil)"],["2 tempos (igual à gravação)","4 tempos (mais fácil)"]];
-function syncBarLabels(){ const lab=curPat().length===4?BAR_LABELS[1]:BAR_LABELS[0]; barsEl.options[0].textContent=lab[0]; barsEl.options[1].textContent=lab[1]; }
+function syncBarLabels(){ const L=curPat().length, lab=L!==4?BAR_LABELS[0]:patEl.value==="c"?["2 tempos","4 tempos (mais fácil)"]:BAR_LABELS[1]; barsEl.options[0].textContent=lab[0]; barsEl.options[1].textContent=lab[1]; }
 
 /* seletor de partes (nos dois palcos + mapa) */
 function selectSec(id){ secSel=id; stopAll(); renderSecs(); renderMap(); rebuild(); }
@@ -1669,9 +1679,10 @@ function renderMap(){
   });
 }
 /* quadro da batida: mostra a batida escolhida, toca 2 compassos e explica como fazer */
-function curPatMeta(){ const v=patEl.value, rh=songRhythms(SONGS[songId]); return v[0]==="s"&&rh[+v.slice(1)]?rh[+v.slice(1)]:RPATS[+v]; }
+function curPatMeta(){ const v=patEl.value, rh=songRhythms(SONGS[songId]); if(v==="c") return {name:"Minha batida",custom:true,...customPat()}; return v[0]==="s"&&rh[+v.slice(1)]?rh[+v.slice(1)]:RPATS[+v]; }
 function patCount(m){ return m.count||(m.steps.length===6?["1","2","3","4","5","6"]:COUNT); }
 function patHowto(m){
+  if(m.custom) return ["Essa batida foi <b>montada por você</b>, de ouvido, nos quadradinhos de ⚙️ Ajustes. Ela fica salva só pra essa música, neste aparelho.","↓ = da corda grossa pra fina, ↑ = da fina pra grossa (de leve), · = a mão passa no ar sem tocar.",m.swing?"<b>Balanço ligado:</b> os “e” chegam um pouco atrasados, com suingue.":"Se a música tiver suingue, liga o <b>Balanço</b>: os “e” chegam um pouco atrasados."];
   if(m.howto) return m.howto;
   const sig=m.steps.join("");
   if(/[Pima]/.test(sig)) return ["<b>P</b> é o polegar na corda mais grossa que o acorde usa. <b>i</b> = indicador na Sol, <b>m</b> = médio na Si, <b>a</b> = anelar na Mi fininha.","Uma corda por vez, sem pressa, deixando as notas anteriores soarem juntas.","O desafio é a mão esquerda trocar o acorde enquanto a direita não para: começa bem devagar."];
@@ -1698,7 +1709,7 @@ $("#beatPlay").addEventListener("click",()=>{
   showChord(id); statusEl.innerHTML=`${ic("metronome")}<span><b>${m.name}</b><small>no ${id}</small></span>`;
   const t0=ctx.currentTime+.12;
   for(let rep=0;rep<2;rep++) steps.forEach((d,i)=>{
-    const t=t0+(rep*steps.length+i)*half;
+    const t=t0+(rep*steps.length+i)*half+(m.swing&&i%2?half*.33:0);
     if(d==="↓") strumAt(ch,t,"down",.36*soft,gap); else if(d==="↑") strumAt(ch,t,"up",.36*soft,gap);
     else if(d==="P"||PIMA[d]!=null) pickAt(ch,d,t,.44*soft);
     setTimeout(()=>{ if(tok!==rhythmToken) return; [...cells].forEach(c=>c.classList.remove("on")); cells[i].classList.add("on"); if(d!=="·") animatePick(d==="↑"?"↑":"↓"); },(t-ctx.currentTime)*1000);
@@ -1779,7 +1790,8 @@ togLoop.addEventListener("click",()=>{ setTog(togLoop,!isOn(togLoop)); stopAll()
 /* ---------- motor do play-along ---------- */
 const bpmEl=$("#bpm"), bpmVal=$("#bpmVal"), barsEl=$("#bars"), patEl=$("#pat");
 function songRhythms(sg){ return sg.rhythms||(sg.rhythm?[sg.rhythm]:[]); }
-function curPat(){ const v=patEl.value, rh=songRhythms(SONGS[songId]); return v[0]==="s"&&rh[+v.slice(1)]?rh[+v.slice(1)].steps:RPATS[+v].steps; }
+function curPat(){ return curPatMeta().steps; }
+function swingAt(slot){ return patEl.value==="c"&&customPat().swing&&slot%2?P.slotDur*.33:0; } // balanço: atrasa o contratempo
 /* dedilhado P-i-m-a: P = polegar no baixo do acorde, i = corda Sol, m = Si, a = Mi fininha */
 const PIMA={i:3,m:4,a:5};
 function bassStr(ch){ for(let s=0;s<6;s++) if(!ch.mute.includes(s)) return s; return 0; }
@@ -1884,7 +1896,7 @@ function schedule(){
   const now=actx.currentTime, horizon=now+.16;
   while(true){
     if(!P.loop && P.nextSlot>=P.total) break;
-    const t=P.startT+P.nextSlot*P.slotDur;
+    const t=P.startT+P.nextSlot*P.slotDur+swingAt(P.nextSlot);
     if(t>horizon) break;
     if(t>=now-.01){
       const ev=P.events[P.nextSlot%P.total], ch=CHORDS[ev.chord];
@@ -1984,7 +1996,7 @@ bpmEl.addEventListener("input",()=>{
   else P.slotDur=nd;
 });
 barsEl.addEventListener("change",()=>{ stopAll(); rebuild(); });
-patEl.addEventListener("change",()=>{ stopAll(); syncBarLabels(); renderBeatBox(); rebuild(); });
+patEl.addEventListener("change",()=>{ stopAll(); renderPatEdit(); syncBarLabels(); renderBeatBox(); rebuild(); });
 
 /* ---------- modo No meu tempo ---------- */
 const ST={list:[],i:-1,lastT:0,times:[]};
@@ -2047,6 +2059,30 @@ document.addEventListener("keydown",e=>{
   e.preventDefault();
   if(mode==="step") stepAdvance(); else { if(P.playing) pausePlay(); else startPlay(); }
 });
+
+/* ======================= MINHA BATIDA: montar de ouvido ======================= */
+/* Eu não ouço a gravação, então a batida de cada música aqui é dedução. Quando ela não bate com o ouvido do Matheus,
+   ele monta a dele nos quadradinhos e ela fica salva pra música (localStorage). */
+const PAT_KEY=()=>"vb_pat_"+songId;
+function getCustomPat(){ try{ const j=JSON.parse(localStorage.getItem(PAT_KEY())||"null"); return j&&Array.isArray(j.steps)&&j.steps.length?j:null; }catch(e){ return null; } }
+function setCustomPat(p){ try{ localStorage.setItem(PAT_KEY(),JSON.stringify(p)); }catch(e){} }
+function customPat(){ return getCustomPat()||{steps:[...RPATS[2].steps],swing:false}; }
+const PE_CYCLE=["↓","↑","·"];
+function renderPatEdit(){
+  const box=$("#patEdit"), on=patEl.value==="c"; box.hidden=!on; if(!on) return;
+  const p=customPat(), n=p.steps.length, cnt=n===6?["1","2","3","4","5","6"]:COUNT.slice(0,n);
+  box.innerHTML=`<div class="pe-h">${ic("hand-tap")}Monta tua batida de ouvido: toca num quadradinho pra trocar entre ↓, ↑ e · (pausa)</div>
+    <div class="pads" style="--n:${n}">${p.steps.map((d,i)=>`<button type="button" class="pad${d==="·"?" rest":""}${i===0||(n===6&&i===3)?" acc":""}" data-i="${i}" aria-label="passo ${i+1}: ${d}"><b>${d}</b><small>${cnt[i]}</small></button>`).join("")}</div>
+    <div class="row"><label>Passos <select id="peLen">${[4,6,8].map(k=>`<option value="${k}"${k===n?" selected":""}>${k} (${k===8?"1 compasso de 4":k===6?"valsa, 6/8":"só 2 tempos"})</option>`).join("")}</select></label>
+      <button type="button" class="tog" id="peSwing" aria-pressed="${!!p.swing}">${ic("waveform")}Balanço (swing)</button>
+      <button type="button" class="btn ghost" id="peReset">${ic("arrow-counter-clockwise")}Recomeçar da universal</button>
+      <span class="muted small">Testa em “Ouvir a batida”, no quadro Batida.</span></div>`;
+  const save=np=>{ setCustomPat(np); stopAll(); renderPatEdit(); syncBarLabels(); renderBeatBox(); rebuild(); };
+  $$(".pad",box).forEach(b=>b.addEventListener("click",()=>{ const i=+b.dataset.i, np=customPat(); np.steps[i]=PE_CYCLE[(PE_CYCLE.indexOf(np.steps[i])+1)%3]; save(np); }));
+  $("#peLen",box).addEventListener("change",e=>{ const k=+e.target.value, np=customPat(); const base=k===6?["↓","↓","↑","↓","↓","↑"]:RPATS[2].steps.slice(0,k); np.steps=base.map((d,i)=>np.steps[i]&&np.steps.length===k?np.steps[i]:d); save(np); });
+  $("#peSwing",box).addEventListener("click",()=>{ const np=customPat(); np.swing=!np.swing; save(np); });
+  $("#peReset",box).addEventListener("click",()=>save({steps:[...RPATS[2].steps],swing:false}));
+}
 
 /* ======================= LETRA: cantar junto ======================= */
 /* O texto da letra não fica no site (direitos autorais): o Matheus cola uma vez e ela fica no localStorage do aparelho.
