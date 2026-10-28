@@ -1716,7 +1716,7 @@ function renderVideo(){
     $("#vidEmpty").hidden=false; $("#vidErr").hidden=true; $("#vidInput").value=""; $("#vidCancel").hidden=true; return; }
   $("#vidOpen").hidden=false; $("#vidChange").hidden=false; $("#vidCancel").hidden=false;
   const f=document.createElement("iframe");
-  f.src="https://www.youtube-nocookie.com/embed/"+id+"?rel=0&playsinline=1";
+  f.src="https://www.youtube.com/embed/"+id+"?rel=0&playsinline=1";
   f.title="Vídeo de "+sg.title;
   f.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
   f.allowFullscreen=true;
