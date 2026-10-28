@@ -939,6 +939,10 @@ Object.assign(TIPS,{ // trocas de Se Eu Me Humilhar (e que servem pra qualquer m
   "Bm7>A":"🎁 Tudo fica na <b>casa 2</b> e o <b>médio não sai</b> da Sol! Indicador vai da Lá pra <b>Ré</b>, anelar vai da Mi fininha pra <b>Si</b>. A Mi grossa continua de fora.",
   "A>Bm7":"🎁 O <b>médio não sai</b> da Sol, casa 2! Indicador volta pra <b>Lá, casa 2</b> e anelar pra <b>Mi fininha, casa 2</b>. Ré e Si soam soltas no meio.",
   "A>Em":"Levanta o indicador e pousa só dois dedos: médio na <b>Lá, casa 2</b> e anelar na <b>Ré, casa 2</b>. Agora valem as 6 cordas.",
+  "Am>F7M":"🎁 O <b>indicador não sai</b> da Si, casa 1! Médio vai da Ré pra <b>Sol, casa 2</b> e anelar da Sol pra <b>Ré, casa 3</b>. Agora só as 4 cordas finas.",
+  "Am>F":"O <b>indicador deita</b> na casa 1 inteira. Médio vai pra <b>Sol, casa 2</b>, anelar pra <b>Lá, casa 3</b>, mindinho pra <b>Ré, casa 3</b>. Travou? Liga o F fácil.",
+  "Am>F7M":"🎁 O <b>indicador não sai</b> da Si, casa 1! Médio vai pra <b>Sol, casa 2</b> e anelar pra <b>Ré, casa 3</b>. Só as 4 cordas finas.",
+  "Am>F":"Indicador deita na <b>casa 1</b> inteira, médio vai pra <b>Sol, casa 2</b>, anelar pra <b>Lá, casa 3</b> e mindinho pra <b>Ré, casa 3</b>.",
   "G>Dm":"Fecha a mão no triângulo: indicador na <b>Mi fininha, casa 1</b>, médio na <b>Sol, casa 2</b>, anelar na <b>Si, casa 3</b>. Só as 4 finas.",
 });
 const GENERIC_TIP="Levanta todos os dedos <b>juntos</b> e pousa todos juntos, como um carimbo. Não coloca um por um.";
@@ -1078,6 +1082,30 @@ G|--------------4-4-2-4------------------4-4-2-4-----------------------------2h4
     full:["ciclo","ciclo","ciclo","ciclo","final"],
     mapNotes:{ciclo:"Bm7, A, Em, A, Bm7, A",final:"Bm7 pra fechar"},
     source:`<b>De onde vem:</b> a <a href="https://tabs.ultimate-guitar.com/tab/kamaitachi-k-a-m-a-i-t-a-c-h-i/morgana-chords-4194142" target="_blank" rel="noopener">cifra do Ultimate Guitar</a>: tom de <b>Ebm</b>, tocado com <b>capotraste na casa 4</b> e os desenhos <b>Bm7, A e Em</b> — os três sem pestana, e de Bm7 pra A o médio nem sai do lugar. 🎁 Com o capo, soa exatamente como Ebm7, Db e Abm. O <a href="https://chordu.com/chords-tabs-morgana-kamaitachi-cover-id_7tevw1IRc88" target="_blank" rel="noopener">ChordU</a> confirma esses acordes e mede uns <b>112 bpm</b>; comecei em 96 pra dar tempo de trocar.<br><b>Atenção:</b> só consegui ler a primeira parte da cifra, então aqui a música é esse ciclo girando. Se o refrão tiver acorde diferente, abre a cifra e me manda que eu completo. Também não achei a tablatura com as notas da melodia, então ficou só com os acordes por enquanto.<br><b>Batida:</b> como em Cabelos Arco-Íris, é kamaitachi bem acústico e baixinho: batida suave <b>↓ · ↓↑ · ↑↓↑</b> com a mão relaxada, ou o dedilhado <b>P i m i a i m i</b> em Ajustes. Não achei vídeo oficial, então deixei covers; se preferir o original, cola o link em "Outro link".`},
+  imagination:{title:"Imagination",artist:"Shawn Mendes",key:"C",capo:0,level:"fácil",bpm:72,
+    rhythms:[
+      {name:"Balada pop (da música)",steps:["↓","·","↓","↑","·","↑","↓","↑"],howto:[
+        "Conta <b>1 e 2 e 3 e 4 e</b>: a mão desce em todo número e sobe em todo “e”, sem parar. Só encosta onde tem seta.",
+        "No 3 a mão passa no ar, sem tocar: é esse respiro que dá o balanço de balada.",
+        "No verso, toca bem de leve, quase só as cordas do meio (ou usa o dedilhado em Ajustes). No refrão, abre a mão e toca cheio.",
+        "A música inteira é quase só <b>Am → F → C → G</b>: firmando essas trocas, você toca ela toda.",
+        "Treina a uns 72 bpm. A gravação é 90: sobe aos poucos.",
+      ]},
+      {name:"Dedilhado pro verso",steps:["P","i","m","i","a","i","m","i"]},
+    ],
+    chords:["Am","F","C","G"],
+    yt:"Shawn Mendes Imagination",videos:[],
+    sections:[
+      {id:"intro",name:"Intro",seq:["Am","F","C","G"]},
+      {id:"verso",name:"Verso",seq:["Am","F","C","G","Am","F","C","G"]},
+      {id:"pre",name:"Pré-refrão",seq:["Am","F","C","G","Am","F","C","G"]},
+      {id:"refrao",name:"Refrão",seq:["C","G","F","G","C","G","F","G"]},
+      {id:"ponte",name:"Ponte",seq:["Am","F","Am","F","C","G","F","G"]},
+      {id:"final",name:"Final",seq:["Am","F","C","G","Am","F","C","G","C"],endLast:true},
+    ],
+    full:["intro","verso","pre","refrao","verso","pre","refrao","ponte","refrao","final"],
+    mapNotes:{intro:"o ciclo Am F C G",verso:"o mesmo ciclo, 2 voltas",pre:"o ciclo de novo, crescendo",refrao:"C, G, F, G: o mesmo F e G de novo",ponte:"Am e F balançando, sobe pro C",final:"o ciclo + C pra fechar"},
+    source:`<b>De onde vem:</b> a <a href="https://www.guitartabsexplorer.com/mendes-shawn-Tabs/imagination-crd.php" target="_blank" rel="noopener">cifra no Guitar Tabs Explorer</a> (versão do Shawn, <b>sem capotraste</b>), com o refrão e a ponte conferidos na <a href="https://hot.detik.com/music/d-6658300/chord-lagu-imagination-oleh-shawn-mendes-nada-dasar-c-tanpa-capo" target="_blank" rel="noopener">cifra do Detik</a> e no <a href="https://www.chords-and-tabs.net/song/name/shawn-mendes-imagination-4" target="_blank" rel="noopener">Chords and Tabs</a>, e o andamento na <a href="https://www.musicnotes.com/sheetmusic/shawn-mendes/imagination/MN0149278" target="_blank" rel="noopener">partitura oficial no Musicnotes</a>: tom de <b>C</b>, compasso 4/4, uns <b>90 bpm</b>. São só 4 acordes do kit: <b>Am, F, C e G</b> — o F já vem no F fácil, sem pestana. De Am pro F o indicador nem sai do lugar. 🎁<br><b>Batida:</b> nenhuma das cifras traz uma oficial; como é uma balada acústica de violão, a <b>↓ · ↓↑ · ↑↓↑</b> encaixa certinho (passo a passo no quadro Batida). Pro verso tem também um dedilhado em Ajustes → Batida.<br><b>O que eu simplifiquei:</b> a virada chique do fim do refrão (F, Fm, Gm, Ab, Bb) virou só F e G, cada acorde dura um compasso e o final fecha no C. Quantas voltas cada parte dá, confere ouvindo a gravação. Não achei o link do vídeo oficial com segurança, então o quadro do vídeo já abre pra você buscar e colar — fica salvo depois. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/shawn-mendes/imagination/ppwzhw.html" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
   humilhar:{title:"Se Eu Me Humilhar",artist:"Discopraise part. André Valadão",key:"E",capo:4,level:"fácil",bpm:70,soft:.85,
     rhythms:[
       {name:"Balada de louvor (da música)",steps:["↓","·","↓","↑","·","↑","↓","↑"],howto:[
@@ -1568,10 +1596,14 @@ function ytId(text){
 }
 function getVid(){ try{ return localStorage.getItem("vb_yt_"+songId); }catch(e){ return null; } }
 function setVid(id){ try{ if(id) localStorage.setItem("vb_yt_"+songId,id); else localStorage.removeItem("vb_yt_"+songId); }catch(e){} }
-function curVideoId(){ return getVid()||SONGS[songId].videos[0].id; }
+function curVideoId(){ const v=SONGS[songId].videos; return getVid()||(v[0]&&v[0].id)||null; }
 function renderVideo(){
   const sg=SONGS[songId], id=curVideoId(), frame=$("#vidFrame"), custom=getVid();
   frame.innerHTML="";
+  if(!id){ // sem vídeo ainda: abre direto o "cola o link / busca no YouTube"
+    $("#vidChips").innerHTML=""; $("#vidOpen").hidden=true; $("#vidChange").hidden=true;
+    $("#vidEmpty").hidden=false; $("#vidErr").hidden=true; $("#vidInput").value=""; $("#vidCancel").hidden=true; return; }
+  $("#vidOpen").hidden=false; $("#vidChange").hidden=false; $("#vidCancel").hidden=false;
   const f=document.createElement("iframe");
   f.src="https://www.youtube-nocookie.com/embed/"+id+"?rel=0&playsinline=1";
   f.title="Vídeo de "+sg.title;
@@ -1584,9 +1616,9 @@ function renderVideo(){
   const opts=[...sg.videos]; if(custom && !opts.some(v=>v.id===custom)) opts.push({id:custom,label:"Meu link"});
   if(opts.length>1) opts.forEach(v=>{ const b=document.createElement("button"); b.type="button"; b.textContent=v.label;
     b.setAttribute("aria-pressed",v.id===id?"true":"false");
-    b.addEventListener("click",()=>{ setVid(v.id===sg.videos[0].id?null:v.id); renderVideo(); });
+    b.addEventListener("click",()=>{ setVid(sg.videos[0]&&v.id===sg.videos[0].id?null:v.id); renderVideo(); });
     chips.appendChild(b); });
-  else chips.innerHTML=`<span>${sg.videos[0].label}</span>`;
+  else chips.innerHTML=`<span>${opts[0].label}</span>`;
   $("#vidEmpty").hidden=true; $("#vidErr").hidden=true; $("#vidInput").value="";
 }
 $("#vidForm").addEventListener("submit",e=>{
