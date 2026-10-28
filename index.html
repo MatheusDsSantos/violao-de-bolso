@@ -233,6 +233,9 @@ body.playing .song[aria-pressed="true"] .cover svg{animation:spin 10s linear inf
 .phint>.i{color:var(--brass-hi);width:20px;height:20px}
 .phint span{flex:1 1 240px}
 .phint b{color:var(--brass-hi)}
+.prompter.paste{border-color:rgba(233,176,76,.55);box-shadow:inset 0 2px 10px rgba(0,0,0,.55),0 0 0 1px rgba(233,176,76,.25),0 0 28px -8px rgba(233,176,76,.5)}
+.prompter.paste::after{display:none}
+.prompter .lyrpaste{margin-top:2px}
 
 /* ---------- controles: o play é a boca do violão, com a rosácea mostrando o progresso ---------- */
 .transport{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center}
@@ -694,7 +697,7 @@ footer .i{color:var(--brass)}
         <div class="prompter" id="prompter" hidden>
           <div class="pline pnow" id="pNow"><span class="plab" id="pNowLab">Agora</span><span class="pbody"><span class="pch" id="pNowCh"></span><span class="ptx" id="pNowTx"></span></span></div>
           <div class="pline pnext" id="pNext"><span class="plab" id="pNextLab">Depois</span><span class="pbody"><span class="pch" id="pNextCh"></span><span class="ptx" id="pNextTx"></span></span></div>
-          <div class="phint" id="pHint" hidden><svg class="i" aria-hidden="true"><use href="#i-music-notes"/></svg><span>Essa música acompanha a letra: cola ela uma vez no quadro <b>Letra</b> e cada frase passa aqui com o acorde acendendo.</span><button type="button" class="vidlink" id="pHintGo">Colar a letra</button></div>
+          <div class="phint" id="pHint" hidden><svg class="i" aria-hidden="true"><use href="#i-hand-pointing"/></svg><span><b>É aqui que a letra entra.</b> Cola ela na caixa logo abaixo (uma frase por linha), aperta <b>Encaixar os acordes</b> e pronto: ela passa aqui, frase a frase, com o acorde acendendo. Só precisa fazer uma vez.</span></div>
         </div>
         <div class="transport">
           <button class="roseplay" id="playBtn" aria-label="Tocar"><svg class="rose" id="playRose" viewBox="-50 -50 100 100" aria-hidden="true"></svg><span class="hole"><svg class="i" aria-hidden="true"><use id="playUse" href="#i-play-fill"/></svg></span></button>
@@ -2065,12 +2068,17 @@ function renderLyrics(){
   LY.rows=[]; LY.lookup={}; LY.cur=-1;
   if(!sg.lyrics){ card.hidden=true; pr.hidden=true; return; }
   card.hidden=false; pr.hidden=false;
-  const txt=getLyr(), has=!!txt&&!LY.editing;
+  const txt=getLyr(), has=!!txt&&!LY.editing, paste=$("#lyrPaste");
   $("#lyrSong").textContent=sg.title;
-  $("#lyrPaste").hidden=has; $("#lyrSheet").hidden=!has; $("#lyrFoot").hidden=!has; $("#lyrActions").hidden=!has;
+  // sem letra ainda: a caixa de colar fica no palco, bem no lugar onde a letra vai passar
+  const inStage=!txt&&!LY.editing;
+  if(inStage){ if(paste.parentElement!==pr) pr.appendChild(paste); } else if(paste.parentElement!==card) card.insertBefore(paste,$("#lyrWarn"));
+  pr.classList.toggle("paste",inStage); card.hidden=inStage;
+  paste.hidden=has; $("#lyrSheet").hidden=!has; $("#lyrFoot").hidden=!has; $("#lyrActions").hidden=!has;
   $("#lyrCancel").hidden=!(LY.editing&&txt);
   $("#lyrCount").textContent=`espero ${lyrExpected(sg)} frases, uma por linha`;
-  if(!has){ $("#lyrText").value=txt; $("#lyrWarn").hidden=true; lyrPrompterHint(true); return; }
+  if(!txt){ $("#lyrText").value=""; $("#lyrWarn").hidden=true; lyrPrompterHint(true); return; }
+  if(LY.editing) $("#lyrText").value=txt; // trocando a letra: a folha some, mas o palco continua com a letra antiga até salvar
   LY.rows=lyricRows(sg);
   const got=lyrSplit(txt).length, exp=lyrExpected(sg);
   if(got!==exp){ $("#lyrWarn").hidden=false; $("#lyrWarn").innerHTML=`${ic("warning")} Você colou <b>${got}</b> frases e eu esperava <b>${exp}</b>. Encaixei na ordem mesmo assim; se os acordes não baterem com as frases, abre <b>Trocar letra</b> e ajusta as quebras de linha (uma frase por linha).`; }
@@ -2135,7 +2143,6 @@ $("#lyrUse").addEventListener("click",()=>{ const t=$("#lyrText").value.trim(); 
 $("#lyrEdit").addEventListener("click",()=>{ LY.editing=true; renderLyrics(); $("#lyrText").focus(); });
 $("#lyrCancel").addEventListener("click",()=>{ LY.editing=false; renderLyrics(); rebuild(); });
 $("#lyrClear").addEventListener("click",()=>{ setLyr(""); LY.editing=false; stopAll(); renderLyrics(); rebuild(); });
-$("#pHintGo").addEventListener("click",()=>{ $("#lyrCard").scrollIntoView({behavior:REDUCED?"auto":"smooth",block:"start"}); setTimeout(()=>$("#lyrText").focus({preventScroll:true}),REDUCED?0:450); });
 
 /* ======================= ACORDES ======================= */
 const lessonBox=$("#chordlesson");
