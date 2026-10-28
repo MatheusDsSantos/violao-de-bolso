@@ -210,6 +210,30 @@ body.playing .song[aria-pressed="true"] .cover svg{animation:spin 10s linear inf
 .countin{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:3;pointer-events:none;
   font-family:var(--serif);font-weight:700;font-size:78px;color:var(--brass-hi);background:rgba(17,11,9,.62);font-variation-settings:"SOFT" 100}
 
+/* ---------- teleprompter: a frase da vez, como um monitor de retorno no chão do palco ---------- */
+.prompter{position:relative;display:flex;flex-direction:column;gap:7px;border-radius:16px;padding:12px 16px 13px;overflow:hidden;
+  background:linear-gradient(180deg,#120c0a,#181110);border:1px solid #33261f;box-shadow:inset 0 2px 10px rgba(0,0,0,.55)}
+.prompter::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:repeating-linear-gradient(180deg,rgba(255,236,205,.025) 0 1px,transparent 1px 3px)}
+.pline{display:grid;grid-template-columns:72px minmax(0,1fr);gap:4px 12px;align-items:baseline;min-width:0;transition:opacity .25s}
+.plab{font-size:12.5px;font-weight:600;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pline.pnow .plab{color:var(--brass-hi)}
+.pbody{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;min-width:0}
+.pch,.lch{display:inline-flex;gap:4px;flex:none;flex-wrap:wrap}
+.pch i,.lch i{font-style:normal;font-family:var(--serif);font-weight:700;font-size:14px;line-height:1;padding:4px 8px;border-radius:7px;font-variation-settings:"SOFT" 50;
+  border:1px solid color-mix(in srgb,var(--h) 55%,transparent);color:var(--h);background:var(--inset);transition:background .12s,color .12s,box-shadow .12s,transform .12s}
+.pch i.lit,.lch i.lit{background:var(--h);color:#10131b;box-shadow:0 0 16px color-mix(in srgb,var(--h) 75%,transparent);transform:scale(1.06)}
+.ptx{font-family:var(--serif);font-size:22px;line-height:1.25;color:var(--ink);font-variation-settings:"SOFT" 100,"WONK" 1;overflow-wrap:anywhere}
+.pline.pnow .ptx{color:#fff3d6;text-shadow:0 0 22px rgba(255,205,120,.28)}
+.pline.pnext{opacity:.5}
+.pline.pnext .ptx{font-size:17px;font-variation-settings:"SOFT" 100,"WONK" 0}
+.ptx em{color:var(--muted);font-weight:500}
+.ptx .miss{color:var(--muted);font-style:italic;font-size:.8em}
+.phint{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:14px;color:var(--ink-2);line-height:1.45}
+.phint>.i{color:var(--brass-hi);width:20px;height:20px}
+.phint span{flex:1 1 240px}
+.phint b{color:var(--brass-hi)}
+
 /* ---------- controles: o play é a boca do violão, com a rosácea mostrando o progresso ---------- */
 .transport{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center}
 .roseplay{position:relative;width:96px;height:96px;flex:none;border:0;padding:0;background:none;cursor:pointer;border-radius:50%}
@@ -343,6 +367,36 @@ select option{background:#241a16;color:var(--ink)}
 .cseq{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
 .cseq span{font-family:var(--serif);font-weight:700;font-size:15px;padding:2px 9px;border-radius:8px;border:1px solid;background:var(--inset);font-variation-settings:"SOFT" 50}
 .cseq em{font-style:normal;color:var(--muted);font-weight:600;font-size:13px}
+/* letra: a folha de cifra, frase por frase, com os acordes à esquerda */
+.lyrics .bs-h{justify-content:flex-start}
+.lyractions{display:inline-flex;gap:14px;margin-left:auto}
+.lyractions .vidlink{display:inline-flex;align-items:center;gap:5px}
+.lyractions .vidlink:hover{color:var(--brass-hi)}
+.lyractions .i{width:15px;height:15px}
+.lyrpaste{display:flex;flex-direction:column;gap:10px}
+.lyrnote{margin:0;font-size:14px;color:var(--ink-2);line-height:1.5;max-width:70ch}
+.lyrnote b{color:var(--ink)}
+.lyrpaste textarea{width:100%;resize:vertical;font:inherit;font-size:14px;line-height:1.55;padding:11px 13px;border-radius:12px;border:1px solid var(--line-2);background:var(--inset);color:var(--ink);box-shadow:inset 0 2px 8px rgba(0,0,0,.45)}
+.lyrpaste textarea:focus{outline:none;border-color:var(--brass)}
+.lyrpaste textarea::placeholder{color:var(--muted)}
+.lyrwarn{margin:0 0 10px;font-size:13.5px;color:var(--warn);line-height:1.5}
+.sheet{position:relative;max-height:480px;overflow:auto;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent;border-radius:14px;padding:4px 6px 12px;
+  border:1px solid #33261f;background:linear-gradient(180deg,#120c0a,#181110);box-shadow:inset 0 2px 10px rgba(0,0,0,.55)}
+.lsec{position:sticky;top:0;z-index:1;display:flex;align-items:center;gap:8px;padding:12px 10px 6px;font-weight:650;font-size:13px;color:var(--ink-2);
+  background:#120c0a;box-shadow:0 8px 10px -8px rgba(0,0,0,.8)}
+.lsec::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--c)}
+.lsec small{color:var(--muted);font-weight:500}
+.lrow{display:grid;grid-template-columns:156px minmax(0,1fr);gap:4px 12px;align-items:baseline;width:100%;text-align:left;cursor:pointer;
+  border:0;border-left:3px solid transparent;border-radius:0 11px 11px 0;background:none;color:var(--ink);padding:6px 10px 6px 9px;font-size:15.5px;line-height:1.35;transition:background .15s,border-color .15s}
+.lrow:hover{background:rgba(242,228,203,.05)}
+.lrow.on{border-left-color:var(--brass);background:linear-gradient(90deg,rgba(233,176,76,.17),rgba(233,176,76,.03))}
+.lrow.on .ltx{color:#fff3d6}
+.lrow.inst .ltx{color:var(--muted);font-style:italic;font-size:14px}
+.lch i{font-size:12.5px;padding:3px 7px}
+.ltx{font-family:var(--serif);font-variation-settings:"SOFT" 100;overflow-wrap:anywhere}
+.ltx .miss{color:var(--muted);font-style:italic;font-size:.85em}
+.lyrics .sidenote{margin-top:10px}
+.lyrics .sidenote .i{color:var(--brass-hi)}
 /* encarte: de onde vem a cifra */
 .liner{font-size:14.5px;line-height:1.65;color:var(--ink-2);padding:6px 4px;max-width:72ch}
 .liner h3{font-size:22px;color:var(--ink);margin-bottom:8px}
@@ -489,7 +543,7 @@ footer .i{color:var(--brass)}
 
 /* ---------- responsivo ---------- */
 @media (min-width:1200px){
-  .stagebody{display:grid;grid-template-columns:minmax(0,1fr) 352px;grid-template-areas:"neck hud" "lane lane" "ctl ctl" "adj adj" "res res";column-gap:20px;row-gap:12px}
+  .stagebody{display:grid;grid-template-columns:minmax(0,1fr) 352px;grid-template-areas:"neck hud" "lane lane" "prom prom" "ctl ctl" "adj adj" "res res";column-gap:20px;row-gap:12px}
   .stagebody>.playzone{display:contents}
   #neckSlotMusic{grid-area:neck;min-width:0;align-self:center}
   .stagebody .hud{grid-area:hud;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr;align-self:stretch}
@@ -497,6 +551,7 @@ footer .i{color:var(--brass)}
   .stagebody .now .big{font-size:70px}
   .stagebody .next .big{font-size:42px}
   .stagebody .lane,.stagebody .prog{grid-area:lane}
+  .stagebody .prompter{grid-area:prom}
   .stagebody .transport{grid-area:ctl}
   .stagebody details.adj{grid-area:adj}
   .stagebody #stepResults{grid-area:res}
@@ -539,6 +594,11 @@ footer .i{color:var(--brass)}
   .bs-pair{grid-template-columns:minmax(0,1fr)}
   .bs{padding:16px 14px}
   .mapline{grid-template-columns:1fr;gap:8px}
+  .pline{grid-template-columns:1fr;gap:2px}
+  .ptx{font-size:19px}
+  .lrow{grid-template-columns:1fr;gap:3px}
+  .sheet{max-height:400px}
+  .lyractions{margin-left:0}
   .train{grid-template-columns:1fr}
   .pairpick{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
   .pairpick .btn{grid-column:1 / -1;justify-self:start}
@@ -630,6 +690,12 @@ footer .i{color:var(--brass)}
           <div class="mon howto"><span class="lab" id="hTipLab">Como trocar</span><div id="hTip"></div></div>
         </div>
         <div class="lane" id="lane"><div class="track" id="track"></div><div class="playhead" id="playhead"></div><div class="countin" id="countin" hidden></div></div>
+        <!-- teleprompter: a frase que tá sendo cantada, com o acorde dela aceso -->
+        <div class="prompter" id="prompter" hidden>
+          <div class="pline pnow" id="pNow"><span class="plab" id="pNowLab">Agora</span><span class="pbody"><span class="pch" id="pNowCh"></span><span class="ptx" id="pNowTx"></span></span></div>
+          <div class="pline pnext" id="pNext"><span class="plab" id="pNextLab">Depois</span><span class="pbody"><span class="pch" id="pNextCh"></span><span class="ptx" id="pNextTx"></span></span></div>
+          <div class="phint" id="pHint" hidden><svg class="i" aria-hidden="true"><use href="#i-music-notes"/></svg><span>Essa música acompanha a letra: cola ela uma vez no quadro <b>Letra</b> e cada frase passa aqui com o acorde acendendo.</span><button type="button" class="vidlink" id="pHintGo">Colar a letra</button></div>
+        </div>
         <div class="transport">
           <button class="roseplay" id="playBtn" aria-label="Tocar"><svg class="rose" id="playRose" viewBox="-50 -50 100 100" aria-hidden="true"></svg><span class="hole"><svg class="i" aria-hidden="true"><use id="playUse" href="#i-play-fill"/></svg></span></button>
           <button class="iconbtn" id="restartBtn" aria-label="Voltar pro começo" title="Voltar pro começo"><svg class="i" aria-hidden="true"><use href="#i-arrow-counter-clockwise"/></svg></button>
@@ -689,6 +755,20 @@ footer .i{color:var(--brass)}
         <p class="sidenote" id="fNote"></p>
       </section>
       </div>
+      <!-- letra: a folha com os acordes em cima de cada frase (o texto é colado pelo Matheus e fica só no aparelho dele) -->
+      <section class="bs lyrics" id="lyrCard" aria-labelledby="lyrH" hidden>
+        <header class="bs-h"><h3 id="lyrH">Letra</h3><span class="bs-sub" id="lyrSub">a frase cantada acende junto com o acorde</span>
+          <div class="lyractions" id="lyrActions" hidden><button type="button" class="vidlink" id="lyrEdit"><svg class="i" aria-hidden="true"><use href="#i-arrows-left-right"/></svg>Trocar letra</button><button type="button" class="vidlink" id="lyrClear">Apagar</button></div>
+        </header>
+        <div class="lyrpaste" id="lyrPaste">
+          <p class="lyrnote">Por direitos autorais a letra não vem gravada no site. Mas é rapidinho: cola a letra de <b id="lyrSong">Domingo à Noite</b> aqui, <b>uma frase por linha</b> (do jeito que vem nos sites de letra), e ela fica guardada <b>só neste aparelho</b>. Eu encaixo os acordes em cada frase.</p>
+          <textarea id="lyrText" rows="9" spellcheck="false" placeholder="Cola a letra aqui…" aria-label="Letra da música, uma frase por linha"></textarea>
+          <div class="row"><button class="btn" type="button" id="lyrUse"><svg class="i" aria-hidden="true"><use href="#i-sparkle"/></svg>Encaixar os acordes</button><span class="small muted" id="lyrCount"></span><button type="button" class="vidlink" id="lyrCancel" hidden>Cancelar</button></div>
+        </div>
+        <p class="lyrwarn" id="lyrWarn" hidden></p>
+        <div class="sheet" id="lyrSheet" hidden></div>
+        <p class="sidenote" id="lyrFoot" hidden><svg class="i" aria-hidden="true"><use href="#i-hand-pointing"/></svg> Clica numa frase pra começar dela. Os acordes à esquerda são os que caem naquela frase, na ordem; o aceso é o que tá tocando.</p>
+      </section>
       <section class="bs" aria-labelledby="mapH">
         <header class="bs-h"><h3 id="mapH">Mapa da música</h3><span class="bs-sub">Clica numa parte pra treinar só ela</span></header>
         <div class="arr" id="songArr"></div>
@@ -953,18 +1033,43 @@ const LOOP_CP=["Am","Dm","G","C","F","Dm","E7"];
 const REF_CP=["Dm","G","C","F","Dm","E7","Am"];
 const LOOP_DN=["Am","C","F","E7"];
 const LOOP_SL=["Em","C","G","Em","G","D","Em","C","G","Am","G","C"];
+const loop=(cyc,n)=>Array.from({length:n},()=>cyc).flat(); // ciclo repetido n vezes
 const SONGS={
-  domingo:{title:"Domingo à Noite",artist:"VMZ",key:"Bbm",capo:1,level:"bem fácil",bpm:76,
+  domingo:{title:"Domingo à Noite",artist:"VMZ part. Anny",key:"Bbm",capo:1,level:"bem fácil",bpm:70,soft:.8,gap:.02,
+    rhythms:[
+      {name:"Lofi: 2 tempos por acorde (da música)",steps:["↓","·","↓","↑"],count:["1","e","2","e"],howto:[
+        "Aqui cada acorde dura só <b>2 tempos</b>: conta <b>1 e 2 e</b> e já troca. É o pulso lento e arrastado de lofi da gravação.",
+        "A mão desce no <b>1</b> (↓), passa no ar no “e”, desce no <b>2</b> (↓) e sobe no “e” (↑). Só isso, e repete no próximo acorde.",
+        "A troca cai sempre no ↓ do 1. A ↑ do final é leve, só nas cordas finas, e já é o embalo pra próxima descida.",
+        "Com <b>capotraste na casa 1</b>, os desenhos Am, C, F e E7 soam igualzinho à gravação. Sem capo, fica meio tom mais grave e tudo bem.",
+        "Tá rápido? Em ⚙️ Ajustes, põe <b>4 tempos por acorde</b> ou baixa o bpm. Quando firmar, volta pros 2 tempos, que é o da música.",
+      ]},
+      {name:"Dedilhado suave",steps:["P","i","m","a"],count:["1","e","2","e"]},
+    ],
     chords:["Am","C","F","E7"],
     yt:"VMZ Domingo à Noite",videos:[{id:"R4N1po64We0",label:"Clipe"},{id:"bSfQqAkZuD4",label:"Só áudio"}],
     sections:[
-      {id:"verso",name:"Verso",seq:[...LOOP_DN,...LOOP_DN,...LOOP_DN,...LOOP_DN]},
-      {id:"refrao",name:"Refrão",seq:[...LOOP_DN,...LOOP_DN]},
-      {id:"final",name:"Final",seq:[...LOOP_DN,...LOOP_DN,"Am"],endLast:true},
+      {id:"gancho",name:"Gancho",seq:loop(LOOP_DN,2)},
+      {id:"refrao",name:"Refrão",seq:loop(LOOP_DN,4)},
+      {id:"verso1",name:"Verso 1",seq:loop(LOOP_DN,10)},
+      {id:"verso2",name:"Verso 2",seq:loop(LOOP_DN,5)},
+      {id:"coro",name:"Coro final",seq:loop(LOOP_DN,5)},
+      {id:"saida",name:"Gancho (saída)",seq:[...loop(LOOP_DN,2),"Am"],endLast:true},
     ],
-    full:["verso","refrao","verso","refrao","final"],
-    mapNotes:{verso:"o ciclo de 4",refrao:"o mesmo ciclo",final:"ciclo + Am"},
-    source:`Acordes da <a href="https://www.guitartabsexplorer.com/vmz/domingo-a-noite-chords" target="_blank" rel="noopener">cifra no Guitar Tabs Explorer</a>, que está em Bbm. Com <b>capotraste na casa 1</b> você usa os desenhos de Am, C, F e E7 e soa igual à gravação. A música inteira é o mesmo ciclo; quantas voltas cada parte dá, confere no áudio.`},
+    full:["gancho","refrao","verso1","verso2","refrao","coro","saida"],
+    // Letra: quantos acordes cada frase leva, parte por parte (na ordem de `full`). O texto das frases
+    // não fica no site (direitos autorais): o Matheus cola a letra uma vez e ela fica só no aparelho dele.
+    lyrics:[
+      [2,2,2,2],
+      [2,2,2,2,4,1,3],
+      [2,2,2,2,1,1,...Array(13).fill(2),1,1,1,1],
+      [2,2,2,2,4,2,2,2,2],
+      [2,2,2,2,4,4],
+      [2,2,1,1,2,1,1,2,2,2,1,1,{n:2,inst:"só o violão, prepara o gancho"}],
+      [2,2,2,2,{n:1,inst:"deixa o Am soar"}],
+    ],
+    mapNotes:{gancho:"o ciclo de 4, 2 voltas",refrao:"4 voltas do mesmo ciclo",verso1:"10 voltas, só o ciclo",verso2:"5 voltas",coro:"5 voltas, frases curtas",saida:"o gancho de novo + Am"},
+    source:`<b>De onde vem:</b> os acordes e o ponto de cada troca dentro das frases vêm da <a href="https://www.guitartabsexplorer.com/vmz/domingo-a-noite-chords" target="_blank" rel="noopener">cifra no Guitar Tabs Explorer</a>, que está em <b>Bbm</b> (Bbm, Db, Gb e F7: tudo pestana 😬). Com <b>capotraste na casa 1</b> você faz os desenhos fáceis <b>Am, C, F e E7</b> e soa igual à gravação. A música inteira é esse ciclo de 4 girando sem parar; o que muda é só a frase em cima.<br><b>Tempo:</b> a gravação tem 3:50 e uns 130 acordes, o que dá <b>2 tempos por acorde</b> a uns 70 bpm. Por isso a batida aqui é curtinha (↓ · ↓ ↑) e já troca. Se a mão não acompanhar, põe 4 tempos por acorde em ⚙️ Ajustes.<br><b>Letra:</b> por direitos autorais ela não vem gravada no site. Cola no quadro <b>Letra</b>, ali embaixo, que ela fica só no teu aparelho e passa no palco frase a frase, com o acorde acendendo. Onde cada acorde cai dentro da frase eu tirei da cifra, mas é aproximado: confere no áudio e canta por cima.`},
   coracao:{title:"Coração Partido",artist:"VMZ",key:"Am",capo:0,level:"fácil",bpm:72,yt:"VMZ Coração Partido",videos:[{id:"5u5IAsbXP-8",label:"Oficial"}],
     chords:["Am","Dm","G","C","F","E7"],
     sections:[
@@ -1461,9 +1566,9 @@ function sectionList(){ // lista plana de acordes da seleção atual
   const ids=secSel==="full"?sg.full:[secSel];
   const out=[];
   ids.forEach((sid,k)=>{
-    const sec=sg.sections.find(x=>x.id===sid);
-    if(sec.riff) sec.riff.forEach((r,i)=>out.push({chord:res(r.c),sec:sec.name,secStart:i===0,secK:k,end:false,notes:r.n}));
-    else sec.seq.forEach((c,i)=>{ const [id,m]=c.split("*"); out.push({chord:res(id),mult:+m||1,sec:sec.name,secStart:i===0,secK:k,end:!!(sec.endLast&&i===sec.seq.length-1)}); });
+    const sec=sg.sections.find(x=>x.id===sid), occ=secSel==="full"?k:sg.full.indexOf(sid); // occ = qual ocorrência da parte na música (a letra muda entre elas)
+    if(sec.riff) sec.riff.forEach((r,i)=>out.push({chord:res(r.c),sec:sec.name,sid,occ,si:i,secStart:i===0,secK:k,end:false,notes:r.n}));
+    else sec.seq.forEach((c,i)=>{ const [id,m]=c.split("*"); out.push({chord:res(id),mult:+m||1,sec:sec.name,sid,occ,si:i,secStart:i===0,secK:k,end:!!(sec.endLast&&i===sec.seq.length-1)}); });
   });
   return out;
 }
@@ -1480,6 +1585,7 @@ function loadSong(){
   $("#sFacts").innerHTML=(sg.capo?`<span class="fact capo">Capotraste na casa ${sg.capo}</span><span class="fact">Soa em <b>${sg.key}</b></span>`:`<span class="fact">Sem capotraste</span><span class="fact">Tom <b>${sg.key}</b></span>`)+
     `<span class="fact">${sg.chords.length} acordes</span><span class="fact">${cap(sg.level)}</span>`;
   $("#sSource").innerHTML=sg.source;
+  LY.editing=false;
   $("#ytLink").href="https://www.youtube.com/results?search_query="+encodeURIComponent(sg.yt);
   $("#ytName").textContent=sg.title;
   renderVideo();
@@ -1490,9 +1596,13 @@ function loadSong(){
   const rhs=songRhythms(sg);
   rhs.slice().reverse().forEach((r,i)=>{ const so=document.createElement("option"); so.value="s"+(rhs.length-1-i); so.textContent=`${r.name}: ${r.steps.join(" ")}`; patEl.prepend(so); });
   if(rhs.length) patEl.value="s0"; else patEl.value=String(sg.pat??2);
+  syncBarLabels();
   paintNeckRose();
-  renderSecs(); renderMinis(); renderMap(); renderBeatBox(); rebuild();
+  renderSecs(); renderMinis(); renderMap(); renderBeatBox(); renderLyrics(); rebuild();
 }
+/* o select "tempo por acorde" fala em compassos; numa batida de 2 tempos (4 passos) faz mais sentido falar em tempos */
+const BAR_LABELS=[["1 compasso","2 compassos (mais fácil)"],["2 tempos (igual à gravação)","4 tempos (mais fácil)"]];
+function syncBarLabels(){ const lab=curPat().length===4?BAR_LABELS[1]:BAR_LABELS[0]; barsEl.options[0].textContent=lab[0]; barsEl.options[1].textContent=lab[1]; }
 
 /* seletor de partes (nos dois palcos + mapa) */
 function selectSec(id){ secSel=id; stopAll(); renderSecs(); renderMap(); rebuild(); }
@@ -1563,9 +1673,10 @@ function renderBeatBox(){
   const pads=$("#beatPads"); pads.style.setProperty("--n",m.steps.length);
   pads.innerHTML=m.steps.map((d,i)=>`<div class="pad${d==="·"?" rest":""}${i===0||(six&&i===3)?" acc":""}"><b>${d}</b><small>${cnt[i]}</small></div>`).join("");
   $("#beatHow").innerHTML=`<ul>${patHowto(m).map(t=>`<li>${t}</li>`).join("")}</ul>`;
-  $("#beatChord").textContent=`2 compassos no ${beatChordId()}, a ${bpmEl.value} bpm`;
+  $("#beatChord").textContent=beatChordTxt();
 }
 const beatChordId=()=>res(fullSeqIds(SONGS[songId])[0]);
+const beatChordTxt=()=>`${curPatMeta().steps.length===4?"4 tempos":"2 compassos"} no ${beatChordId()}, a ${bpmEl.value} bpm`;
 $("#beatPlay").addEventListener("click",()=>{
   const ctx=audio(); if(!ctx) return;
   stopAll();
@@ -1690,6 +1801,7 @@ function rebuild(){
   renderTrack();
   P.pausedPos=null; P.finished=false;
   placeTrack(-2); setHudFor(0,false);
+  lyrSync(); lyrIdle();
   $("#hTipLab").textContent="Como trocar";
   $("#hTip").innerHTML=mode==="watch"?"Aperta o play e só observa: eu conto 1, 2, 3, 4 e começo.":"Pega o violão, monta o primeiro acorde e aperta o play. Eu conto 1, 2, 3, 4.";
   setPlayIcon(false);
@@ -1799,6 +1911,7 @@ function onSlot(cur){
   if(ev.k===0){
     roseAt(ev.ci);
     setHudFor(ev.ci,false);
+    lyrOnChord(ev.ci);
     const ni=nextChordIdx(ev.ci);
     if(P.chords[ev.ci].notes){ $("#hTipLab").textContent="Solo"; $("#hTip").innerHTML="Nota por nota: o número grande é a <b>casa</b>, a letrinha é a <b>corda</b> (e = Mi fininha, B = Si, G = Sol). Palheta pra baixo em cada nota."; }
     else if(ni>=0){ $("#hTipLab").textContent="Próxima troca"; $("#hTip").innerHTML=`<div class="pair">${ev.chord} → ${P.chords[ni].chord}</div>${tipFor(ev.chord,P.chords[ni].chord)}`; }
@@ -1821,6 +1934,7 @@ function finishPlay(){
   hitEls.forEach(e=>e.classList.remove("hit"));
   roseAt(P.chords.length); placeArrHead(null);
   $("#hNextBox").classList.remove("prep"); showGhost(null);
+  lyrFinish();
   $("#hTipLab").textContent="Fim!";
   $("#hTip").innerHTML=mode==="watch"?"Essa foi a música. Agora troca pro modo <b>Minha vez</b> e tenta junto!":"Chegou no fim! 🎉 Se travou em alguma troca, o modo <b>No meu tempo</b> te mostra qual. Quer de novo? Aperta o play.";
   if(mode==="mine") celebrate();
@@ -1851,13 +1965,13 @@ $("#playBtn").addEventListener("click",()=>{ if(P.playing) pausePlay(); else sta
 $("#restartBtn").addEventListener("click",()=>{ stopAll(); rebuild(); });
 bpmEl.addEventListener("input",()=>{
   bpmVal.textContent=bpmEl.value; paintRange(bpmEl);
-  $("#beatChord").textContent=`2 compassos no ${beatChordId()}, a ${bpmEl.value} bpm`;
+  $("#beatChord").textContent=beatChordTxt();
   const nd=60/(+bpmEl.value)/2;
   if(P.playing){ const now=actx.currentTime, pos=(now-P.startT)/P.slotDur; P.slotDur=nd; P.startT=now-pos*nd; P.nextSlot=Math.max(0,Math.floor(pos)+1); }
   else P.slotDur=nd;
 });
 barsEl.addEventListener("change",()=>{ stopAll(); rebuild(); });
-patEl.addEventListener("change",()=>{ stopAll(); renderBeatBox(); rebuild(); });
+patEl.addEventListener("change",()=>{ stopAll(); syncBarLabels(); renderBeatBox(); rebuild(); });
 
 /* ---------- modo No meu tempo ---------- */
 const ST={list:[],i:-1,lastT:0,times:[]};
@@ -1920,6 +2034,108 @@ document.addEventListener("keydown",e=>{
   e.preventDefault();
   if(mode==="step") stepAdvance(); else { if(P.playing) pausePlay(); else startPlay(); }
 });
+
+/* ======================= LETRA: cantar junto ======================= */
+/* O texto da letra não fica no site (direitos autorais): o Matheus cola uma vez e ela fica no localStorage do aparelho.
+   No código fica só a estrutura: quantos acordes cada frase leva (SONGS[x].lyrics, na ordem de `full`). */
+const LYR_KEY=()=>"vb_lyr_"+songId;
+function getLyr(){ try{ return localStorage.getItem(LYR_KEY())||""; }catch(e){ return ""; } }
+function setLyr(t){ try{ if(t) localStorage.setItem(LYR_KEY(),t); else localStorage.removeItem(LYR_KEY()); }catch(e){} }
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const lyrSplit=t=>t.split(/\r?\n/).map(s=>s.trim()).filter(s=>s&&!/^\[.*\]$/.test(s)); // ignora marcações tipo [Refrão]
+const lyrExpected=sg=>sg.lyrics?sg.lyrics.flat().filter(l=>typeof l==="number").length:0;
+const LY={rows:[],lookup:{},cur:-1,editing:false};
+function lyricRows(sg){ // junta a estrutura (do código) com o texto (colado): uma linha = uns acordes
+  const src=lyrSplit(getLyr()); let p=0; const rows=[];
+  sg.full.forEach((sid,occ)=>{
+    const sec=sg.sections.find(x=>x.id===sid), spec=(sg.lyrics&&sg.lyrics[occ])||[]; let ci=0;
+    spec.forEach((l,li)=>{
+      const n=typeof l==="number"?l:l.n, inst=typeof l==="number"?null:(l.inst||"só o violão");
+      rows.push({occ,sid,name:sec.name,li,ci0:ci,n,inst,chords:sec.seq.slice(ci,ci+n).map(c=>res(c.split("*")[0])),text:inst?null:(src[p++]??null)});
+      ci+=n;
+    });
+    if(spec.length&&ci!==sec.seq.length) console.warn("letra × acordes não batem em",sid,occ,ci,sec.seq.length);
+  });
+  return rows;
+}
+const chipHTML=(chords,lit=-1)=>chords.map((c,i)=>`<i style="--h:${HUE[c]||"#8a7a6a"}"${i===lit?' class="lit"':""}>${c}</i>`).join("");
+const rowText=r=>r.inst?`<em>(${esc(r.inst)})</em>`:(r.text==null?`<span class="miss">(faltou essa frase na letra colada)</span>`:esc(r.text));
+function renderLyrics(){
+  const sg=SONGS[songId], card=$("#lyrCard"), pr=$("#prompter");
+  LY.rows=[]; LY.lookup={}; LY.cur=-1;
+  if(!sg.lyrics){ card.hidden=true; pr.hidden=true; return; }
+  card.hidden=false; pr.hidden=false;
+  const txt=getLyr(), has=!!txt&&!LY.editing;
+  $("#lyrSong").textContent=sg.title;
+  $("#lyrPaste").hidden=has; $("#lyrSheet").hidden=!has; $("#lyrFoot").hidden=!has; $("#lyrActions").hidden=!has;
+  $("#lyrCancel").hidden=!(LY.editing&&txt);
+  $("#lyrCount").textContent=`espero ${lyrExpected(sg)} frases, uma por linha`;
+  if(!has){ $("#lyrText").value=txt; $("#lyrWarn").hidden=true; lyrPrompterHint(true); return; }
+  LY.rows=lyricRows(sg);
+  const got=lyrSplit(txt).length, exp=lyrExpected(sg);
+  if(got!==exp){ $("#lyrWarn").hidden=false; $("#lyrWarn").innerHTML=`${ic("warning")} Você colou <b>${got}</b> frases e eu esperava <b>${exp}</b>. Encaixei na ordem mesmo assim; se os acordes não baterem com as frases, abre <b>Trocar letra</b> e ajusta as quebras de linha (uma frase por linha).`; }
+  else $("#lyrWarn").hidden=true;
+  const sheet=$("#lyrSheet"); let html="", lastOcc=-1;
+  LY.rows.forEach((r,i)=>{
+    if(r.occ!==lastOcc){ lastOcc=r.occ; html+=`<div class="lsec" style="--c:${secColor(sg,r.sid)}">${r.name}</div>`; }
+    html+=`<button type="button" class="lrow${r.inst?" inst":""}" data-r="${i}" title="Começar dessa frase"><span class="lch">${chipHTML(r.chords)}</span><span class="ltx">${rowText(r)}</span></button>`;
+  });
+  sheet.innerHTML=html;
+  $$(".lrow",sheet).forEach(b=>b.addEventListener("click",()=>lyrJump(+b.dataset.r)));
+  lyrPrompterHint(false);
+  lyrSync();
+}
+function lyrPrompterHint(on){ $("#pHint").hidden=!on; $("#pNow").hidden=on; $("#pNext").hidden=on; }
+function lyrSync(){ LY.lookup={}; LY.rows.forEach((r,i)=>{ for(let k=0;k<r.n;k++) LY.lookup[r.occ+":"+(r.ci0+k)]=i; }); LY.cur=-1; }
+function lyrRowFor(ci){ const it=P.chords[ci]; if(!it||it.occ==null) return -1; const i=LY.lookup[it.occ+":"+it.si]; return i==null?-1:i; }
+function setPrompter(i,k){
+  const r=LY.rows[i], nx=LY.rows[i+1];
+  $("#pNowLab").textContent=r?r.name:"Agora";
+  $("#pNowCh").innerHTML=r?chipHTML(r.chords,k):""; $("#pNowTx").innerHTML=r?rowText(r):"";
+  $("#pNext").hidden=!nx;
+  if(nx){ $("#pNextLab").textContent=nx.name===r.name?"Depois":nx.name; $("#pNextCh").innerHTML=chipHTML(nx.chords); $("#pNextTx").innerHTML=rowText(nx); }
+}
+function lyrClearMarks(){ $$("#lyrSheet .lrow.on").forEach(e=>e.classList.remove("on")); $$("#lyrSheet .lch i.lit").forEach(e=>e.classList.remove("lit")); LY.cur=-1; }
+function lyrMark(i,k){ // acende a frase na folha (e rola a folha, só ela, até ela)
+  const sheet=$("#lyrSheet"), el=$(`.lrow[data-r="${i}"]`,sheet); if(!el) return;
+  if(i!==LY.cur){ $$(".lrow.on",sheet).forEach(e=>e.classList.remove("on")); el.classList.add("on"); LY.cur=i;
+    sheet.scrollTo({top:Math.max(0,el.offsetTop-sheet.clientHeight/2+el.offsetHeight/2),behavior:REDUCED?"auto":"smooth"}); }
+  $$(".lch i",el).forEach((c,j)=>c.classList.toggle("lit",j===k));
+}
+function lyrOnChord(ci){
+  if(!LY.rows.length) return;
+  const i=lyrRowFor(ci); if(i<0) return;
+  const k=P.chords[ci].si-LY.rows[i].ci0;
+  setPrompter(i,k); lyrMark(i,k);
+}
+function lyrIdle(){ // parado: mostra a primeira frase da parte escolhida
+  if(!LY.rows.length) return;
+  lyrClearMarks();
+  const i=P.chords.length?lyrRowFor(0):0;
+  setPrompter(i<0?0:i,-1);
+}
+function lyrFinish(){ if(!LY.rows.length) return; lyrClearMarks(); $("#pNowLab").textContent="Fim"; $("#pNowCh").innerHTML=""; $("#pNowTx").innerHTML="<em>Essa foi a música. 🎶</em>"; $("#pNext").hidden=true; }
+function lyrJump(i){ // clicou numa frase: deixa tudo pronto pra tocar a partir dela
+  const r=LY.rows[i]; if(!r) return;
+  const sg=SONGS[songId];
+  if(mode==="step") setMode("watch"); else stopAll();
+  if(secSel!=="full"&&(secSel!==r.sid||sg.full.indexOf(secSel)!==r.occ)){ secSel="full"; renderSecs(); renderMap(); rebuild(); }
+  const idx=P.chords.findIndex(it=>it.occ===r.occ&&it.si===r.ci0); if(idx<0) return;
+  let pos=0; for(let j=0;j<idx;j++) pos+=P.chords[j].len;
+  P.pausedPos=pos; P.finished=false;
+  hitEls.forEach(e=>e.classList.remove("hit")); hitEls=[];
+  placeTrack(pos); placeArrHead(pos); roseAt(idx); setHudFor(idx,false);
+  $("#hTipLab").textContent="Começar daqui";
+  $("#hTip").innerHTML=`Monta o <b>${P.chords[idx].chord}</b> no violão e aperta o play (ou a barra de espaço): eu sigo a partir dessa frase.`;
+  lyrOnChord(idx);
+  if(document.activeElement&&document.activeElement.classList.contains("lrow")) document.activeElement.blur();
+  $("#stage").scrollIntoView({behavior:REDUCED?"auto":"smooth",block:"start"});
+}
+$("#lyrUse").addEventListener("click",()=>{ const t=$("#lyrText").value.trim(); if(!t){ $("#lyrText").focus(); return; } setLyr(t); LY.editing=false; stopAll(); renderLyrics(); rebuild(); });
+$("#lyrEdit").addEventListener("click",()=>{ LY.editing=true; renderLyrics(); $("#lyrText").focus(); });
+$("#lyrCancel").addEventListener("click",()=>{ LY.editing=false; renderLyrics(); rebuild(); });
+$("#lyrClear").addEventListener("click",()=>{ setLyr(""); LY.editing=false; stopAll(); renderLyrics(); rebuild(); });
+$("#pHintGo").addEventListener("click",()=>{ $("#lyrCard").scrollIntoView({behavior:REDUCED?"auto":"smooth",block:"start"}); setTimeout(()=>$("#lyrText").focus({preventScroll:true}),REDUCED?0:450); });
 
 /* ======================= ACORDES ======================= */
 const lessonBox=$("#chordlesson");
