@@ -1138,23 +1138,39 @@ const SONGS={
     source:`Acordes e solo da intro da <a href="https://www.vagalume.com.br/jorge-e-mateus/se-eu-pedir-ce-volta-cifrada.html" target="_blank" rel="noopener">cifra no Vagalume</a> (tom D, sem capotraste). <b>A intro é solada</b>, não batida: é uma melodia tocada nota por nota nas 3 cordas mais finas. No play-along cada número é a <b>casa</b> e a letrinha embaixo é a <b>corda</b> (e = Mi fininha, B = Si, G = Sol). A tablatura:<div class="tabbox">e|---0-2----------------------0-2-----------------------0-2----------3-2--------------
 B|-------5-3-3-----------2-3-------5-3-3-----------2-3-----5-3-3s5------5-3-----------
 G|--------------4-4-2-4------------------4-4-2-4-----------------------------2h4-2-----4p0-2--</div><b>Ritmo das notas:</b> tablatura não mostra a duração, então a divisão do solo aqui é uma aproximação minha — compara com o clipe e ajusta no ouvido. Se ainda tiver difícil, troca o solo pela batida nos acordes G, Bm7, Em, G e A que também funciona.<br><b>Batida:</b> a do sertanejo, <b>↓ · ↓↑ · ↑↓↑</b> (conta "1, 2-e, e-3-e, 4-e"), já vem selecionada; a primeira pra baixo é a mais forte. A gravação é bem mais rápida (~145 BPM); comecei em 80 pra dar tempo de trocar — vai subindo aos poucos em ⚙️ Ajustes. O <b>Bm</b> da cifra virou <b>Bm7 sem pestana</b> pra você não travar — soa quase igual. O solo do final virou só os acordes pra fechar. Quantas voltas cada parte dá, confere ouvindo a gravação. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/jorge-mateus/se-eu-pedir-ce-volta/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.`},
-  arcoiris:{title:"Cabelos Arco-Íris",artist:"kamaitachi",key:"F",capo:5,level:"fácil",bpm:120,soft:.6,gap:.022,
+  arcoiris:{title:"Cabelos Arco-Íris",artist:"kamaitachi",key:"F",capo:5,level:"fácil",bpm:68,soft:.7,gap:.018,
     rhythms:[
-      {name:"Batida suave (da música)",steps:["↓","·","↓","↑","·","↑","↓","↑"]},
-      {name:"Dedilhado suave",steps:["P","i","m","i","a","i","m","i"]},
+      {name:"Levada 1: polegar, sobe, abafa (intro e versos)",steps:["P","·","↑","✕"],count:["1","e","2","e"],howto:[
+        "É a batida que os professores ensinam pra essa música: <b>polegar no baixo</b> do acorde (a corda mais grossa que ele usa), a mão <b>sobe de leve</b> nas cordas finas e <b>desce abafando</b>: desce já encostando os dedos nas cordas, sai só um “tchac”, sem nota.",
+        "Fala junto: <b>“po-le-gar… tu-tá”</b>. O polegar é no 1, o tu-tá é rapidinho no 2: ↑ e ✕ quase grudados.",
+        "<b>Uma volta dessa por acorde</b>, e o acorde dura só 2 tempos. Am7 → F → C → Am7… sem parar.",
+        "Capotraste na <b>casa 5</b>: Am7, F fácil, C e D soam exatamente como a gravação (Dm7, Bb, F, G).",
+        "No refrão a batida muda (abaixo). Se preferir, em ⚙️ Ajustes dá pra usar a mesma batida na música toda.",
+      ]},
+      {name:"Levada 2: batidão (refrão e final)",steps:["↓","↓","↓","↑"],count:["1","e","2","e"],howto:[
+        "Quando entra a parte forte, vira batida de verdade: <b>desce, desce, desce, sobe</b>, uma volta por acorde.",
+        "Fala junto: <b>“tá, tá-tá, tu”</b>: a primeira descida é a mais forte, as outras duas mais leves, e a subida bem rápida pegando só as cordas finas.",
+        "No <b>C</b> a batida vai <b>duas vezes</b> (o C dura o dobro). Repara na pista: ele vem mais comprido.",
+        "Nos dois vídeos de aula é essa a batida da parte final; a gravação é bem rápida, então sobe o bpm aos poucos.",
+      ]},
+      {name:"Virada: 4 pra baixo (no D e no F)",steps:["↓","↓","↓","↓"],count:["1","e","2","e"],howto:[
+        "Só na virada D → F, no fim do verso 2 e na ponte: <b>quatro pra baixo</b> em cada acorde, firmes e iguais, como um tambor.",
+        "É o momento que prepara o refrão. Deixa o volume crescer da primeira pra última.",
+      ]},
+      {name:"Dedilhado suave (alternativa)",steps:["P","i","m","a"],count:["1","e","2","e"]},
     ],
     chords:["Am7","F","C","D"],
-    yt:"kamaitachi Cabelos Arco-Íris",videos:[{id:"_WfBQBbaDZ4",label:"Oficial"},{id:"zWasuAFiyCw",label:"Acústico"},{id:"UBpR02cVNZU",label:"Aula simplificada"}],
+    yt:"kamaitachi Cabelos Arco-Íris",videos:[{id:"_WfBQBbaDZ4",label:"Oficial"},{id:"zWasuAFiyCw",label:"Acústico"},{id:"UBpR02cVNZU",label:"Aula simplificada"},{id:"QqYR1RkPY98",label:"Aula da batida"}],
     sections:[
-      {id:"intro",name:"Intro",seq:["Am7","F","C","Am7","F","C"]},
-      {id:"verso",name:"Verso 1",seq:["Am7","F","C","Am7","F","C","Am7","F","C","Am7","F","C"]},
-      {id:"verso2",name:"Verso 2",seq:["Am7","F","C","Am7","F","C","Am7","F","C","Am7","F","C","D","F"]},
-      {id:"refrao",name:"Refrão",seq:["Am7","F","C","Am7","F","C","Am7","F","C","Am7","F","C","D"]},
-      {id:"ponte",name:"Ponte",seq:["F","D","F"]},
-      {id:"final",name:"Final",seq:["Am7","F","C","Am7","F","C"],endLast:true},
+      {id:"intro",name:"Intro",rh:0,seq:["Am7","F","C","Am7","F","C"]},
+      {id:"verso",name:"Verso 1",rh:0,seq:["Am7","F","C","Am7","F","C","Am7","F","C","Am7","F","C"]},
+      {id:"verso2",name:"Verso 2",rh:0,seq:["Am7","F","C","Am7","F","C","Am7","F","C","Am7","F","C","D~2","F~2"]},
+      {id:"refrao",name:"Refrão",rh:1,seq:["Am7","F","C*2","Am7","F","C*2","Am7","F","C*2","Am7","F","C*2","D~2"]},
+      {id:"ponte",name:"Ponte",rh:2,seq:["F","D","F"]},
+      {id:"final",name:"Final",rh:1,seq:["Am7","F","C*2","Am7","F","C*2"],endLast:true},
     ],
     full:["intro","verso","verso2","refrao","ponte","final"],
-    // Letra: quantos acordes cada frase leva (um acorde = um compasso), conferido na cifra. O texto é colado pelo Matheus.
+    // Letra: quantos acordes cada frase leva. O texto é colado pelo Matheus (direitos autorais).
     lyrics:[
       [{n:3,inst:"só o violão, 1ª volta"},{n:3,inst:"só o violão, 2ª volta"}],
       [3,3,3,3],
@@ -1163,8 +1179,8 @@ G|--------------4-4-2-4------------------4-4-2-4-----------------------------2h4
       [3],
       [3,3],
     ],
-    mapNotes:{intro:"o ciclo Am7 → F → C, 2 voltas",verso:"o mesmo ciclo, 4 voltas",verso2:"4 voltas e a virada D → F",refrao:"4 voltas e termina no D",ponte:"F, D, F: um acorde por vez",final:"o ciclo de novo pra fechar"},
-    source:`<b>De onde vem:</b> a <a href="https://www.cifras.com.br/cifra/kamaitachi/cabelos-arco-iris" target="_blank" rel="noopener">cifra no Cifras.com.br</a>, conferida com a do <a href="https://ukutabs.com/k/kamaitachi/cabelos-arco-iris/" target="_blank" rel="noopener">UkuTabs</a> e a do <a href="https://www.e-chords.com/chords/kamaitachi/cabelos-arco-iris" target="_blank" rel="noopener">E-Chords</a>: as três batem. A original é em <b>F</b>, com <b>Dm7 → Bb → F</b> girando a música toda e um <b>G</b> nas viradas.<br><b>Capotraste na casa 5:</b> aí os desenhos fáceis <b>Am7, F (o fácil), C e D</b> soam exatamente como Dm7, Bb, F e G — igual à gravação, dá pra tocar junto com o vídeo. De C pra Am7 é só tirar um dedo. 🎁<br><b>Tempo de cada acorde:</b> <b>1 compasso</b> (4 tempos, uns 2 segundos). A conta fecha: a faixa tem <b>1:45</b> e, somando todas as partes, dá 54 acordes — a 115 BPM, um compasso cada, isso dá quase exatamente o tamanho da música.<br><b>O clima:</b> segundo a <a href="https://tunebat.com/Info/Cabelos-Arco-ris-kamaitachi/1wFqkTWlyl79UfFQOSRU9b" target="_blank" rel="noopener">Tunebat</a>, a gravação é <b>98% acústica</b>, bem baixinha e com energia lá embaixo (6 de 100): é voz e violão bem de leve. Então aqui o violão toca mais suave. A batida <b>↓ · ↓↑ · ↑↓↑</b> é a que o UkuTabs indica; toca com a mão relaxada, quase acariciando as cordas.<br><b>Dedilhado:</b> nenhuma cifra diz se o original é batido ou dedilhado, então deixei também a opção <b>P i m i a i m i</b> em ⚙️ Ajustes → Batida: <b>P</b> = polegar na corda mais grossa do acorde, <b>i</b> = indicador na Sol, <b>m</b> = médio na Si, <b>a</b> = anelar na Mi fininha. Escuta o clipe e fica com a que soar mais parecida.<br><b>Andamento:</b> 115 BPM, o da gravação. Se ficar corrido, baixa pra uns 90 e vai subindo. Pra cantar junto, abre a <a href="https://www.cifraclub.com.br/kamaitachi/cabelos-arco-iris/" target="_blank" rel="noopener">cifra com a letra no Cifra Club</a>.<br><b>Tempo:</b> a gravação de estúdio tem só 1:45 e são 54 compassos de um acorde cada, o que dá uns <b>120 bpm</b> (subi dos 115 de antes pra bater com o áudio). <b>Letra:</b> por direitos autorais ela não vem no site; cola na caixa dourada do palco (16 frases, uma por linha) e ela passa frase a frase com o acorde acendendo.`},
+    mapNotes:{intro:"levada 1, 2 voltas",verso:"levada 1, 4 voltas",verso2:"4 voltas e a virada D → F (4 pra baixo)",refrao:"batidão, C dura o dobro, termina no D",ponte:"F, D, F: 4 pra baixo em cada",final:"batidão, 2 voltas pra fechar"},
+    source:`<b>De onde vem:</b> a <a href="https://www.cifras.com.br/cifra/kamaitachi/cabelos-arco-iris" target="_blank" rel="noopener">cifra no Cifras.com.br</a>, conferida com a do <a href="https://ukutabs.com/k/kamaitachi/cabelos-arco-iris/" target="_blank" rel="noopener">UkuTabs</a>: a original é em <b>F</b>, com <b>Dm7 → Bb → F</b> girando a música toda e um <b>G</b> nas viradas. <b>Capotraste na casa 5:</b> os desenhos fáceis <b>Am7, F (o fácil), C e D</b> soam exatamente como a gravação.<br><b>Batida:</b> veio de duas videoaulas (a <a href="https://www.youtube.com/watch?v=UBpR02cVNZU" target="_blank" rel="noopener">simplificada do MauMau Daneres</a> e a do <a href="https://www.youtube.com/watch?v=QqYR1RkPY98" target="_blank" rel="noopener">Clube do Violão</a>), e as duas dizem a mesma coisa: a música tem <b>dois ritmos</b>. No começo, <b>polegar no baixo, sobe, desce abafando</b> (uma volta por acorde); na parte forte, o <b>batidão ↓ ↓ ↓ ↑</b>, com o C durando o dobro; e na virada D → F, <b>quatro pra baixo</b> em cada. Cada parte da música já usa a batida certa no play-along.<br><b>Tempo:</b> a gravação tem 1:45; aqui comecei devagar (68 bpm), e a velocidade você acerta no controle ao lado do play. <b>Letra:</b> por direitos autorais ela não vem no site; cola na caixa dourada do palco (16 frases) e ela passa frase a frase.`},
   moon:{title:"Talking to the Moon",artist:"Bruno Mars",key:"E",capo:4,level:"médio",bpm:72,pat:2,
     chords:["C","E7","Am","G","F","Dm","D7"],
     yt:"Bruno Mars Talking to the Moon",videos:[{id:"fXw0jcYbqdo",label:"Lyric video oficial"},{id:"RUMFN8TYmM8",label:"Só áudio"}],
@@ -1314,6 +1330,11 @@ function strumAt(ch,t,dir,vol=.34,gap=.012){
     i++;
   });
 }
+function chopAt(ch,t,vol=.3){ // abafado: batida pra baixo que morre na hora (o "soquinho" na corda)
+  strumAt(ch,t,"down",vol*.9,.006);
+  for(let s=0;s<6;s++) if(voice[s]){ try{ voice[s].gain.setTargetAtTime(0,t+.055,.012); }catch(e){} }
+  const ctx=audio(); if(!ctx) return; const n=ctx.createBufferSource(); n.buffer=ksBuffer(1800); const g=ctx.createGain(); g.gain.setValueAtTime(vol*.5,t); g.gain.exponentialRampToValueAtTime(.001,t+.05); n.connect(g); g.connect(master); n.start(t); n.stop(t+.06);
+}
 function strum(ch,slow){ const c=audio(); if(c) strumAt(ch,c.currentTime+.02,"down",.4,slow?.2:.014); }
 function strumUp(ch){ const c=audio(); if(c) strumAt(ch,c.currentTime+.02,"up",.36); }
 function strumUpFull(ch,slow){ const c=audio(); if(c) strumAt(ch,c.currentTime+.02,"upfull",.38,slow?.2:.014); }
@@ -1441,7 +1462,7 @@ let pickTimer=0;
 function animatePick(dir){
   if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const yA=NK.top-14, yB=BOT+12;
-  const from=dir==="↓"?yA:yB, to=dir==="↓"?yB:yA;
+  const down=dir!=="↑"; const from=down?yA:yB, to=down?yB:yA;
   pickG._arrow.textContent=dir;
   pickG.style.transition="none";
   pickG.style.transform=`translate(${PICK_X}px,${from}px)`;
@@ -1545,7 +1566,9 @@ let songId="domingo", fEasy=true, mode="watch", secSel="full";
 const res=id=>(id==="F"&&fEasy)?"F7M":id;
 
 /* ---------- rosácea: um anel com as cores dos acordes da música ---------- */
-function fullSeqIds(sg){ const out=[]; sg.full.forEach(sid=>{ const sec=sg.sections.find(x=>x.id===sid); if(sec.riff) sec.riff.forEach(r=>out.push(r.c)); else sec.seq.forEach(c=>out.push(c.split("*")[0])); }); return out; }
+/* token de acorde na sequência: "C", "C*2" (2 compassos) ou "D~2" (usa a batida nº 2 da música nesse acorde) */
+function tok(c){ const m=String(c).match(/^([^*~]+)(?:\*(\d+))?(?:~(\d+))?$/)||[c,c]; return {id:m[1],mult:+m[2]||1,rh:m[3]!=null?+m[3]:null}; }
+function fullSeqIds(sg){ const out=[]; sg.full.forEach(sid=>{ const sec=sg.sections.find(x=>x.id===sid); if(sec.riff) sec.riff.forEach(r=>out.push(r.c)); else sec.seq.forEach(c=>out.push(tok(c).id)); }); return out; }
 function arcSeg(r0,r1,a0,a1){ // ângulos em graus: 0 = topo, sentido horário
   const pt=(r,a)=>{ const t=(a-90)*Math.PI/180; return (r*Math.cos(t)).toFixed(2)+" "+(r*Math.sin(t)).toFixed(2); };
   const lg=(a1-a0)>180?1:0;
@@ -1590,7 +1613,7 @@ function sectionList(){ // lista plana de acordes da seleção atual
   ids.forEach((sid,k)=>{
     const sec=sg.sections.find(x=>x.id===sid), occ=secSel==="full"?k:sg.full.indexOf(sid); // occ = qual ocorrência da parte na música (a letra muda entre elas)
     if(sec.riff) sec.riff.forEach((r,i)=>out.push({chord:res(r.c),sec:sec.name,sid,occ,si:i,secStart:i===0,secK:k,end:false,notes:r.n}));
-    else sec.seq.forEach((c,i)=>{ const [id,m]=c.split("*"); out.push({chord:res(id),mult:+m||1,sec:sec.name,sid,occ,si:i,secStart:i===0,secK:k,end:!!(sec.endLast&&i===sec.seq.length-1)}); });
+    else sec.seq.forEach((c,i)=>{ const t=tok(c); out.push({chord:res(t.id),mult:t.mult,rh:t.rh??sec.rh??null,sec:sec.name,sid,occ,si:i,secStart:i===0,secK:k,end:!!(sec.endLast&&i===sec.seq.length-1)}); });
   });
   return out;
 }
@@ -1657,7 +1680,7 @@ function renderMinis(){
 /* mapa: estrutura proporcional (clicável) + cada parte com seus acordes */
 const SEC_COL=["#e9b04c","#4fb8ad","#a08ff2","#f27d95","#5da6f2","#9ed36a","#ff8d5e","#c98ff2"];
 const secColor=(sg,id)=>SEC_COL[sg.sections.findIndex(x=>x.id===id)%SEC_COL.length];
-function secBars(sec){ return sec.riff ? Math.max(1,sec.riff.reduce((a,r)=>a+r.n.reduce((x,n)=>x+n[2],0),0)/8) : sec.seq.reduce((a,c)=>a+(+c.split("*")[1]||1),0); }
+function secBars(sec){ return sec.riff ? Math.max(1,sec.riff.reduce((a,r)=>a+r.n.reduce((x,n)=>x+n[2],0),0)/8) : sec.seq.reduce((a,c)=>a+tok(c).mult,0); }
 function renderMap(){
   const sg=SONGS[songId], arr=$("#songArr"), box=$("#songMap");
   arr.innerHTML=sg.full.map(id=>{ const sec=sg.sections.find(x=>x.id===id);
@@ -1666,7 +1689,7 @@ function renderMap(){
   box.innerHTML="";
   sg.sections.forEach(sec=>{
     // compacta repetições exatas (ex.: ciclo × 2)
-    let seq=sec.seq.map(c=>{ const [id,m]=c.split("*"); return res(id)+(m?"*"+m:""); }), times=1;
+    let seq=sec.seq.map(c=>{ const t=tok(c); return res(t.id)+(t.mult>1?"*"+t.mult:""); }), times=1;
     for(let L=2;L<=seq.length/2;L++){ if(seq.length%L) continue; const head=seq.slice(0,L).join(); let ok=true;
       for(let k=L;k<seq.length;k+=L) if(seq.slice(k,k+L).join()!==head){ ok=false; break; }
       if(ok){ times=seq.length/L; seq=seq.slice(0,L); break; } }
@@ -1682,7 +1705,7 @@ function renderMap(){
 function curPatMeta(){ const v=patEl.value, rh=songRhythms(SONGS[songId]); if(v==="c") return {name:"Minha batida",custom:true,...customPat()}; return v[0]==="s"&&rh[+v.slice(1)]?rh[+v.slice(1)]:RPATS[+v]; }
 function patCount(m){ return m.count||(m.steps.length===6?["1","2","3","4","5","6"]:COUNT); }
 function patHowto(m){
-  if(m.custom) return ["Essa batida foi <b>montada por você</b>, de ouvido, nos quadradinhos de ⚙️ Ajustes. Ela fica salva só pra essa música, neste aparelho.","↓ = da corda grossa pra fina, ↑ = da fina pra grossa (de leve), · = a mão passa no ar sem tocar.",m.swing?"<b>Balanço ligado:</b> os “e” chegam um pouco atrasados, com suingue.":"Se a música tiver suingue, liga o <b>Balanço</b>: os “e” chegam um pouco atrasados."];
+  if(m.custom) return ["Essa batida foi <b>montada por você</b>, de ouvido, nos quadradinhos de ⚙️ Ajustes. Ela fica salva só pra essa música, neste aparelho.","↓ = da corda grossa pra fina, ↑ = da fina pra grossa (de leve), ✕ = batida abafada (desce com a mão já encostando nas cordas, só o “tchac”), · = a mão passa no ar sem tocar.",m.swing?"<b>Balanço ligado:</b> os “e” chegam um pouco atrasados, com suingue.":"Se a música tiver suingue, liga o <b>Balanço</b>: os “e” chegam um pouco atrasados."];
   if(m.howto) return m.howto;
   const sig=m.steps.join("");
   if(/[Pima]/.test(sig)) return ["<b>P</b> é o polegar na corda mais grossa que o acorde usa. <b>i</b> = indicador na Sol, <b>m</b> = médio na Si, <b>a</b> = anelar na Mi fininha.","Uma corda por vez, sem pressa, deixando as notas anteriores soarem juntas.","O desafio é a mão esquerda trocar o acorde enquanto a direita não para: começa bem devagar."];
@@ -1711,6 +1734,7 @@ $("#beatPlay").addEventListener("click",()=>{
   for(let rep=0;rep<2;rep++) steps.forEach((d,i)=>{
     const t=t0+(rep*steps.length+i)*half+(m.swing&&i%2?half*.33:0);
     if(d==="↓") strumAt(ch,t,"down",.36*soft,gap); else if(d==="↑") strumAt(ch,t,"up",.36*soft,gap);
+    else if(d==="✕") chopAt(ch,t,.36*soft);
     else if(d==="P"||PIMA[d]!=null) pickAt(ch,d,t,.44*soft);
     setTimeout(()=>{ if(tok!==rhythmToken) return; [...cells].forEach(c=>c.classList.remove("on")); cells[i].classList.add("on"); if(d!=="·") animatePick(d==="↑"?"↑":"↓"); },(t-ctx.currentTime)*1000);
   });
@@ -1804,9 +1828,10 @@ const P={playing:false,startT:0,slotDur:.4,nextSlot:0,total:0,events:[],chords:[
 function rebuild(){
   if(mode==="step"){ stepReset(); return; }
   const list=sectionList();
-  const bars=+barsEl.value, pat=curPat(), L=pat.length;
+  const bars=+barsEl.value, rhs=songRhythms(SONGS[songId]), songPat=patEl.value==="s0";
   P.chords=list; P.events=[]; P.loop=isOn(togLoop);
   list.forEach((it,ci)=>{
+    const pat=(songPat&&it.rh!=null&&rhs[it.rh])?rhs[it.rh].steps:curPat(), L=pat.length; // cada parte pode ter a própria batida
     if(it.notes){ // trecho solado: notas soltas em vez de batida
       let k=0; const n=it.notes.reduce((a,x)=>a+x[2],0); it.len=n;
       it.notes.forEach(([s,f,d])=>{ for(let j=0;j<d;j++){ P.events.push({ci,k,n,bar:k%8,L:8,dir:j===0?"♪":"·",note:j===0?[s,f]:null,chord:it.chord}); k++; } });
@@ -1904,6 +1929,7 @@ function schedule(){
       if(isOn(togGtr)&&ev.note) playString(ev.note[0],ev.note[1]+CAPO,t,mode==="mine"?.3:.6);
       else if(isOn(togGtr)){ const gap=SONGS[songId].gap||.012;
         if(ev.dir==="↓") strumAt(ch,t,"down",gv,gap); else if(ev.dir==="↑") strumAt(ch,t,"up",gv,gap);
+        else if(ev.dir==="✕") chopAt(ch,t,gv);
         else if(ev.dir==="P"||PIMA[ev.dir]!=null) pickAt(ch,ev.dir,t,(mode==="mine"?.22:.42)*soft); }
       if(isOn(togClk) && ev.bar%(ev.L===6?3:2)===0) clickAt(t,ev.bar===0);
     }
@@ -2067,11 +2093,11 @@ const PAT_KEY=()=>"vb_pat_"+songId;
 function getCustomPat(){ try{ const j=JSON.parse(localStorage.getItem(PAT_KEY())||"null"); return j&&Array.isArray(j.steps)&&j.steps.length?j:null; }catch(e){ return null; } }
 function setCustomPat(p){ try{ localStorage.setItem(PAT_KEY(),JSON.stringify(p)); }catch(e){} }
 function customPat(){ return getCustomPat()||{steps:[...RPATS[2].steps],swing:false}; }
-const PE_CYCLE=["↓","↑","·"];
+const PE_CYCLE=["↓","↑","✕","·"];
 function renderPatEdit(){
   const box=$("#patEdit"), on=patEl.value==="c"; box.hidden=!on; if(!on) return;
   const p=customPat(), n=p.steps.length, cnt=n===6?["1","2","3","4","5","6"]:COUNT.slice(0,n);
-  box.innerHTML=`<div class="pe-h">${ic("hand-tap")}Monta tua batida de ouvido: toca num quadradinho pra trocar entre ↓, ↑ e · (pausa)</div>
+  box.innerHTML=`<div class="pe-h">${ic("hand-tap")}Monta tua batida de ouvido: toca num quadradinho pra trocar entre ↓, ↑, ✕ (abafado) e · (pausa)</div>
     <div class="pads" style="--n:${n}">${p.steps.map((d,i)=>`<button type="button" class="pad${d==="·"?" rest":""}${i===0||(n===6&&i===3)?" acc":""}" data-i="${i}" aria-label="passo ${i+1}: ${d}"><b>${d}</b><small>${cnt[i]}</small></button>`).join("")}</div>
     <div class="row"><label>Passos <select id="peLen">${[4,6,8].map(k=>`<option value="${k}"${k===n?" selected":""}>${k} (${k===8?"1 compasso de 4":k===6?"valsa, 6/8":"só 2 tempos"})</option>`).join("")}</select></label>
       <button type="button" class="tog" id="peSwing" aria-pressed="${!!p.swing}">${ic("waveform")}Balanço (swing)</button>
@@ -2101,7 +2127,7 @@ function lyricRows(sg){ // junta a estrutura (do código) com o texto (colado): 
     spec.forEach((l,li)=>{
       const n=typeof l==="number"?l:l.n, inst=typeof l==="number"?null:(l.inst||null), join=typeof l==="number"?1:(l.join||1);
       let text=null; if(!inst){ const part=src.slice(p,p+join); text=part.length?part.join("  ·  "):null; p+=join; }
-      rows.push({occ,sid,name:sec.name,li,ci0:ci,n,inst,chords:sec.seq.slice(ci,ci+n).map(c=>res(c.split("*")[0])),text});
+      rows.push({occ,sid,name:sec.name,li,ci0:ci,n,inst,chords:sec.seq.slice(ci,ci+n).map(c=>res(tok(c).id)),text});
       ci+=n;
     });
     if(spec.length&&ci!==sec.seq.length) console.warn("letra × acordes não batem em",sid,occ,ci,sec.seq.length);
